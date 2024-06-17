@@ -5,6 +5,7 @@ import { Form } from "antd";
 import { IVoucher, IVoucherEdit, IVoucherCreate } from "@/common/types/voucher.interface copy";
 import instance from "@/api/axios";
 import moment from "moment";
+import _ from 'lodash';
 import dayjs from "dayjs";
 
 export default function useVoucher() {
@@ -18,18 +19,20 @@ export default function useVoucher() {
     const [modalParams, setModalParams] = useState<ConfirmModalParams>(DefaultConfirmModalParams);
     const [dataIndex, setDataIndex] = useState<number>();
     const [visibleModalVoucherDetail, setVisibleModalVoucherDetail] = useState<boolean>(false);
-    console.log(visibleModalVoucherDetail);
 
 
     useEffect(() => {
         fetchData();
     }, [refresh]);
 
-
-    const fetchData = async () => {
+    const fetchData = async (q?: string) => {
         setLoading(true);
         try {
-            const res = await instance.get(`voucher`)
+            const res = await instance.get(`voucher`, {
+                params: {
+                    name: q
+                }
+            });
             setTest(res.data);
             setDataList(res.data);
             setDataTotal(res.data.total);
@@ -39,7 +42,13 @@ export default function useVoucher() {
             setLoading(false);
         }
     };
-    const dateFormat = 'YYYY-MM-DD';
+    const debounceFn = _.debounce(fetchData, 800)
+
+    const onSearch = (e: any) => {
+        if (!e.target.value.startsWith(' ')) {
+            debounceFn(e.target.value);
+        }
+    }
     const onEditVoucher = (values: any) => {
         setIndex(values.id);
         setVisibleModalVoucherDetail(true);
@@ -190,8 +199,8 @@ export default function useVoucher() {
         onCancelModalDetail,
         visibleModalVoucherDetail,
         onShowModalDetail,
-        onSubmit
-
+        onSubmit,
+        onSearch
     };
 
 }

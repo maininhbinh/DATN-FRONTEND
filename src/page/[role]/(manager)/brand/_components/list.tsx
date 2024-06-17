@@ -1,5 +1,5 @@
 
-import { Table, Typography } from 'antd';
+import { Input, Table, Typography } from 'antd';
 import moment from 'moment';
 import type { TableProps } from 'antd';
 import { Button, Flex } from 'antd';
@@ -7,7 +7,7 @@ import { IBrand } from '../../../../../common/types/brand.interface';
 import useBrand from '../utils/brand.hooks';
 import ConfirmModal from '../../../(base)/brand/confirm.modal';
 import ModalCreateBrand from './add';
-
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 
 
 export default function ListBrand() {
@@ -73,18 +73,37 @@ export default function ListBrand() {
 
 
   return <>
-    <Typography.Title editable level={2} style={{ margin: 0 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        List Brand <Flex wrap="wrap" gap="small">
-          {/* <Link to="add"> */}
-          <Button type="primary" danger onClick={() => hooks.onShowModalDetail()}>
-            Add Brand
-          </Button>
-          {/* </Link> */}
-        </Flex>
-      </div>
-
-    </Typography.Title>
+    <div className='flex items-center justify-between my-2'>
+      <Typography.Title editable level={2} style={{ margin: 0 }}>
+        List Brand
+      </Typography.Title>
+    </div>
+    <div className=''>
+      <Flex wrap='wrap' gap='small' className='my-5' align='center' justify='space-between'>
+        <Input
+          className='header-search w-[250px]'
+          prefix={
+            <div className=' px-2'>
+              <SearchRoundedIcon />
+            </div>
+          }
+          spellCheck={false}
+          allowClear
+          onChange={hooks.onSearch}
+          size='small'
+          placeholder={'search'}
+          style={{
+            borderRadius: '2rem',
+            border: 'none',
+            backgroundColor: '#ffff',
+            boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem'
+          }}
+        />
+        <Button type="primary" danger onClick={() => hooks.onShowModalDetail()}>
+          Add Brand
+        </Button>
+      </Flex>
+    </div>
 
     <Table columns={columns} dataSource={hooks.dataList} loading={hooks.loading} />
 

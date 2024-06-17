@@ -3,6 +3,7 @@ import { ConfirmModalParams, ConfirmModalType, DefaultConfirmModalParams, PAGINA
 import { Form } from "antd";
 import instance from "@/api/axios";
 import dayjs from "dayjs";
+import _ from 'lodash';
 import { IColor, IColorCreate, IColorEdit } from "@/common/types/color.interface";
 
 export default function useColor() {
@@ -16,7 +17,8 @@ export default function useColor() {
     const [modalParams, setModalParams] = useState<ConfirmModalParams>(DefaultConfirmModalParams);
     const [dataIndex, setDataIndex] = useState<number>();
     const [visibleModalColorDetail, setVisibleModalColorDetail] = useState<boolean>(false);
-    console.log(visibleModalColorDetail);
+
+
 
 
     useEffect(() => {
@@ -24,10 +26,14 @@ export default function useColor() {
     }, [refresh]);
 
 
-    const fetchData = async () => {
+    const fetchData = async (q?: string) => {
         setLoading(true);
         try {
-            const res = await instance.get(`color`)
+            const res = await instance.get(`color`, {
+                params: {
+                    name: q
+                }
+            })
             setTest(res.data);
             setDataList(res.data);
             setDataTotal(res.data.total);
@@ -37,7 +43,13 @@ export default function useColor() {
             setLoading(false);
         }
     };
-    const dateFormat = 'YYYY-MM-DD';
+    const debounceFn = _.debounce(fetchData, 800)
+
+    const onSearch = (e: any) => {
+        if (!e.target.value.startsWith(' ')) {
+            debounceFn(e.target.value);
+        }
+    }
     const onEditColor = (values: any) => {
         setIndex(values.id);
         setVisibleModalColorDetail(true);
@@ -164,11 +176,10 @@ export default function useColor() {
         }
     };
 
-
-
     return {
         form,
         Index,
+        onSearch,
         dataList,
         loading,
         test,

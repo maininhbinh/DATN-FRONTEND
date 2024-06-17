@@ -4,7 +4,7 @@ import { ConfirmModalParams, ConfirmModalType, DefaultConfirmModalParams, PAGINA
 import axios from "axios";
 import { Form } from "antd";
 import instance from "@/api/axios";
-
+import _ from 'lodash';
 export default function useBrand() {
     const [form] = Form.useForm();
     const [dataList, setDataList] = useState<IBrand[]>([]);
@@ -24,10 +24,14 @@ export default function useBrand() {
     }, [refresh]);
 
 
-    const fetchData = async () => {
+    const fetchData = async (q?: string) => {
         setLoading(true);
         try {
-            const res = await instance.get(`brand`);
+            const res = await instance.get(`brand`, {
+                params: {
+                    name: q
+                }
+            });
             setTest(res.data);
             setDataList(res.data);
             setDataTotal(res.data.total);
@@ -76,6 +80,14 @@ export default function useBrand() {
         });
         setDataIndex(item.id);
     };
+
+    const debounceFn = _.debounce(fetchData, 800)
+
+    const onSearch = (e: any) => {
+        if (!e.target.value.startsWith(' ')) {
+            debounceFn(e.target.value);
+        }
+    }
 
     const onHideConfirmPopup = (): void => {
         setModalParams(DefaultConfirmModalParams);
@@ -172,6 +184,7 @@ export default function useBrand() {
         dataList,
         loading,
         test,
+        onSearch,
         onEditBrand,
         onHideConfirmPopup,
         handleOkPopup,
