@@ -33,42 +33,42 @@
     {
       "name": "Ram",
       "description": "ram",
-      "id": "1"
+      "id": 1
     },
     {
       "name": "Rom",
       "description": "Bộ nhớ trong",
-      "id": "2"
+      "id": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Màn hình",
       "description": "màn hình"
     },
     {
       "name": "Dung lượng pin",
       "description": "dung lượng pin",
-      "id": "4"
+      "id": 4
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Hệ điều hành",
       "description": "hệ điều hành"
     },
     {
       "name": "Ổ cứng",
       "description": "Hard diver",
-      "id": "6"
+      "id": 6
     },
     {
       "name": "Chip",
       "description": "Chip xử lý",
-      "id": "7"
+      "id": 7
     },
     {
       "name": "Chất liệu",
       "description": "Material",
-      "id": "8"
+      "id": 8
     }
   ],
   "value_attributes": [
@@ -171,6 +171,11 @@
       "attributeId": 8,
       "value": "Vỏ nhựa",
       "id": "20"
+    },
+    {
+      "attributeId": 2,
+      "value": "128Gb",
+      "id": 21
     }
   ],
   "slide": [
@@ -191,52 +196,31 @@
   ],
   "categories": [
     {
-      "name": "Điện thoại",
+      "name": "SamSung",
       "description": "moo taa",
       "is_delete": false,
       "id": "1"
     },
     {
-      "name": "Máy tính bảng",
+      "name": "ViVo",
       "description": "- ád\n-fg",
       "parent_id": "2",
       "is_delete": false,
       "id": "2"
     },
     {
-      "id": "3",
-      "name": "Laptop",
-      "parent_id": "",
+      "name": "iPhone",
       "description": "sdf",
-      "is_delete": false
-    },
-    {
-      "id": "4",
-      "name": "Phụ kiện",
-      "parent_id": "",
-      "description": "sdf",
-      "is_delete": false
-    },
-    {
-      "name": "fsdfsd update",
-      "description": "fsdfdsaf",
       "parent_id": "",
       "is_delete": false,
-      "id": "5"
+      "id": "3"
     },
     {
-      "name": "fsdf  3434",
-      "description": "fsdfdsaf",
+      "name": "Xiaomi",
+      "description": "sdf",
       "parent_id": "",
       "is_delete": false,
-      "id": "6"
-    },
-    {
-      "id": "24d1",
-      "name": "đ",
-      "parent_id": "",
-      "description": "đ",
-      "is_delete": false
+      "id": "4"
     }
   ],
   "category_attributes": [
@@ -313,11 +297,31 @@
   ],
   "brand": [
     {
-      "id": "1",
-      "name": "Puma",
+      "name": "iPhone",
       "logo": "url",
-      "create_at": "2024-05-11T02:48:09.735Z",
-      "updated_at": "2024-05-11T02:48:09.735Z"
+      "updated_at": "2024-06-14T15:12:14.726Z",
+      "id": "1"
+    },
+    {
+      "name": "SamSung",
+      "logo": "dfsf",
+      "create_at": "2024-06-14T15:13:00.129Z",
+      "updated_at": "2024-06-14T15:13:00.129Z",
+      "id": "70mPlxz"
+    },
+    {
+      "name": "Xiaomi",
+      "logo": "fdsf",
+      "create_at": "2024-06-14T15:13:08.135Z",
+      "updated_at": "2024-06-14T15:13:08.135Z",
+      "id": "7gQbxFZ"
+    },
+    {
+      "name": "ViVo",
+      "logo": "fsdf",
+      "create_at": "2024-06-14T15:13:15.675Z",
+      "updated_at": "2024-06-14T15:13:15.675Z",
+      "id": "oizOe0u"
     }
   ],
   "privilege_users": [
@@ -517,10 +521,10 @@
   ],
   "products": [
     {
-      "name": "update  image 1231313",
-      "price": "4444",
-      "discount": "4444",
-      "categoryId": "1",
+      "name": "iPhone 13",
+      "price": "12000000",
+      "discount": "0.2",
+      "categoryId": "3",
       "brandId": "1",
       "total_review": 0,
       "avg_stars": 0,
@@ -530,17 +534,349 @@
       "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1717851153/example-react/a80yd2icpcf3pntg3rwl.jpg"
     },
     {
-      "name": "11111 update",
-      "price": "1111",
-      "discount": "11",
-      "categoryId": "4",
+      "name": "iPhone 14",
+      "price": "20000000",
+      "discount": "0.15",
+      "categoryId": "3",
       "brandId": "1",
       "total_review": 0,
       "avg_stars": 0,
-      "description": "<p>2222</p>",
+      "description": "<h3 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/iphone-14-pro-max\">iPhone 14 Pro Max</a>&nbsp;một siêu phẩm trong giới smartphone được nhà Táo tung ra thị trường vào tháng 09/2022. Máy trang bị con chip Apple A16 Bionic vô cùng mạnh mẽ, đi kèm theo đó là thiết kế màn hình mới, hứa hẹn mang lại những trải nghiệm đầy mới mẻ cho người dùng iPhone.</h3><h3 style=\"text-align:justify;\">Thiết kế cao cấp bền bỉ</h3><p style=\"text-align:justify;\">iPhone năm nay sẽ được thừa hưởng nét đặc trưng từ người anh <a href=\"https://www.thegioididong.com/dtdd/iphone-13-pro-max-1tb\">iPhone 13 Pro Max</a>, vẫn sẽ là khung thép không gỉ và mặt lưng kính cường lực kết hợp với tạo hình vuông vức hiện đại thông qua cách tạo hình phẳng ở các cạnh và phần mặt lưng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103221.jpg\" alt=\"Thiết kế sang trọng - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Dòng Pro năm nay được ra mắt với nhiều tùy chọn màu sắc và trong đó nổi bật nhất có lẽ là phiên bản Deep Purple (tím), bởi vì đây là một màu mới nên mang lại độ nhận diện khá cao.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103227.jpg\" alt=\"Màu sắc mới mẻ - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Nổi bật với thiết kế màn hình mới</h3><p style=\"text-align:justify;\">Điểm ấn tượng nhất trên <a href=\"https://www.thegioididong.com/dtdd-apple-iphone\">iPhone</a> năm nay nằm ở thiết kế màn hình, có thể dễ dàng nhận thấy được là hãng cũng đã loại bỏ cụm tai thỏ truyền thống qua bao đời iPhone bằng một hình dáng mới vô cùng lạ mắt.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103229.jpg\" alt=\"Thiết kế hình notch mới - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">So với cụm tai thỏ hình notch năm nay đã có phần tiết kiệm diện tích tương đối tốt, nhưng khi so với các kiểu màn hình dạng “nốt ruồi” thì đây vẫn chưa thực sự là một điều quá tối ưu cho phần màn hình. Thế nhưng Apple lại rất biết cách tận dụng những nhược điểm để biến chúng trở thành ưu điểm một cách ngoạn mục bằng cách phát minh nhiều hiệu ứng thú vị.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103232.jpg\" alt=\"Kích thước nhỏ gọn - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Để làm cho chúng trở nên bắt mắt hơn Apple cũng đã giới thiệu nhiều hiệu ứng chuyển động nhằm làm tăng sự thích thú cho người dùng, điều này được kích hoạt trong lúc mình ấn giữ phần hình notch khi đang dùng các phần mềm hỗ trợ như: Nghe nhạc, đồng hồ hẹn giờ, ghi âm,...</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103235.jpg\" alt=\"Hiệu ứng sinh động - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Hiển thị nội dung chân thực hơn thông qua màn hình chất lượng</h3><p style=\"text-align:justify;\">Từ trước đến nay, tấm nền OLED luôn được cộng đồng người dùng đánh giá rất cao khi xuất hiện trên các dòng sản phẩm của Apple, với chiếc iPhone 14 Pro Max điều này cũng không là ngoại lệ khi hình ảnh mà máy mang lại hết sức chân thực.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103237.jpg\" alt=\"Màn hình cao cấp - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Nhìn vào màn hình ta sẽ thấy được một độ trong trẻo vô cùng thích mắt, nội dung hiển thị có chiều sâu, cảm giác khi xem phim hay chơi game cũng trở nên sống động hơn.</p><p style=\"text-align:justify;\">Điểm vượt trội nhất mà tấm nền này mang lại là độ chuẩn xác về màu sắc, mình cũng đã sử dụng iPhone 14 Pro Max để thiết kế một vài ấn phẩm như poster hay sticker đơn giản và thành quả lúc in ra sau khi đối chiếu lại với ảnh trên <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a> thì gần như là bằng nhau, độ sai lệch không quá đáng kể giúp mình an tâm hơn trong việc thiết kế hình ảnh.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103240.jpg\" alt=\"Độ chuẩn xác về màu cao - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Độ phân giải màn hình đạt mức 2796 x 1290 Pixels nên việc tái tạo hình ảnh có độ chi tiết cao là điều hết sức dễ dàng, hiện tượng như rỗ màn hình là điều mà mình chưa từng thấy xuất hiện trên điện thoại trong 2 tuần trải nghiệm.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103242.jpg\" alt=\"Độ chi tiết cực lớn - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\"><strong>Hỗ trợ tính năng Always On Display</strong></p><p style=\"text-align:justify;\">Bên cạnh sự đổi mới về hình notch, năm nay Apple còn trang bị cho dòng Pro và Pro Max thêm công nghệ màn hình Always On Display, điều này cho phép thiết bị không tắt màn hình hẳn mà vẫn hiển thị màn hình khóa với một độ sáng khá nhỏ, đủ để mình có thể đọc thông báo nhanh xem ngày giờ khá thuận tiện.</p><p style=\"text-align:justify;\">Xem thêm: <a href=\"https://www.thegioididong.com/hoi-dap/always-on-display-la-gi-co-hao-pin-khong-huong-dan-1169208\">Always On Display là gì? Có tốn pin không? Cách bật, tắt</a></p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103239.jpg\" alt=\"TÍnh năng trên màn hình - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Tuy nhiên màn hình lúc này khá tối nên dùng ngoài trời sẽ hơi khó nhìn đôi chút. Bên cạnh đó, tính năng này cũng sẽ giảm tuổi thọ pin hơn so với thông thường, để điện thoại qua đêm khoảng 7 tiếng ở chế độ Always On Display thì máy mất khoảng 3 - 4% dung lượng pin.</p><p style=\"text-align:justify;\"><strong>Tần số quét 120 Hz</strong></p><p style=\"text-align:justify;\">iPhone 14 Pro Max có tần số quét rất cao vậy nên mọi thao tác hằng ngày của mình đều được phản hồi nhanh chóng, cảm giác vuốt chạm cũng trở nên thích hơn, hiện tượng khựng hay độ trễ trong lúc vuốt đã được cải thiện đáng kể so với những chuẩn màn hình 60 Hz.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103244.jpg\" alt=\"Vuốt chạm mượt mà - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Ngoài ra, Apple còn bổ sung tùy chọn để giúp bạn có thể dễ dàng điều chỉnh tần số quét lên 120 Hz hay xuống 60 Hz tùy vào nhu cầu sử dụng, phù hợp để dùng trong những tình huống khẩn cấp như đang muốn tiết kiệm pin nhằm đảm bảo thiết bị có thể duy trì sử dụng dài lâu.</p><p style=\"text-align:justify;\"><strong>Độ sáng 2000 nits</strong></p><p style=\"text-align:justify;\">So với những đối thủ khác trong phân khúc thì độ sáng 2000 nits được xem là ưu điểm vượt trội mà ít có hãng nào có thể sánh kịp, thế liệu nó giúp ích được gì và có thực sự hiệu quả hay không chắc hẳn là điều được rất nhiều người thắc mắc.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-041222-103246.jpg\" alt=\"Độ sáng màn hình cao - iPhone 14 Pro Max 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Cụ thể là màn hình có độ sáng cao đã giúp ích cho mình rất nhiều trong mọi nhu cầu sử dụng hằng ngày của mình, kể từ khi sử dụng iPhone 14 Pro Max việc xem bản đồ khi đang ở ngoài đường lúc trời nắng gắt cũng trở nên dễ dàng, màn hình lúc này không quá sập tối hay lóa, các thông báo chỉ dẫn đường đi cũng đều được thể hiện rõ ràng.</p><p style=\"text-align:justify;\"><br>&nbsp;</p>",
       "in_active": true,
       "id": "2",
       "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1717839600/example-react/vk7ykn2tiklip1drsws7.jpg"
+    },
+    {
+      "name": "iPhone 8 Plus",
+      "price": "56000000",
+      "discount": "0.1",
+      "categoryId": "3",
+      "brandId": "1",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h2 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/iphone-8-plus-256gb\">iPhone 8 Plus</a> là bản nâng cấp nhẹ của chiếc <a href=\"https://www.thegioididong.com/dtdd/iphone-7-plus-256gb\">iPhone 7 Plus</a> đã ra mắt trước đó với cấu hình mạnh mẽ cùng camera có nhiều cải tiến.</h2><h3 style=\"text-align:justify;\">Thiết kế quen thuộc vốn có của dòng&nbsp;<a href=\"https://www.thegioididong.com/dtdd-apple-iphone\">iPhone Apple</a></h3><p style=\"text-align:justify;\">Về ngoại hình <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a>&nbsp;iPhone 8 Plus không có quá nhiều khác biệt so với người đàn anh đi trước.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:640/360;\" src=\"https://cdn.tgdd.vn/Products/Images/42/114114/iphone-8-plus-256gb2-1.jpg\" alt=\"Thiết kế điện thoại iPhone 8 Plus\" width=\"640\" height=\"360\"></figure><p style=\"text-align:justify;\">Thay đổi lớn nhất chính là Apple đã chuyển từ thiết kế kim loại nguyên khối sang mặt lưng kính nhằm mang tính năng sạc không dây lên 8 Plus.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:640/426;\" src=\"https://cdn.tgdd.vn/Products/Images/42/114114/iphone-8-plus-256gb-h1-1.jpg\" alt=\"Thiết kế điện thoại iPhone 8 Plus\" width=\"640\" height=\"426\"></figure><h3 style=\"text-align:justify;\">Màn hình rộng và sắc nét</h3><p style=\"text-align:justify;\">iPhone 8 Plus sở hữu màn hình kích thước 5.5 inch độ phân giải&nbsp;<a href=\"https://www.thegioididong.com/tin-tuc/do-phan-giai-man-hinh-qhd-hd-fullhd-2k-4k-la-gi--592178#hd\">Full HD (1080 x 1920 pixels)</a> đem lại khả năng hiển thị sắc nét.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:640/412;\" src=\"https://cdn.tgdd.vn/Products/Images/42/114114/iphone-8-plus-256gb-h3.jpg\" alt=\"Màn hình điện thoại iPhone 8 Plus\" width=\"640\" height=\"412\"></figure><p style=\"text-align:justify;\">Máy vẫn sử dụng tấm nền&nbsp;LED-backlit IPS LCD kết hợp với công nghệ True Tone giúp bạn dễ dàng quan sát với nhiều điều kiện khác nhau.</p><p style=\"text-align:justify;\">Vào ngày 13/09, thế hệ iPhone mới nhất đã ra mắt cộng đồng công nghệ với nhiều điểm đổi mới đáng chú ý. Tham khảo ngay siêu phẩm của nhà Táo - <a href=\"https://www.thegioididong.com/dtdd/iphone-15-plus\">iPhone 15 Plus</a> tại Thế Giới Di Động. Nhanh tay ghi lại thông tin để nhận ngay phiên bản <a href=\"https://www.thegioididong.com/dtdd-apple-iphone-15-series\">iPhone 15</a> yêu thích sớm nhất vào ngày 29/09.</p><h3 style=\"text-align:justify;\">Hiệu năng mạnh mẽ hàng đầu</h3><p style=\"text-align:justify;\">Cung cấp sức mạnh cho iPhone 8 Plus chính là con chip&nbsp;<a href=\"https://www.thegioididong.com/tin-tuc/chi-tiet-a11-bionic-chip-co-nhieu-thanh-phan-apple-tu-trong-nhat-tu-truoc-den-nay-1021653\">Apple A11 Bionic 6 nhân</a> cùng với 3 GB RAM và 32 GB bộ nhớ trong.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/680;\" src=\"https://cdn.tgdd.vn/Products/Images/42/114114/iphone-8-plus-256gb-vang-7-1.jpg\" alt=\"Trình điều khiển trên điện thoại iPhone 8 Plus\" width=\"1020\" height=\"680\"></figure><p style=\"text-align:justify;\">Máy sử dụng mượt mà với tất cả các game và ứng dụng hiện có trên App Store mà không gặp phải bất cứ độ trễ hay giật lag nào trong quá trình sử dụng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:640/360;\" src=\"https://cdn.tgdd.vn/Products/Images/42/114114/iphone-8-plus-256gb3.jpg\" alt=\"Hiệu năng trên điện thoại iPhone 8 Plus\" width=\"640\" height=\"360\"></figure><p style=\"text-align:justify;\">Ngoài ra iPhone 8 còn được Apple nhấn mạnh về khả năng xử lý các tác vụ AR đem lại một trải nghiệm hoàn toàn mới mẻ trên di động.</p><h3 style=\"text-align:justify;\">Camera chất lượng hàng đầu</h3><p style=\"text-align:justify;\">So với iPhone 7 Plus thì iPhone 8 Plus đã có những cải tiến rõ rệt về chất lượng ảnh chụp. Về phần cứng thì <a href=\"https://www.topzone.vn/iphone\">iphone</a> vẫn sử dụng bộ đôi camera chính và phụ đều có độ phân giải 12 MP và giờ đây Apple đã tích hợp thêm một con chip&nbsp;xử lý hình ảnh để nâng cao chất lượng ảnh chụp.</p>",
+      "in_active": true,
+      "id": 3,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718378321/example-react/aouhaqdkaxzernjycdrq.jpg"
+    },
+    {
+      "name": "iPhone 15",
+      "price": "36000000",
+      "discount": "0.12",
+      "categoryId": "3",
+      "brandId": "1",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\">Vào tháng 09/2023, cuối cùng Apple cũng đã chính thức giới thiệu <a href=\"https://www.thegioididong.com/dtdd/iphone-15-pro-max-512gb\">iPhone 15 Pro&nbsp;Max 512GB</a>&nbsp;thuộc dòng <a href=\"https://www.thegioididong.com/dtdd-apple-iphone-15-series\">iPhone 15</a>, tại sự kiện ra mắt thường niên với nhiều điểm đáng chú ý, nổi bật trong số đó có thể kể đến như sự góp mặt của chipset Apple A17 Pro có trên máy, thiết kế khung titan hay cổng Type-C lần đầu có mặt trên điện thoại iPhone.</h3><h3 style=\"text-align:justify;\">Thiết kế vuông vắn sang trọng</h3><p style=\"text-align:justify;\">iPhone 15 Pro Max&nbsp;512 GB vẫn giữ kiểu dáng vuông vắn và góc cạnh giống như những phiên bản trước đây, cách làm này mang đến cái nhìn sang trọng và thời thượng nhằm giúp bạn tỏa sáng dù ở bất kỳ nơi đâu mỗi khi cầm điện thoại trên tay.</p><p style=\"text-align:justify;\">&nbsp;Đối với phần khung bao quanh thân máy, năm nay Apple đã không còn sử dụng thép không gỉ nữa mà thay vào đó là chất liệu titanium, điều này mang lại sự tối ưu về khối lượng, song cũng mang lại hiệu quả về mặt độ bền nhờ độ cứng cáp tốt hơn, giảm thiểu mức độ rủi ro khi va đập hoặc xây xát điện thoại.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-102854.jpg\" alt=\"Thiết kế điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Mặt lưng kính cường lực cao cấp của iPhone 15 Pro Max&nbsp;512 GB được làm theo kiểu nhám, mang đến cảm giác mềm mại và sang trọng cho thiết bị. Đây không chỉ là một đặc điểm thẩm mỹ mà còn cải thiện tính bền bỉ và khả năng chống trầy xước của <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a>.</p><p style=\"text-align:justify;\">Năm nay Apple vẫn duy trì dạng hình notch theo kiểu viên thuốc và đi kèm với tính năng Dynamic Island đối với thế hệ iPhone mới của hãng.&nbsp;</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-103025.jpg\" alt=\"Thiết kế điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Tính năng này mang đến trải nghiệm sử dụng thú vị khi cho phép người dùng tương tác với một vài ứng dụng thông qua phần hình notch, các tiện ích thường được sử dụng có thể kể đến như: Trình phát nhạc thu nhỏ, hiển thị thông báo và thời lượng cuộc gọi, hiển thị trạng thái kết nối AirPods hay xem chỉ dẫn bản đồ.</p><h3 style=\"text-align:justify;\">Sử dụng chuẩn sạc mới</h3><p style=\"text-align:justify;\">Trong một bước đổi đáng chú ý, iPhone 15 Pro Max&nbsp;512 GB đã quyết định từ bỏ cổng Lightning quen thuộc và chuyển sang cổng Type-C tiện lợi hơn. Quyết định này mang lại nhiều lợi ích, bao gồm khả năng tương thích rộng rãi với các thiết bị khác, cung cấp trải nghiệm sạc nhanh và truyền dữ liệu hiệu quả hơn.</p><p style=\"text-align:justify;\">Xem thêm:&nbsp;<a href=\"https://www.thegioididong.com/hoi-dap/usb-type-c-chuan-muc-cong-ket-noi-moi-723760\">USB Type C là gì? Có ưu nhược điểm gì so với những USB truyền thống?</a></p><h3 style=\"text-align:justify;\">Thay đổi cần gạt chuyển đổi chế độ âm</h3><p style=\"text-align:justify;\">iPhone 15 Pro Max&nbsp;512 GB đã đánh dấu một bước tiến quan trọng liên quan đến việc quản lý chế độ âm thanh. Thay vì duy trì việc sử dụng phím gạt như trước đây, thiết bị này đã chuyển chúng thành nút bấm. Sự thay đổi này không chỉ mang lại sự tiện lợi khi điều chỉnh âm thanh chỉ với một cử chỉ đơn giản của ngón tay, mà còn giữ nguyên vị trí truyền thống để duy trì thói quen sử dụng của người dùng.</p><p style=\"text-align:justify;\">Hơn nữa, nút này cũng mở ra một loạt tính năng tiện ích, cho phép tùy chỉnh một trong số đó để người dùng có thể sử dụng nhanh ứng dụng mà không cần tốn quá nhiều thời gian thao tác.&nbsp;</p>",
+      "in_active": true,
+      "id": 4,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718378476/example-react/fqt2hfqzo5bmmqfwunpv.jpg"
+    },
+    {
+      "name": "SamSung galaxy S20 5G",
+      "price": "23000000",
+      "discount": "0.2",
+      "categoryId": "1",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>this is content&nbsp;</p>",
+      "in_active": true,
+      "id": 5,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718378890/example-react/ashbndlbf3sjpztw9yw9.jpg"
+    },
+    {
+      "name": "Samsung Galaxy S20+",
+      "price": "15600000",
+      "discount": "0.3",
+      "categoryId": "1",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\">Chiếc điện thoại&nbsp;<a href=\"https://www.thegioididong.com/dtdd/samsung-galaxy-s20-plus\">Samsung Galaxy S20 Plus</a>&nbsp;- Siêu phẩm với thiết kế màn hình tràn viền, hiệu năng đỉnh cao kết hợp cùng nhiều đột phá về công nghệ dẫn đầu thế giới&nbsp;<a href=\"https://www.thegioididong.com/dtdd\">smartphone</a>.</h3><h3 style=\"text-align:justify;\">Thiết kế màn hình tràn viền, siêu mượt 120 Hz</h3><p style=\"text-align:justify;\">Thiết kế của chiếc điện thoại Samsung Galaxy S20 Plus là kính kết hợp độc đáo giữa với khung kim loại cùng mặt lưng kính cường lực <a href=\"https://www.thegioididong.com/hoi-dap/tim-hieu-ve-cac-mat-kinh-cuong-luc-gorilla-glass-1172198#glass6\">Gorilla Glass 6</a> thế hệ mới nhất cho khả năng chống chịu trầy xước và va đập tốt.&nbsp;</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:800/533;\" src=\"https://cdn.tgdd.vn/Products/Images/42/217936/samsung-galaxy-s20-plus1-1.jpg\" alt=\"Samsung Galaxy S20 Plus | Thiết kế siêu tràn viền\" width=\"800\" height=\"533\"></figure><p style=\"text-align:justify;\">Màn hình Galaxy S20+ có kích thước 6.7 inch độ phân giải 2K&nbsp;(1440 x 3200 Pixels) sử dụng tấm nền Dynamic AMOLED 2X với khả năng hiển thị màu sắc sắc nét, độ chi tiết cao và sống động.</p><p style=\"text-align:justify;\">Khung máy được hoàn thiện một cách tỉ mỉ, độ chính xác cao với viền màn hình đã được thiết kế&nbsp;cong nhẹ&nbsp;cho cảm giác dễ dàng cầm nắm, không bị cấn tay hay vô tình chạm vào màn hình.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:800/533;\" src=\"https://cdn.tgdd.vn/Products/Images/42/217936/samsung-galaxy-s20-plus4-1.jpg\" alt=\"Samsung Galaxy S20 Plus | Viền màn kim loại\" width=\"800\" height=\"533\"></figure><p style=\"text-align:justify;\">Điểm nổi bật trên chiếc điện thoại Samsung Galaxy S20 Plus chính là việc trang bị màn hình&nbsp;<a href=\"https://www.thegioididong.com/hoi-dap/tong-hop-cac-loai-man-hinh-vo-cuc-moi-tren-dien-th-1150900\">Infinity O</a> tràn viền ra bốn cạnh với tỷ lệ diện tích hiển thị lên tới 90.5%.</p><p style=\"text-align:justify;\">Tần số quét màn hình lên đến 120 Hz cho cảm giác phản hồi nhanh, dường như không có độ trễ. Người dùng có thể điều chỉnh giữa 60 và 120 Hz để tiết kiệm năng lượng pin cho máy.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:800/450;\" src=\"https://cdn.tgdd.vn/Products/Images/42/217936/samsung-galaxy-s20-plus6.jpg\" alt=\"Samsung Galaxy S20 Plus | Thiết kế màn hình 120 Hz\" width=\"800\" height=\"450\"></figure><p style=\"text-align:justify;\">Bên cạnh đó màn hình của máy còn hỗ trợ công nghệ hiển thị HDR10+ mang đến những thước phim giải trí hay những pha hành động combat được tái hiện một cách sống động, chân thực cùng trải nghiệm thao tác&nbsp;siêu mượt mà.</p>",
+      "in_active": true,
+      "id": 6,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718378978/example-react/rp3rcnvzvcgu6y6lnmfy.jpg"
+    },
+    {
+      "name": "Samsung Galaxy M54",
+      "price": "8900000",
+      "discount": "0.1",
+      "categoryId": "1",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\">Tiếp nối thành công của <a href=\"https://www.thegioididong.com/dtdd/samsung-galaxy-m53\">Galaxy M53 5G</a>, Samsung tiếp tục tung ra thị trường mẫu điện thoại <a href=\"https://www.thegioididong.com/dtdd/samsung-galaxy-m54\">Samsung Galaxy M54 5G</a>. Lần ra mắt này Samsung đã nâng cấp về mặt hiệu năng, dung lượng pin đồng thời cải tiến về mặt thiết kế giúp đem đến sản phẩm tốt nhất cho bạn.</h3><h3 style=\"text-align:justify;\">Thao tác nhanh chóng với Exynos 1380</h3><p style=\"text-align:justify;\">Điểm đầu tiên mà mình muốn nói sau khi trải nghiệm Galaxy M54 5G chính là phần hiệu năng, máy được trang bị con chip Exynos 1380 8 nhân đầy mạnh mẽ. Có thể thấy với Exynos 1380 thì máy sẽ đáp ứng hầu hết mọi tác vụ từ đơn giản đến phức tạp một cách nhanh chóng.</p><p style=\"text-align:justify;\">Mình cũng khá lo sợ về hiệu năng của máy khi sử dụng con chip cây nhà lá vườn của Samsung. Tuy nhiên, lần này hãng đã xử lý rất tốt và mang đến một trải nghiệm tuyệt vời với việc xử lý các tác vụ hằng ngày.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/275953/samsung-galaxy-m54-8-1.jpg\" alt=\"Hiệu năng ổn định - Samsung Galaxy M54 5G\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Các tác vụ từ lướt web, xem phim hay đọc báo thì máy cho tốc độ phản hồi nhanh chóng, máy đáp ứng tốt và ít xuất hiện hiện tượng giật lag, tạo nên một trải nghiệm mượt mà dù mình đã sử dụng máy liên tục một thời gian dài.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/275953/samsung-galaxy-m54-7-1.jpg\" alt=\"Xử lý tốt các tác vụ hằng ngày - Samsung Galaxy M54 5G\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Trong trải nghiệm chơi game Liên Quân Mobile, mình sử dụng cấu hình siêu cao cho độ phân giải và chất lượng hình ảnh cao. Mình khá hài lòng với chi tiết hình ảnh mà máy mang lại, cảm thấy thoải mái khi chơi. Quá trình di chuyển và giao tranh diễn ra mượt mà, ít xảy ra hiện tượng giảm fps. Máy cũng không gặp vấn đề nóng lên nhiều, chỉ ấm nhẹ sau mỗi 3 đến 4 trận khi đấu liên tục.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/275953/samsung-galaxy-m54-18.jpg\" alt=\"Cấu hình tựa game Liên Quân - Samsung Galaxy M54 5G\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Tiếp tục đến với tựa game PUBG Mobile mức cấu hình mà mình sử dụng là HD và tốc độ khung hình là cao. Cũng như tựa game trước đó, máy cho một trải nghiệm mượt mà, hiếm khi xảy ra tình trạng giảm khung hình cũng như là nóng lên. Tình trạng chỉ xảy ra khi WiFi trong phòng hoặc mạng di động của mình bị yếu sóng thì nó sẽ bị giảm chất lượng khung hình.</p>",
+      "in_active": true,
+      "id": 7,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379056/example-react/iszh7i3jgl4c1xzyj30t.jpg"
+    },
+    {
+      "name": "Samsung Galaxy A34",
+      "price": "6590000",
+      "discount": "0.2",
+      "categoryId": "1",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/samsung-galaxy-a34\">Samsung Galaxy A34 5G</a> là mẫu điện thoại mới thuộc phân khúc tầm trung được nhà Samsung cho ra mắt vào tháng 03/2023. Với sự kết hợp hoàn hảo giữa vẻ ngoài cuốn hút với cấu hình mạnh mẽ, chiếc máy là sự lựa chọn hoàn hảo đáp ứng tốt nhu cầu sử dụng của đa dạng đối tượng người dùng hiện nay.</h3><h3 style=\"text-align:justify;\">Ngoại hình trẻ trung, màu sắc tươi mới</h3><p style=\"text-align:justify;\">Có thể thấy 2023 là một năm mà nhà Samsung ưa chuộng thiết kế mặt lưng phẳng khi nhiều mẫu máy của hãng được cho ra mắt gần đây đều có diện mạo tương tự. Điểm khác biệt giữa chúng mà ta có thể nhận diện được qua vẻ bề ngoài là về chất liệu, màu sắc, và thật khó để phân biệt giữa chúng nếu như không trực tiếp cầm nắm trải nghiệm.</p><p style=\"text-align:justify;\">Ở mỗi dòng sản phẩm sẽ được hoàn thiện với các loại chất liệu khác nhau để phù hợp với từng mức giá, và một trong những gương mặt nổi bật đại diện cho phân khúc tầm trung của Samsung đó chính là chiếc Galaxy A34 5G.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://lh5.googleusercontent.com/h87250dB7IKZjWVt92yF2A3xu-93H6-pI7T4I9pUGXRtR0SPbDqkb-x65Dqtpqo_1hX99eV_hrO6AU5iRbSKby-XYkNbtIHw1vCbbU09Mwh4F2mSWhOMyGb9X1yzNd3hhHP5pf0m0l771iH0-eckMg\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Galaxy A34 sở hữu một diện mạo hiện đại và thời thượng trông rất giống với Galaxy S23 Plus (mẫu điện thoại thuộc dòng cao cấp của Samsung), từ cách bố trí cụm camera cho tới kiểu thiết kế khung viền và mặt lưng đều tương đồng tạo cho mình cảm giác sang trọng, đắt tiền hơn.</p><p style=\"text-align:justify;\">Mặt lưng phẳng đi cùng khung viền vuông vắn giúp tạo nên sự liền mạch, đây được xem là sự kết hợp hoàn hảo khi nó làm cho tổng thể trở nên “nổi khối” hơn, tăng tính thẩm mỹ hơn bởi đây đang là xu hướng thiết kế và là kiểu dáng được đông đảo người dùng ưa chuộng.</p><p style=\"text-align:justify;\">Một điểm trên Galaxy A34 được khá nhiều người dùng ưng ý là thiết kế bo cong nhẹ ở bộ khung máy, nhờ vậy mà mình có thể cầm nắm lâu cũng không hề cảm thấy bị cấn tay gây khó chịu. Phần diện tích tiếp giáp vào các đầu ngón tay cũng nhiều hơn so với cạnh bo cong, vì thế khi cầm cũng được chặt hơn mà không sợ bị trơn tuột.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://lh3.googleusercontent.com/ySQBankwQMG2msQVzO13Hoq-_CwvHSgxE6HlwgKCg2toLONP5YcbB9swuURxFKOfYyF7oTHFEsGASfbyzKuYdavsywZo4L-mRcwJqf0xj3aoQpj1V1-z0c8-6PgSHHqlDIxtVpkhbzuVebmiQUo9uQ\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Galaxy A34 được hoàn thiện chủ yếu từ nhựa nên cho ra cảm giác cầm khá nhẹ khi khối lượng máy chỉ 199 g. Mặc dù được làm từ nhựa nhưng máy vẫn đạt được một độ rắn chắc khá cao, khi ấn mạnh vào mặt lưng cũng không có hiện tượng ọp ẹp.</p><p style=\"text-align:justify;\">Ở mặt trước <a href=\"https://www.thegioididong.com/dtdd-samsung\">điện thoại Samsung</a>, Galaxy A34 được trang bị một màn hình với thiết kế viền mỏng trông khá đều và cân đối với nhau, mang đến trải nghiệm xem dễ chịu khi lướt web hay chơi game giải trí.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://lh3.googleusercontent.com/3UWMwHH5vt0hbvPOVIkEnNoQeW6SnQ-a-eIzHWja8ocZxrz28bspjKFsfIrXEjGDo2OY6FYoPhEDFMZgUmnSk8H7oMsdI4B8lrHBuiwdGTKNnpVmOZHqjBSmI6CTcnh5lrR8t4dPrRLUY4byyiyB-Q\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Khá tiếc là máy vẫn sử dụng kiểu hình notch dạng giọt nước, mình thấy hãng cũng đã tối ưu chúng để trở nên nhỏ đi nhưng so với nhiều đối thủ khác dùng notch dạng nốt ruồi, thì thiết kế này vẫn chiếm nhiều diện tích trên vùng hiển thị hơn.</p><p style=\"text-align:justify;\">Mặc dù không ảnh hưởng quá nhiều đến trải nghiệm xem nhưng nó tạo cho mình cảm giác chưa được trọn vẹn cho lắm khi đây là một chiếc máy nằm trong phân khúc tầm trung.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://lh5.googleusercontent.com/b1VGUFR4HzqJU8Mkx2kdM8UMk4VIYk6bDXdLV9usrUY_PR9DNL55TST_n1v4Bhh_a_bhQnnBXzgwa6ZImByV8Y6JXAaN4q7qbxoPDm_sP7JFM9YfMTJY-etF-MiPwn_pO2MIlDeuKKgpqi51V9P8KA\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Ngoài ra, màn hình bên trong cũng được bảo vệ tốt hơn nhờ được bao bọc bởi lớp kính cường lực Corning Gorilla Glass 5, theo như thông số cơ bản thì mặt kính này có khả năng hạn chế các vết xước dăm hoặc các vết nứt xuất hiện khi vô tình làm rơi ở khoảng cách 1.2 mét trở lại.</p><h3 style=\"text-align:justify;\">Màn hình tái tạo sống động mọi nội dung</h3><p style=\"text-align:justify;\">Galaxy A34 được trang bị công nghệ màn hình <a href=\"https://www.thegioididong.com/hoi-dap/man-hinh-super-amoled-la-gi-905770\">Super AMOLED</a>&nbsp;với độ phân giải Full HD+ (1080 x 2340 Pixels), cho ra nội dung hiển thị&nbsp;có màu sắc sinh động và nịnh mắt. Ở những gam màu nóng như đỏ, vàng cam,... thì màn hình làm chúng trở nên nổi và rực hơn, cảm giác cũng thích mắt hơn rất nhiều so với các tấm nền IPS LCD hay AMOLED.</p><p style=\"text-align:justify;\">Màn hình Super AMOLED cũng hỗ trợ tái tạo màu đen sâu, mang đến khả năng hiển thị một cách chân thực đầy sống động, cảm giác khi xem vào ban đêm cũng dễ chịu, ít khi bị mỏi mắt bởi khả năng hạn chế ánh sáng xanh trên tấm nền mang lại.</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379121/example-react/awgbuaxioz15rmhhdvwk.jpg",
+      "id": 8
+    },
+    {
+      "name": "xiaomi redmi 13",
+      "price": "13250000",
+      "discount": "0.23",
+      "categoryId": "4",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3><a href=\"https://www.thegioididong.com/dtdd/xiaomi-redmi-13-6gb-128gb\">Xiaomi Redmi 13 6GB/128GB</a> hứa hẹn sẽ là thiết bị smartphone giá rẻ gây bão tiếp theo của nhà Xiaomi với thiết kế mặt lưng kính cao cấp cùng bộ thông số ấn tượng như camera 108 MP, viên pin 5030 mAh, tần số quét 90 Hz, “chip rồng” mạnh mẽ,... mang đến khả năng sử dụng hiệu quả cho người dùng với mức giá hợp lý.</h3><h3>Ngoại hình thời thượng với mặt lưng kính&nbsp;</h3><p>Redmi 13 sở hữu thiết kế hiện đại, phù hợp với xu hướng thẩm mỹ hiện nay với thiết kế nguyên khối từ khung nhựa cứng cáp. Bên cạnh đó, nhà Xiaomi còn mang đến bảng màu trẻ trung và cá tính gồm xanh, vàng, hồng và đen, đáp ứng đa dạng cho sở thích và phong cách cá nhân của người dùng.</p><p>Mặt lưng được hoàn thiện bằng chất liệu kính làm tăng thêm vẻ thời thượng, cao cấp, ngoài ra còn mang đến cảm giác chắc chắn và thoải mái cầm trên tay. Phần camera và đèn flash ở mặt sau được đặt riêng biệt, tạo nên vẻ đẹp tối giản cho máy so với cách thiết kế cụm mô-đun thường thấy.&nbsp;</p><h3>Không gian giải trí sống động, sắc nét</h3><p>Chiếc <a href=\"https://www.thegioididong.com/dtdd-xiaomi\">điện thoại Xiaomi</a> này sở hữu tấm nền IPS LCD mang đến khả năng tái tạo màu sắc sống động, chân thực với góc nhìn rộng, kết hợp độ phân giải Full HD+ (1080 x 2460 Pixels) giúp màn hình hiển thị hình ảnh rõ nét đến từng chi tiết.</p><p>Tốc độ làm tươi 90 Hz được trang bị trên điện thoại với khả năng cập nhật hình ảnh 90 lần/giây so với 60 lần/giây như trên màn hình thông thường, mang đến trải nghiệm trơn tru hơn khi chơi game, xem các hoạt cảnh có tốc độ cao, hạn chế tình trạng giật, xé hình, đồng thời cũng giúp trải nghiệm lướt web, chuyển trang được mượt mà hơn.</p><h3>Hiệu năng mạnh mẽ, khả năng đa nhiệm ổn định</h3><p>Helio G91 Ultra là phiên bản nâng cấp của chip Helio G91 tiêu chuẩn, được phát triển bởi MediaTek hợp tác với Xiaomi được sản xuất trên tiến trình 12 nm. Mặc dù không phải là công nghệ mới nhất, nhưng nó vẫn giúp cải thiện hiệu suất và tiết kiệm năng lượng hơn so với bản tiêu chuẩn, đáp ứng tốt các nhu cầu sử dụng cơ bản của người dùng như xem video, đọc tin tức, lướt mạng xã hội,...</p><p>Là chiếc <a href=\"https://www.thegioididong.com/dtdd-ram-6gb\">điện thoại RAM 6 GB</a>, Redmi 13 cung cấp khả năng đa nhiệm mượt mà, cho phép bạn chạy cùng lúc các ứng dụng nhẹ như Facebook, Zalo, Messenger, Chrome,... mà không gặp tình trạng lag hay đơ máy. ROM 128 GB cũng mang đến bạn một không gian lưu trữ vừa đủ để cất giữ hình ảnh, tài liệu hay các ứng dụng game, phần mềm học tập,...</p><p>Bên cạnh đó, hệ điều hành Android 14 mượt mà với giao diện Xiaomi HyperOS đẹp mắt sẽ mang đến nhiều cải tiến và tính năng mới như tăng cường quyền riêng tư và bảo mật, khả năng tùy biến giao diện phong phú hơn,... hứa hẹn mang đến nhiều trải nghiệm thú vị cho người dùng.</p><h3>Camera siêu phân giải 108 MP&nbsp;</h3><p>Chiếc&nbsp;<a href=\"https://www.thegioididong.com/dtdd-xiaomi-redmi\">điện thoại dòng Redmi</a>&nbsp;này&nbsp;được trang bị camera chính lên đến 108 MP, đây là một điểm mạnh đáng chú ý của chiếc điện thoại này. Ảnh chụp ra có chi tiết cao, rõ ràng và sắc nét, cho phép bạn có thể crop ảnh sau khi chụp mà không làm giảm chất lượng ảnh. Ngoài ra, camera macro 2 MP cũng hữu ích để chụp ảnh cận cảnh các vật thể nhỏ.</p><p>Điện thoại cũng sở hữu camera trước 13 MP, cho phép bạn chụp những bức ảnh selfie có độ nét cao để chia sẻ lên mạng xã hội mà không bị vỡ hay nhiễu hạt. Hơn thế nữa, camera còn hỗ trợ nhiều tính năng khác hữu ích khác như HDR, chụp đêm, làm đẹp, quay Time Lapse, quay Full HD,... mang đến cho bạn những khung hình chất lượng cao mà không gặp trở ngại nào.</p><h3>Chinh phục mọi tác vụ với viên pin 5030 mAh</h3><p>Cung cấp năng lượng cho <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a> là viên pin 5030 mAh - một dung lượng ấn tượng trong phân khúc điện thoại giá rẻ, đáp ứng hầu hết nhu cầu sử dụng trong cả ngày dài mà không cần sạc thường xuyên. Bên cạnh đó, Xiaomi cũng hỗ trợ sạc nhanh 33 W cho máy, mang đến tốc độ sạc pin nhanh chóng, rút ngắn thời gian chờ đợi cho người dùng.</p><p>Không chỉ sở hữu thiết kế đẹp mắt, Xiaomi Redmi 13 6GB/128GB còn sở hữu khả năng chụp ảnh sắc nét, thời lượng pin ấn tượng, hiệu năng ổn định, mượt mà,... mang đến trải nghiệm sử dụng hài lòng cho người dùng từ công việc đến giải trí cơ bản với một mức giá dễ tiếp cận.</p>",
+      "in_active": true,
+      "id": 9,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379271/example-react/f6jpkbuolduuw4july6g.jpg"
+    },
+    {
+      "name": "Xiaomi Redmi Note 13 pro",
+      "price": "6290000",
+      "discount": "0.12",
+      "categoryId": "4",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\">Sự bùng nổ của công nghệ di động trong những năm gần đây đã mang đến cho người dùng vô số lựa chọn smartphone đa dạng. Trong phân khúc tầm trung, <a href=\"https://www.thegioididong.com/dtdd/xiaomi-redmi-note-13-pro\">Xiaomi Redmi Note 13 Pro 128GB</a> nổi lên như một ứng cử viên sáng giá với những ưu điểm vượt trội về thiết kế, hiệu năng nhờ chip Helio G99-Ultra, camera 200 MP và kết hợp sạc nhanh 67 W.</h3><h3 style=\"text-align:justify;\">Thiết kế đẹp mắt và hỗ trợ chuẩn IP54</h3><p style=\"text-align:justify;\">Điện thoại có vẻ ngoài hiện đại và sang trọng, với khung viền vuông vức giúp tạo điểm nhấn cho thiết kế khi mang lại cảm giác mạnh mẽ, nam tính lúc cầm nắm. Đi cùng với đó là mặt lưng và khung nhựa nhẹ được làm bóng, Redmi Note 13 Pro mang đến vẻ đẹp sang trọng, bóng bẩy, thu hút mọi ánh nhìn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/314206/xiaomi-redmi-note-13-pro-1-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Ở vị trí giao nhau giữa khung viền vuông và hai mặt trước sau, máy được làm cong nhẹ để tạo ra một cảm giác cầm nắm thoải mái và tự nhiên. Điều này giúp người dùng dễ dàng sử dụng thiết bị trong thời gian dài mà không gặp phải cảm giác mệt mỏi hay không thoải mái.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/314206/xiaomi-redmi-note-13-pro-2-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Xiaomi Redmi Note 13 Pro không chỉ nổi bật với thiết kế, mà còn có sự đa dạng trong màu sắc, phù hợp với sở thích cá nhân của mỗi người dùng. Tùy chọn màu sắc gồm có xanh lá, đen và tím, giúp người dùng có thêm lựa chọn để thể hiện phong cách riêng của mình.</p><p style=\"text-align:justify;\">Với viền dưới mỏng chỉ với 2.25 mm, Redmi Note 13 Pro mang lại trải nghiệm sử dụng mượt mà và còn tạo điểm nhấn cho thiết kế tổng thể của sản phẩm. Đặc biệt, việc đạt được tiêu chuẩn kháng nước và bụi IP54 cũng là điểm nhấn giúp bảo vệ thiết bị khỏi những tác động từ môi trường bên ngoài, gia tăng tuổi thọ và độ bền cho sản phẩm.</p>",
+      "in_active": true,
+      "id": 10,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379356/example-react/ltgmpeoiakuc4ubwrskb.jpg"
+    },
+    {
+      "name": "Xiaomi Redmi 12",
+      "price": "3490000",
+      "discount": "0.12",
+      "categoryId": "4",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\">Xiaomi Redmi 12 mẫu điện thoại mới nhất được nhà <a href=\"https://www.thegioididong.com/dtdd-xiaomi\">Xiaomi</a> tung ra vào tháng 06/2023 khiến cho cộng đồng đam mê công nghệ vô cùng thích thú. Máy khoác lên mình một vẻ ngoài cá tính, màn hình lớn đem đến trải nghiệm đã mắt cùng một hiệu năng ổn định với mọi tác vụ.</h3><h3 style=\"text-align:justify;\">Vẻ ngoài đơn giản</h3><p style=\"text-align:justify;\">Thiết kế của <a href=\"https://www.thegioididong.com/dtdd/xiaomi-redmi-12-4gb\">Xiaomi Redmi 12 4GB </a>được lấy cảm hứng từ sự tối giản khi mặt lưng được làm từ kính bóng bẩy đi cùng với thân máy khá mỏng nhẹ mang đến vẻ ngoài thời trang, trẻ trung cùng khả năng cầm nắm tốt hơn khi sử dụng trong thời gian dài.&nbsp;</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/307556/xiaomi-redmi-12-4gb-190523-044751.jpg\" alt=\"Thiết kế đẹp mắt - Xiaomi Redmi 12 4GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Mặt trước của điện thoại thiết kế kiểu nốt ruồi, đồng thời các viền xung quanh được hãng tối ưu khá mỏng hứa hẹn mang đến cho bạn góc nhìn rộng hơn giúp việc giải trí trở nên trọn vẹn.</p><h3 style=\"text-align:justify;\">Màn hình lớn giải trí vui</h3><p style=\"text-align:justify;\">Với mong muốn đem lại sự thư giãn sau giờ làm việc căng thẳng hoặc một góc nhìn rõ ràng sắc nét hơn. Xiaomi đã trang bị tấm nền IPS LCD với kích thước lên đến 6.79 inch cùng độ phân giải Full HD+ (1080 x 2460 Pixels)&nbsp;giúp bạn xem các nội dung trên YouTube hoặc Netflix tốt hơn. Màn hình này cho chất lượng hiển thị tốt, màu sắc chân thực, độ tương phản cao và góc nhìn rộng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/307556/xiaomi-redmi-12-4gb-190523-044750.jpg\" alt=\"Màn hình sắc nét - Xiaomi Redmi 12 4GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Redmi 12 hiển thị hình ảnh khá tốt khi ở ngoài trời nắng, không bị mờ khi máy có độ sáng tối đa lên đến 550 nits một con số ổn trong phân khúc. Ngoài ra, màn hình này còn được hỗ trợ tần số quét 90 Hz giúp cho các thao tác vuốt chạm trên máy được diễn ra mượt mà và nhanh chóng hơn.</p><h3 style=\"text-align:justify;\">Trải nghiệm ổn định với các tác vụ thường ngày</h3><p style=\"text-align:justify;\">Cung cấp sức mạnh cho máy là chip xử lý Helio G88 đến từ nhà MediaTek, có tốc độ xử lý 2.0 GHz cho khả năng xử lý khá ổn định và mượt mà với các tác vụ lướt web, nghe nhạc, xem phim, chỉnh sửa ảnh,… thậm chí bạn có thể chơi với các tựa game như: Liên Quân Mobile, PUBG Mobile ở mức cấu hình tầm trung.</p>",
+      "in_active": true,
+      "id": 11,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379414/example-react/auttqrduopsgdyaqw95r.jpg"
+    },
+    {
+      "name": "Xiaomi 14 5G",
+      "price": "21490000",
+      "discount": "0.23",
+      "categoryId": "4",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/xiaomi-14\">Xiaomi 14</a>&nbsp;được ra mắt với tâm hướng mang đến những trải nghiệm mới mẻ và chất lượng. Như một lá cờ đầu trong ngành công nghệ, điện thoại không chỉ có thiết kế đẹp mà còn ấn tượng về màn hình, cấu hình mạnh mẽ, máy ảnh chất lượng và pin có thời gian sử dụng lâu dài.</h3><h3 style=\"text-align:justify;\">Thiết kế mang phong cách hiện đại</h3><p style=\"text-align:justify;\">Kế thừa sự thanh lịch từ các dòng trước, Xiaomi 14 hứa hẹn mang đến đột phá trong thiết kế. Dù giữ nguyên vẻ đẹp tự nhiên của Xiaomi 13, nhưng những cải tiến nhỏ của Xiaomi 14 vẫn thu hút ánh nhìn. Viền màn hình mỏng tạo điểm nhấn cho thiết kế, đồng thời mang đến trải nghiệm xem tuyệt vời, đem lại sự hài lòng cho người dùng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/322526/xiaomi-14-5g-1-1020x570-1.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Một trong những điểm nhấn của Xiaomi 14 chính là cụm máy ảnh đã được nâng cấp. Với thiết kế lồi hơn ở phía sau, điện thoại không chỉ cung cấp chất lượng chụp ảnh tốt hơn mà còn tạo ra một dấu ấn cá nhân cho thiết bị.</p><p style=\"text-align:justify;\">Về tổng thể, sự kết hợp hài hòa giữa mặt lưng cong mềm mại và các cạnh sắc nét vẫn là điểm nổi bật trong thiết kế của Xiaomi 14. Mặt sau của điện thoại tạo nên sự kết hợp độc đáo giữa sự mềm mại và cá tính, đồng thời tạo ra một phong cách dễ nhận biết. Tuy có thể gặp vấn đề nhỏ với trơn trượt và bám dấu vân tay, nhưng lớp sơn sáng bóng sẽ mang lại vẻ đẹp sang trọng cho sản phẩm.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/322526/xiaomi-14-5g-3-1020x570-1.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Thêm vào đó, Xiaomi 14 còn được trang bị khả năng chống nước và chống bụi theo tiêu chuẩn IP68, một bước tiến đáng ghi nhận so với các mẫu điện thoại trước đó. Điều này giúp tăng cường sự an tâm của người dùng khi sử dụng thiết bị trong nhiều môi trường và điều kiện khác nhau.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/322526/xiaomi-14-5g-2-1020x570-1.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Màn hình AMOLED độ phân giải cao</h3><p style=\"text-align:justify;\">Xiaomi 14, với tấm nền AMOLED độc đáo, hứa hẹn mang đến những trải nghiệm màn hình tuyệt vời cho người dùng. Công nghệ này tạo ra màu sắc rực rỡ và sắc đen sâu, làm cho mỗi tấm hình, mỗi khung hình sáng lên với vẻ đẹp sống động và chân thật.</p>",
+      "in_active": true,
+      "id": 12,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379508/example-react/mzrqcytkyhvbjzqqtyhh.jpg"
+    },
+    {
+      "name": "Vivo Y28",
+      "price": "5790000",
+      "discount": "0.11",
+      "categoryId": "2",
+      "brandId": "oizOe0u",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\">Mang một thiết kế hiện đại, thời thượng, hệ thống camera sắc nét, viên pin khủng 6000 mAh, hiệu năng ổn định lâu dài,... <a href=\"https://www.thegioididong.com/dtdd/vivo-y28\">vivo Y28 8GB/128GB</a> sẽ là lựa chọn hàng đầu cho các nhu cầu sử dụng, giải trí cơ bản của người dùng.&nbsp;</h3><h3 style=\"text-align:justify;\">Thiết kế thời thượng với độ mỏng ấn tượng</h3><p style=\"text-align:justify;\">vivo Y28 sở hữu diện mạo thời thượng với các đường cắt vuông vức, đi cùng thiết kế nguyên khối tạo nên sự liền mạch cho tổng thể. Độ mỏng chỉ 7.99 mm (phiên bản xanh đen) và 8.09 mm (phiên bản cam) có khối lượng chỉ 199 g mang đến cảm giác cầm nắm thoải mái cho người dùng ngay cả khi sử dụng lâu.</p><p style=\"text-align:justify;\">Máy được trang bị khả năng mở khoá khuôn mặt và mở khoá vân tay cạnh viền giúp bạn đăng nhập vào máy một cách nhanh chóng mà không cần nhập mật khẩu, ngoài ra còn giúp tăng cường khả năng bảo mật cho các dữ liệu, thông tin cá nhân trong máy.</p><p style=\"text-align:justify;\">Chuẩn kháng nước và bụi IP64 trên chiếc <a href=\"https://www.thegioididong.com/dtdd?g=android\">điện thoại Android</a> này cũng giúp bạn an tâm sử dụng hơn khi ở ngoài trời như đi dã ngoại, ở gần môi trường bụi bặm hay gặp những cơn mưa rào bất chợt,...</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/326016/vivo-y28-bv-1.jpg\" alt=\"Điện thoại vivo Y28 8GB/128GB - Thiết kế \" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Màn hình sống động, mượt mà với tần số quét cao</h3><p style=\"text-align:justify;\">Mẫu <a href=\"https://www.thegioididong.com/dtdd-vivo\">điện thoại vivo</a>&nbsp;này được trang bị màn hình IPS LCD đi cùng độ phân giải 720 x 1608 Pixels, mang lại khả năng hiển thị màu sắc chính xác, sống động với độ chi tiết tốt trong tầm giá. Kích thước màn hình 6.68 inch với notch dạng nốt ruồi giúp tối ưu không gian, cho phép bạn thoải mái tận hưởng các trải nghiệm xem phim, chơi game hay lướt web với nhiều thông tin được hiển thị hơn.</p><p style=\"text-align:justify;\">Màn hình vivo Y28 cũng được hỗ trợ tần số quét 90 Hz, mang đến hiệu ứng hình ảnh mượt mà hơn khi cuộn hoặc lướt web, đặc biệt là khi chơi game hay xem những video có tốc độ cao. Bên cạnh đó, độ sáng tối đa lên tới 1000 nits cũng giúp bạn dễ dàng xem các nội dung trên màn hình ngay cả ở những nơi có cường độ ánh sáng mạnh hay dưới nắng gắt.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/326016/vivo-y28-bv-2.jpg\" alt=\"Điện thoại vivo Y28 8GB/128GB - Tần số quét 90 Hz\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Bạn cũng có thể thưởng thức âm thanh tuyệt đỉnh với công nghệ mở rộng khoang âm thanh của vivo nhờ hệ thống loa kép âm thanh nổi, kết hợp chuẩn Hi-Res Audio mang đến âm lượng lớn 300%, cung cấp hiệu ứng âm thanh chân thực và sống động trong từng bộ phim hay từng giai điệu nhạc.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/326016/vivo-y28-bv-6.jpg\" alt=\"Điện thoại vivo Y28 8GB/128GB - Âm thanh Hi-Res\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Hiệu năng mạnh mẽ, khả năng lưu trữ linh hoạt</h3><p style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd-vivo-y\">Điện thoại vivo dòng Y</a> mang trong mình bộ vi xử lý MediaTek Helio G85 8 nhân và GPU Mali-G52, mang đến hiệu năng ổn định cho các tác vụ thông thường như lướt web, xem phim, chơi game đồ hoạ với mức cài đặt trung bình.</p><p style=\"text-align:justify;\">Máy chạy trên hệ điều hành Android 14 mượt mà, hỗ trợ tùy biến màn hình khóa đa dạng theo sở thích, chọn bảng màu sắc cho hệ thống,... cho bạn thỏa sức tạo dấu ấn cá nhân.</p><p style=\"text-align:justify;\">vivo Y28 mang trong mình 8 GB RAM, đi cùng khả năng mở rộng thêm 8 GB mang đến hiệu năng đa nhiệm trơn tru khi người dùng sử dụng nhiều tác vụ cùng lúc.</p><p style=\"text-align:justify;\">Bộ nhớ ROM 128 GB cũng cung cấp một không gian vừa đủ cho nhu cầu lưu trữ cơ bản. Dù vậy, bạn cũng không cần quá lo về việc hết dung lượng nhờ việc máy được hỗ trợ thêm khe MicroSD lên đến 1 TB, phục vụ tối ưu hơn cho nhu cầu sử dụng của người dùng.</p>",
+      "in_active": true,
+      "id": 13,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379637/example-react/icv9pwsybi6nvwiqdzwp.jpg"
+    },
+    {
+      "name": "vivo Y36",
+      "price": "4490000",
+      "discount": "0.1",
+      "categoryId": "2",
+      "brandId": "oizOe0u",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/vivo-y36-128gb\">vivo Y36 128GB</a> là một trong những sản phẩm điện thoại thông minh nổi bật và đáng chú ý của thương hiệu <a href=\"https://www.thegioididong.com/dtdd-vivo\">vivo</a>. Với những tính năng và thông số kỹ thuật vượt trội, vivo Y36 hứa hẹn mang đến cho người dùng trải nghiệm di động đỉnh cao.</h3><h3 style=\"text-align:justify;\">Vẻ ngoài vuông vức, hiện đại</h3><p style=\"text-align:justify;\">vivo Y36 được thiết kế nguyên khối, với khung kim loại và mặt lưng kính, tạo nên vẻ đẹp sang trọng và cao cấp. Kích thước của điện thoại là dài 164.06 mm - ngang 76.17 mm - dày 8.07 mm và nặng 202 g, mang đến cảm giác cầm nắm chắc chắn và thoải mái trong lòng bàn tay.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/311120/vivo-y36-128gb-260723-093443.jpg\" alt=\"vivo Y36 128GB - Thiết kế\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">vivo Y36 đã được cải tiến với mặt trước thiết kế nốt ruồi, vượt trội hơn so với kiểu màn hình giọt nước trước đó. Nhờ vậy, màn hình đã được tối ưu hóa, trở nên rộng rãi hơn và các cạnh viền được thu gọn một cách tinh tế, tạo cảm giác vuốt chạm tuyệt vời.</p><p style=\"text-align:justify;\">Với khả năng kháng nước và bụi theo tiêu chuẩn IP54, vivo Y36 đảm bảo <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a> của bạn luôn bền bỉ và đồng hành cùng bạn trong mọi hoàn cảnh, bất kể là trong những chuyến du lịch, hoạt động ngoài trời hoặc những ngày mưa bất chợt.</p><h3 style=\"text-align:justify;\">Nổi bật với màn hình lớn 6.64 inch</h3><p style=\"text-align:justify;\">Màn hình của chiếc <a href=\"https://www.thegioididong.com/dtdd-vivo-y\">điện thoại vivo dòng Y</a> này được trang bị <a href=\"https://www.thegioididong.com/hoi-dap/man-hinh-ips-lcd-la-gi-905752\">tấm nền IPS LCD</a> với độ phân giải Full HD+ (1080 x 2388 Pixels), giúp hiển thị hình ảnh và video sắc nét, chân thực. Kích thước màn hình rộng 6.64 inch, kết hợp với tần số quét 90 Hz, mang đến trải nghiệm mượt mà và ấn tượng cho người dùng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/311120/vivo-y36-128gb-260723-092130.jpg\" alt=\"vivo Y36 128GB - Màn hình\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Độ sáng tối đa 650 nits giúp hiển thị rõ ràng và sắc nét dưới ánh nắng mặt trời. Màn hình cũng được bảo vệ bởi lớp <a href=\"https://www.thegioididong.com/hoi-dap/kinh-thuong-kinh-chong-xuoc-kinh-cuong-luc-la-gi-1173657#cuongluc\">kính cường lực</a> chất lượng cao, giúp bảo vệ điện thoại trước những va đập và trầy xước không mong muốn.</p><h3 style=\"text-align:justify;\">Hệ thống camera chụp ảnh ổn định</h3><p style=\"text-align:justify;\">vivo Y36 sở hữu hệ thống camera sau đa dạng với camera chính có độ phân giải lên tới 50 MP cùng với camera phụ 2 MP giúp bạn chụp ảnh sắc nét và chất lượng cao. Nhiều tính năng hấp dẫn như phơi sáng kép, chế độ chuyên nghiệp (Pro), làm đẹp, bộ lọc màu, trôi nhanh thời gian (Time Lapse), xóa phông,... giúp bạn thoải mái sáng tạo và chia sẻ những khoảnh khắc đẹp và ấn tượng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/311120/vivo-y36-128gb-260723-093438.jpg\" alt=\"vivo Y36 128GB - Camera\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Camera trước của vivo Y36 có độ phân giải 16 MP, hỗ trợ nhiều tính năng như làm đẹp, HDR, quay video Full HD, xóa phông, live photo, phơi sáng kép, bộ lọc màu,... giúp bạn tự tin thể hiện cá tính và chia sẻ ảnh tự chụp chất lượng cao.</p><h3 style=\"text-align:justify;\">Hoàn thành tốt các tác vụ với Snapdragon 680</h3><p style=\"text-align:justify;\">vivo Y36 được trang bị hệ điều hành <a href=\"https://www.thegioididong.com/tin-tuc/android-13-nhung-tinh-nang-noi-bat-nhat-ma-ban-can-biet-1456222\">Android 13</a>, cùng với chip xử lý <a href=\"https://www.thegioididong.com/tin-tuc/tat-tan-tat-ve-chip-snapdragon-680-8-nhan-1471481#Snapdragon6808nhan\">Snapdragon 680</a> và GPU Adreno 610, giúp điện thoại hoạt động mượt mà và nhanh chóng trong việc chạy các ứng dụng và trò chơi.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/311120/vivo-y36-128gb-260723-092128.jpg\" alt=\"vivo Y36 128GB - Hiệu năng\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Máy hỗ trợ RAM 8 GB và dung lượng lưu trữ 128 GB giúp bạn thoải mái lưu trữ dữ liệu và tận hưởng trải nghiệm đa nhiệm tuyệt vời. Ngoài ra, bạn có thể mở rộng bộ nhớ qua thẻ</p>",
+      "in_active": true,
+      "id": 14,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379690/example-react/wobvwz5kktandfg0rwwa.jpg"
+    },
+    {
+      "name": "Vivo y100",
+      "price": "7090000",
+      "discount": "0.23",
+      "categoryId": "2",
+      "brandId": "oizOe0u",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/vivo-y100\">vivo Y100</a> mẫu điện thoại tầm trung với nhiều nâng cấp đáng giá,&nbsp;được vivo giới thiệu tại thị trường Việt Nam. Lần ra mắt này hãng&nbsp;đem đến một sản phẩm với thiết kế đẹp mắt, màn hình sắc nét và hiệu năng ổn định với nhiều tác vụ, hứa hẹn đem đến cho bạn trải nghiệm di động đỉnh cao.</h3><h3 style=\"text-align:justify;\">Thiết kế trẻ trung bật tung cá tính</h3><p style=\"text-align:justify;\">vivo Y100 nằm trong dòng <a href=\"https://www.thegioididong.com/dtdd-vivo-y\">điện thoại vivo Y</a> độc đáo của hãng, nổi tiếng với việc kết hợp giữa hiệu suất mạnh mẽ và thiết kế sang trọng. Với kiểu thiết kế nốt ruồi, máy không chỉ mang đến trải nghiệm hình ảnh rộng rãi mà còn tạo điểm nhấn thẩm mỹ độc đáo.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/302197/vivo-y100-6.jpg\" alt=\"Vẻ ngoài trẻ trung - vivo Y100\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Thiết kế của điện thoại được chăm chút tỉ mỉ, từ việc sử dụng chất liệu nhựa cao cấp cho khung viền đến cách bố trí cụm camera trong module hình chữ nhật. Khung viền được gia công một cách mịn màng kết hợp với mặt lưng đổi màu tạo nên một vẻ ngoài đẳng cấp và bền bỉ.</p><p style=\"text-align:justify;\">vivo Y100 được thiết kế với sự cân nhắc tỉ mỉ đến từng chi tiết, bao gồm cả vị trí đặt nút bấm để tối ưu hóa trải nghiệm. Nút nguồn và nút điều chỉnh âm lượng được đặt ở bên phải của khung viền, gần với vị trí ngón tay khi cầm máy, giúp bạn dễ dàng truy cập và điều chỉnh các chức năng một cách thuận tiện.</p><h3 style=\"text-align:justify;\">Hình ảnh rõ nét trên tấm nền AMOLED</h3><p style=\"text-align:justify;\">Công nghệ màn hình AMOLED tiên tiến trên vivo Y100 mang đến trải nghiệm hình ảnh sống động và sắc nét. Màn hình của thiết bị được trang bị độ phân giải Full HD+ (1080 x 2400 Pixels), giúp mỗi chi tiết trên màn hình trở nên rõ nét và chân thực hơn bao giờ hết.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/302197/vivo-y100-2.jpg\" alt=\"Hiển thị sắc nét - vivo Y100\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Kích thước màn hình rộng 6.67 inch, bạn sẽ có một không gian hiển thị lớn và thoải mái cho các hoạt động trên điện thoại. Tần số quét 120 Hz mang lại trải nghiệm mượt mà và đáng kinh ngạc, đặc biệt là trong các trò chơi hoặc khi cuộn nội dung trên mạng xã hội.</p><p style=\"text-align:justify;\">Với độ sáng tối đa lên đến 1800 nits, vivo Y100 cho phép hiển thị nội dung một cách rõ ràng ngay cả dưới ánh sáng mạnh. Điều này không chỉ tạo ra trải nghiệm xem video và chơi game tuyệt vời, mà còn giúp bạn dễ dàng đọc tin nhắn và thực hiện các tác vụ hằng ngày một cách thoải mái.</p><p style=\"text-align:justify;\">Thiết bị được trang bị công nghệ âm thanh Hi-Res Audio tiên tiến, cung cấp chất lượng âm thanh stereo sống động và rõ ràng. Dù là khi nghe nhạc, xem phim, hoặc chơi game, bạn sẽ được đắm chìm trong âm nhạc sống động và hiệu ứng âm thanh mạnh mẽ.</p><h3 style=\"text-align:justify;\">Sức mạnh đáp ứng tốt với các tác vụ hằng ngày</h3><p style=\"text-align:justify;\">Được trang bị chip xử lý Snapdragon 685 8 nhân hoạt động ở tốc độ 2.8 GHz, vivo Y100 không chỉ mạnh mẽ trong việc xử lý các tác vụ hằng ngày mà còn đáp ứng mượt mà và hiệu quả khi chạy các ứng dụng và trò chơi đòi hỏi tốc độ xử lý cao. Hệ điều hành Android 14 đi kèm (với giao diện Funtouch OS 14) giúp đảm bảo tích hợp và tương thích tốt nhất với các ứng dụng và dịch vụ mới nhất trên thị trường.</p><p style=\"text-align:justify;\"><br>&nbsp;</p>",
+      "in_active": true,
+      "id": 15,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379746/example-react/jct9ozvwp5mfsuxmb5ba.jpg"
+    },
+    {
+      "name": "Vivo Y17s",
+      "price": "3790000",
+      "discount": "0.16",
+      "categoryId": "2",
+      "brandId": "oizOe0u",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<h3 style=\"text-align:justify;\"><a href=\"https://www.thegioididong.com/dtdd/vivo-y17s\">vivo Y17s</a> mẫu điện thoại được nhà vivo đem đến cho người dùng Việt Nam trong những tháng cuối năm 2023. Vẫn lối thiết kế 2.5D quen thuộc, camera chụp ảnh chất lượng lên đến 50 MP đi kèm với màn hình hiển thị tốt cùng nhiều tính năng khác đang đợi bạn khám phá.</h3><h3 style=\"text-align:justify;\">Tạo hình vuông vắn sang trọng</h3><p style=\"text-align:justify;\">Thiết kế vuông vức đang trở thành một xu hướng phổ biến trong ngành công nghệ di động và mình thực sự ấn tượng với sự độc đáo và tinh tế của nó. Kiểu thiết kế này mang lại cho <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a> một vẻ ngoài đẹp mắt hơn, tránh cảm giác bị rẻ tiền. Các góc cạnh sắc nét, đường nét thẳng và mạnh mẽ tạo ra một ấn tượng về sự sang trọng và hiện đại.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/314975/vivo-y17s-1-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Khi sử dụng vivo Y17s, mình cảm nhận được rõ sự cứng cáp trong thiết kế của máy. Với khung máy được làm từ kim loại, mình thực sự cảm thấy yên tâm về khả năng chịu va đập của máy và không phải lo lắng về việc có thể gây hỏng hóc cho sản phẩm.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/314975/vivo-y17s-2-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Là một người hay ra mồ hôi tay, vì thế khả năng chống bám vân tay và mồ hôi nhờ mặt lưng nhám của điện thoại là điều mà mình rất đánh giá cao. Trải qua một khoảng thời gian sử dụng, mình đã nhận thấy rằng mặt lưng thực sự giữ được vẻ sạch sẽ và mới mẻ hơn so với nhiều điện thoại mặt nhẵn bóng mà mình từng dùng trước đó.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/314975/vivo-y17s-3-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Đặc biệt, khi trải nghiệm vivo Y17s trong các tình huống thực tế như việc mang theo trong túi áo hoặc túi xách, mình cảm thấy rất tiện lợi và thoải mái. Độ mỏng 8.09 của máy thực sự là một lợi thế khiến cho việc mang theo trở nên dễ dàng hơn.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/42/314975/vivo-y17s-4-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Mình cũng đã thử nghiệm việc sử dụng cảm biến vân tay trên cạnh bên của máy và thực sự ấn tượng với tốc độ và độ chính xác của nó. Không chỉ dễ dàng và nhanh chóng để mở khóa máy, mà còn mang lại một cảm giác an tâm về việc bảo vệ dữ liệu cá nhân của mình.</p>",
+      "in_active": true,
+      "id": 16,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718379805/example-react/k7rxb8xthegefeo8sn4p.jpg"
+    },
+    {
+      "name": "fsdfsdaf",
+      "price": "1231313",
+      "discount": "0.2",
+      "categoryId": "2",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>fsdfsdf</p>",
+      "in_active": false,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718432279/example-react/ttgro2tirsayeoyd3ngq.png",
+      "id": 17
+    },
+    {
+      "name": "fsdfsdaf update",
+      "price": "14234",
+      "discount": "4324",
+      "categoryId": "3",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>32423424</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718529126/example-react/wukrc6t7fhndc5wn9kip.png",
+      "id": 18
+    },
+    {
+      "name": "123",
+      "price": "23",
+      "discount": "2",
+      "categoryId": "3",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>243242</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718529244/example-react/c5pu5uuwlrzg8fmrec4m.png",
+      "id": 19
+    },
+    {
+      "name": "fsdfsdaff dfsdaf",
+      "price": "123131",
+      "discount": "2",
+      "categoryId": "2",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>123123</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530268/example-react/d5qiz0xygyn0bygj1jz7.jpg",
+      "id": 20
+    },
+    {
+      "name": "453534",
+      "price": "2131",
+      "discount": "0.2",
+      "categoryId": "2",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>31231</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530780/example-react/nh0wwbitg0uy6fhcsj3r.png",
+      "id": 21
+    },
+    {
+      "name": "iphone",
+      "price": "2342",
+      "discount": "234",
+      "categoryId": "2",
+      "brandId": "1",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>dsfsdfs</p>",
+      "in_active": true,
+      "sales_information": [
+        {
+          "list": [
+            {
+              "image": "https://res.cloudinary.com/do7coevfh/image/upload/v1718799147/datn-img/nlwwn6opbqoozoyw2xo3.jpg",
+              "name": "hhh"
+            },
+            {
+              "image": "https://res.cloudinary.com/do7coevfh/image/upload/v1718799154/datn-img/olfolsnqumoyfv20mk28.jpg",
+              "name": "sdfsdf"
+            },
+            {
+              "image": "https://res.cloudinary.com/do7coevfh/image/upload/v1718799180/datn-img/tjyoum4aiz7tbn4ufe0w.jpg",
+              "name": "cvbxcv"
+            }
+          ],
+          "name": "mau"
+        },
+        {
+          "list": [
+            {
+              "name": "ád"
+            },
+            {
+              "name": "akkkkk"
+            }
+          ],
+          "name": "hi"
+        }
+      ],
+      "id": 22,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797769/example-react/l4sxtkzchxicigpdhocp.jpg"
+    }
+  ],
+  "galleries": [
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530782/example-react/o3twzw9jqrndm8dhwpoh.png",
+      "id": 5
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530783/example-react/epnuxw5zh29po5bgau2i.png",
+      "id": 6
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530784/example-react/zhnw2wiy4gxxnzwt69c6.jpg",
+      "id": 7
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530785/example-react/odgfbvhdmlem89cmkzdv.png",
+      "id": 8
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530786/example-react/ybzfyxb7yz0augsrx044.png",
+      "id": 9
+    },
+    {
+      "productId": 22,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797771/example-react/bz61p8pn4ykf3ng1uuzr.jpg",
+      "id": 10
+    },
+    {
+      "productId": 22,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797771/example-react/qjbai5teynbdf9pcf3d3.jpg",
+      "id": 11
+    },
+    {
+      "productId": 22,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797772/example-react/p6mcjhpxn3jomvuf80se.jpg",
+      "id": 12
     }
   ]
 }

@@ -1,9 +1,11 @@
-import React, { FC, useEffect, useId, useRef } from "react";
+import React, { FC, useEffect, useId, useRef, useState } from "react";
 import Heading from "./Heading/Heading";
 import Glide from "@glidejs/glide";
 import ProductCard from "./ProductCard";
 import { Product, PRODUCTS } from "../../../../data/data";
+import instance from "@/api/axios";
 
+import { ICategory } from "@/common/types/category.interface";
 export interface SectionSliderProductCardProps {
   className?: string;
   itemClassName?: string;
@@ -20,13 +22,20 @@ const SectionSliderProductCard: FC<SectionSliderProductCardProps> = ({
   headingFontClassName,
   headingClassName,
   heading,
-  subHeading = "REY backpacks & bags",
+  subHeading = "",
   data = PRODUCTS.filter((_, i) => i < 8 && i > 2),
 }) => {
+  const [dataItem, setData] = useState<ICategory[]>([]);
   const sliderRef = useRef(null);
   const id = useId();
   const UNIQUE_CLASS = "glidejs" + id.replace(/:/g, "_");
+  useEffect(() => {
+    (async() => {
+       const response = await instance.get('categories?_embed=products');
 
+       setData(response.data);
+    })();
+  }, [])
   useEffect(() => {
     if (!sliderRef.current) {
       return () => {};
@@ -68,27 +77,34 @@ const SectionSliderProductCard: FC<SectionSliderProductCardProps> = ({
   }, [sliderRef, UNIQUE_CLASS]);
 
   return (
-    <div className={`nc-SectionSliderProductCard ${className}`}>
-      <div className={`${UNIQUE_CLASS} flow-root`} ref={sliderRef}>
-        <Heading
-          className={headingClassName}
-          fontClass={headingFontClassName}
-          rightDescText={subHeading}
-          hasNextPrev
-        >
-          {heading || `New Arrivals`}
-        </Heading>
-        <div className="glide__track" data-glide-el="track">
-          <ul className="glide__slides">
-            {data.map((item, index) => (
-              <li key={index} className={`glide__slide ${itemClassName}`}>
-                <ProductCard data={item} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+    <>
+     {dataItem.map((item : ICategory, key : number) => (
+         <div key={key} className={`nc-SectionSliderProductCard ${className}`}>
+         <div className={`${UNIQUE_CLASS} flow-root`} >
+           <Heading
+             className={headingClassName}
+             fontClass={headingFontClassName}
+             rightDescText={subHeading}
+             hasNextPrev
+           >
+             {heading || item.name}
+           </Heading>
+           <div className="glide__track" data-glide-el="track">
+             <ul className=" grid grid-cols-4 gap-5">
+               {item.products?.map((item1, index) => (
+                 <li key={index} className={`glide__slide ${itemClassName}`}>
+                   <ProductCard data={item1} />
+                 </li>
+               ))}
+             </ul>
+           </div>
+         </div>
+       </div>
+     ))}
+
+
+    
+    </>
   );
 };
 

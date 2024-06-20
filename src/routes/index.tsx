@@ -126,10 +126,7 @@ export default function Router() {
           
 
 
-               <Route path="categories" element={<CategoryManagement />}>
-                  <Route path="add" element={<AddCategory />} />
-                  <Route path=":id" element={<EditCategory />} />
-               </Route>
+             
             <Route path='banner' element={<BannerManagement />}>
               <Route path='add' element={<AddBanner />} />
               <Route path=':id' element={<EditBanner />} />

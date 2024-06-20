@@ -18,6 +18,7 @@ import ButtonSecondary from "../shared/Button/ButtonSecondary";
 import { PRODUCTS, SPORT_PRODUCTS } from "../../../../data/data";
 
 function PageHome() {
+  
   return (
     <div className="nc-PageHome relative overflow-hidden">
       {/* SECTION HERO */}

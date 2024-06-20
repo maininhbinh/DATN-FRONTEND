@@ -29,13 +29,15 @@ export default function ListProduct(){
     setId(id)
     
     data.map(async (item : IProduct) => {
-      const mutableItem  = { ...item };
-      delete mutableItem.category;
+      if(id == item.id){
+        const mutableItem  = { ...item };
+        delete mutableItem.category;
         await hiddenProduct({
               ...mutableItem,
             in_active : false
         });
         popupSuccess('Hidden product success');
+      }
     })
   };
     const dataItem = data?.map((item : IProduct, key : number) => {

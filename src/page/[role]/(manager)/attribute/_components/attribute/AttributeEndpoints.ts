@@ -15,7 +15,7 @@ export const attributesApi = apiWithTag.injectEndpoints({
     getAttributes: builder.query({
         
       query: () => ({
-         url : 'attributes',
+         url : 'attributes?_embed=value_attributes',
         //  prepareHeaders: (headers : Headers) => {
         //     console.log('token will prepare in request attribute')
         //     headers.set('authorization', `Bearer tokencustomhere`);
