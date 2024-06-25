@@ -1,7 +1,7 @@
 import { CloudUploadOutlined, DeleteOutlined } from '@ant-design/icons'
-import { Button, Flex, Form, Input, Modal, Select, Switch } from 'antd'
+import { Button, Flex, Form, Input, Modal, Select } from 'antd'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const { Option } = Select
 
@@ -19,12 +19,12 @@ const selectAfter = (
     <Option value='.org'>.org</Option>
   </Select>
 )
-export default function AddBrand() {
-  const [isLoadingCreate, setIsLoadingCreate] = useState(false)
-  const [imageUrl, setImageUrl] = useState<File>()
-  const [DisplayPic, setDisplayPic] = useState<string>()
-  const navigate = useNavigate()
+export default function EditBrand() {
+  const params = useParams()
   const [form] = Form.useForm()
+  const navigate = useNavigate()
+
+  const [DisplayPic, setDisplayPic] = useState<string>()
 
   const handleCancel = () => {
     navigate('..')
@@ -37,12 +37,12 @@ export default function AddBrand() {
 
   return (
     <>
-      <Modal confirmLoading={isLoadingCreate} open={true} width={1400} footer='' onCancel={handleCancel}>
-        <Form form={form} name='brand-add' layout='vertical' className='w-full p-6' onFinish={handleSubmit}>
+      <Modal open={true} width={1400} footer='' onCancel={handleCancel}>
+        <Form form={form} name='brand-edit' layout='vertical' className='w-full p-6' onFinish={handleSubmit}>
           <Form.Item>
             <Flex justify='space-between' className='pb-4' align='center'>
               <h2 className=' font-bold text-[24px]'>Create new Brand</h2>
-              <Button loading={isLoadingCreate} type='primary' htmlType='submit' className=' w-[100px] p-5'>
+              <Button type='primary' htmlType='submit' className=' w-[100px] p-5'>
                 Create
               </Button>
             </Flex>
@@ -67,7 +67,7 @@ export default function AddBrand() {
                       }}
                       className='border-none rounded-[12px]  '
                     >
-                      {imageUrl && DisplayPic ? (
+                      {DisplayPic ? (
                         <div style={{ height: '100%', maxWidth: '100%' }} className='relative group'>
                           <img
                             // src={DisplayPic}
