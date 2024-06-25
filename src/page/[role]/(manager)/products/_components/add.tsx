@@ -1,36 +1,37 @@
-import { Card, Col, Modal, Row, Switch, Upload } from 'antd'
-import { Button, Form, Input } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import { Select } from 'antd'
-import type { SelectProps } from 'antd'
+import { IGallery, IProduct } from '@/common/types/product.interface'
+import { popupError, popupSuccess } from '@/page/[role]/shared/Toast'
 import ClassicEditor from '@/utils/ckeditorConfig'
-import LoadingUser from '../../user/util/Loading'
-import ErrorLoad from '../../components/util/ErrorLoad'
-import React, { useEffect, useRef, useState } from 'react'
-import { IProduct } from '@/common/types/product.interface'
-import { popupSuccess, popupError } from '@/page/[role]/shared/Toast'
 import { UploadOutlined } from '@ant-design/icons'
+import type { GetProp, SelectProps, UploadFile, UploadProps } from 'antd'
+import { Button, Col, Drawer, Form, Input, Row, Select, Space, Switch, Upload } from 'antd'
 import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import ErrorLoad from '../../components/util/ErrorLoad'
+import LoadingUser from '../../user/util/Loading'
 
-import { ICategory } from '@/common/types/category.interface'
 import instance from '@/api/axios'
-import { IBrand } from '@/common/types/brand.interface'
-import { useCreateProductMutation } from '../ProductsEndpoints'
-import { useGetAttributesQuery } from '../../attribute/_components/attribute/AttributeEndpoints'
 import { IAttribute } from '@/common/types/attribute.interface'
+import { IBrand } from '@/common/types/brand.interface'
+import { ICategory } from '@/common/types/category.interface'
 import { IValueAttribute } from '@/common/types/valueAttribute.interface'
+import { getBase64 } from '@/utils/getBase64'
 import { Typography } from 'antd'
-import UploadFile from './uploadfile/upload'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons'
-
+import { useGetAttributesQuery } from '../../attribute/_components/attribute/AttributeEndpoints'
+import { useCreateProductMutation } from '../ProductsEndpoints'
+import Variant from './Variant/variant'
+import UploadFileGallery from './uploadGallery/uploadGallery'
 const { Title } = Typography
 const validateMessages = {
   required: '${label} is required!'
 }
 
+type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0]
 function AddProduct() {
+  const [formatVariant, setFormatVariant] = useState<any>([])
+  const [fileList, setFileList] = useState<UploadFile[]>([])
   const { data, isLoading } = useGetAttributesQuery({})
-  console.log(data)
+  const [loadingUploadGallery, setLoadingUploadGallery] = useState<boolean>(false)
   const [createProduct, { isLoading: loadingCreateProduct }] = useCreateProductMutation()
   const [status, setStatus] = useState({
     isLoading: false,
@@ -45,7 +46,7 @@ function AddProduct() {
     loading: false
   })
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         setStatus((prev) => {
           return {
@@ -75,24 +76,29 @@ function AddProduct() {
       }
     })()
     form.setFieldsValue({ in_active: true })
-    if (box.current) {
-      ClassicEditor.create(box.current as HTMLElement)
-        .then((editor) => {
-          editor.model.document.on('change:data', () => {
-            form.setFieldsValue({ description: editor.getData() })
-          })
-          const editorElement = document.querySelectorAll('.ck-editor')
-          editorElement.forEach((element, key) => {
-            if (key != 0) {
-              element.remove()
-            }
-          })
-        })
-        .catch((error) => {
-          console.error(error.stack)
-        })
-    }
   }, [status.isLoading])
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (box.current) {
+        ClassicEditor.create(box.current)
+          .then((editor) => {
+            editor.model.document.on('change:data', () => {
+              form.setFieldsValue({ description: editor.getData() })
+            })
+            const editorElement = document.querySelectorAll('.ck-editor')
+            editorElement.forEach((element, key) => {
+              if (key !== 0) {
+                element.remove()
+              }
+            })
+          })
+          .catch((error) => {
+            console.error(error.stack)
+          })
+      }
+    }, 600)
+  }, [form])
 
   const handleUpload = async (options: any) => {
     const { onSuccess, file } = options
@@ -102,45 +108,113 @@ function AddProduct() {
     })
     onSuccess('Upload successful', file)
   }
-
-  const onFinish = async (values: IProduct) => {
-
-    values.avg_stars = 0
-    values.total_review = 0
-
-    delete values.upload
-    setFile((prev) => {
-      return {
-        ...prev,
-        loading: true
+  const getIdAttribute = (attributeName: string) => {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].name == attributeName) {
+        return data[i].id
       }
-    })
-    const formData = new FormData()
+    }
+  }
 
-    formData.append('file', file.data as any)
-    formData.append('upload_preset', 'vuminhhung904')
+  const handleUploadGallery = async (productId: number) => {
+    for (const image of fileList) {
+      const blob = new Blob([await getBase64(image.originFileObj as FileType)], { type: image.type })
+      const newFile = new File([blob], image.name, { type: image.type })
 
-    Promise.all([axios.post('https://api.cloudinary.com/v1_1/dqouzpjiz/upload', formData)])
-      .then(async ([response]: any) => {
-        setFile({
-          data: {},
-          loading: false
-        })
-        try {
-          await createProduct({
-            ...values,
-            thumbnail: response.data.secure_url
-          })
-          popupSuccess(`Add product "${values.name}"  success`)
-          handleCancel()
-        } catch (err) {
-          popupError(`Add product "${values.name}"  error`)
-          handleCancel()
-        }
-      })
-      .catch(() => {
-        popupError('Upload file Error ! lets try again ')
-      })
+      const formData = new FormData()
+      formData.append('file', newFile as FileType)
+      formData.append('upload_preset', 'vuminhhung904')
+      const response: any = await axios.post('https://api.cloudinary.com/v1_1/dqouzpjiz/upload', formData)
+      //console.log(response.data.secure_url)
+      const payload: IGallery = {
+        productId: productId,
+        image: response.data.secure_url
+      }
+      await instance.post('galleries', payload)
+    }
+  }
+  const onFinish = async (values: IProduct | any) => {
+    const deviceSpecs = values.inforDetailProduct
+    const modifiedDeviceSpecs: { [key: number | string]: [] } = {}
+    for (const key in values.inforDetailProduct) {
+      modifiedDeviceSpecs[getIdAttribute(String(key))] = deviceSpecs[key]
+    }
+
+    //console.log(fileList,modifiedDeviceSpecs, formatVariant)
+
+    if (fileList.length <= 2) {
+      popupError('At least 3 photos are required')
+      return true
+    }
+
+    let arrGallery: any = []
+    for (const iGallery of fileList) {
+      arrGallery = [...arrGallery, iGallery.originFileObj]
+    }
+    const payload = {
+      thumbnail: file.data,
+      gallegy: arrGallery,
+      name: values.name,
+      content: values.description,
+      category: values.categoryId,
+      brand: values.brandId,
+      price: values.price,
+      discount: values.discount,
+      total_review: 0,
+      avg_stars: 0,
+      in_active: values.in_active ? 1 : 0,
+      parameter: modifiedDeviceSpecs,
+      product_variant: formatVariant
+    }
+
+    console.log(payload)
+    return true
+    // values.avg_stars = 0
+    // values.total_review = 0
+
+    // newData.avg_stars = 0
+    // newData.total_review = 0
+
+    // newData.avg_stars = 0
+    // newData.total_review = 0
+
+    // delete newData.upload
+    // setFile((prev) => {
+    //   return {
+    //     ...prev,
+    //     loading: true
+    //   }
+    // })
+
+    // const formData = new FormData()
+
+    // formData.append('file', file.data as any)
+    // formData.append('upload_preset', 'vuminhhung904')
+
+    // Promise.all([axios.post('https://api.cloudinary.com/v1_1/dqouzpjiz/upload', formData)])
+    //   .then(async ([response]: any) => {
+    //     setFile({
+    //       data: {},
+    //       loading: false
+    //     })
+    //     try {
+    //       const responseCreate: any = await createProduct({
+    //         ...newData,
+    //         thumbnail: response.data.secure_url
+    //       })
+    //       setLoadingUploadGallery(true)
+    //       await handleUploadGallery(Number(responseCreate.data.id))
+    //       setLoadingUploadGallery(false)
+    //       popupSuccess(`Add product "${values.name}"  success`)
+    //       handleCancel()
+    //     } catch (err) {
+    //       popupError(`Add product "${values.name}"  error`)
+    //       handleCancel()
+    //     }
+    //   })
+    //   .catch(() => {
+    //     popupError('Upload file Error ! lets try again ')
+    //   })
   }
 
   const optionCategories: SelectProps['options'] = []
@@ -167,39 +241,35 @@ function AddProduct() {
     if (!arr) return []
     return arr.map((item) => {
       return {
-        value: item.id,
+        value: item.value,
         label: item.value
       }
     })
   }
 
-  const initialValues = {
-    sales_information: [
-      {
-        name: 'Màu sắc',
-        list: []
-        // list: [{ img: '', name: 'Vàng' }]
-      },
-      {
-        name: 'Rom',
-        list: []
-        // list: ['512GB', '128GB']
-      }
-    ]
-  }
-
+  
   if (status.isLoading) return <LoadingUser />
   if (status.isError) return <ErrorLoad />
   return (
     <>
-      <Modal width={1400} okButtonProps={{ hidden: true }} title='Add product' open={true} onCancel={handleCancel}>
+      <Drawer
+        width={1400}
+        placement='right'
+        title='Add product'
+        open={true}
+        onClose={handleCancel}
+        extra={
+          <Space>
+            <Button onClick={handleCancel}>Cancel</Button>
+          </Space>
+        }
+      >
         <Form
           layout='vertical'
           form={form}
           name='nest-messages'
           onFinish={onFinish}
           validateMessages={validateMessages}
-          initialValues={initialValues}
         >
           <Row gutter={[24, 8]}>
             <Col span={8}>
@@ -258,101 +328,37 @@ function AddProduct() {
 
             <Col span={24}>
               <Form.Item label='Gallery'>
-                <UploadFile />
+                <UploadFileGallery fileList={fileList} setFileList={setFileList} />
               </Form.Item>
             </Col>
 
-            <Col span={12}>
+            <Col span={24}>
               <Title level={5}>Thông Tin Chi Tiết</Title>
-              <Row gutter={[24, 24]}>
-                {data?.map((item: IAttribute, key: number) => (
-                  <Col span={12} key={key}>
-                    <Form.Item rules={[{ required: true }]} label={item.description}>
-                      <Select
-                        loading={isLoading}
-                        mode='tags'
-                        style={{ width: '100%' }}
-                        placeholder='Enter value'
-                        options={convertArrayValueAtrribute(item.value_attributes)}
-                      />
-                    </Form.Item>
-                  </Col>
-                ))}
+              <Row gutter={[24, 1]}>
+                <Form.List name='inforDetailProduct'>
+                  {(fields) => (
+                    <>
+                      {data?.map((item: IAttribute, key: number) => (
+                        <Col span={8} key={key}>
+                          <Form.Item {...fields[key]} name={[item.name]} rules={[{ required: true }]} label={item.name}>
+                            <Select
+                              loading={isLoading}
+                              mode='tags'
+                              placeholder='Enter value'
+                              options={convertArrayValueAtrribute(item.value_attributes)}
+                            />
+                          </Form.Item>
+                        </Col>
+                      ))}
+                    </>
+                  )}
+                </Form.List>
               </Row>
             </Col>
 
             <Col span={24}>
-              <Title level={5}>Thông Tin Bán Hàng</Title>
-              <Form.List name='sales_information'>
-                {(fields, { remove }) => (
-                  <div style={{ display: 'flex', flexDirection: 'row', gap: 40 }}>
-                    {fields.map((field) => (
-                      <Form.Item key={field.key} noStyle shouldUpdate>
-                        {({ getFieldValue }) => {
-                          const fieldName = getFieldValue(['sales_information', field.name, 'name'])
-                          return (
-                            <Card
-                              style={{ width: '50%' }}
-                              size='small'
-                              title={fieldName || `Item ${field.name + 1}`}
-                              extra={
-                                <CloseOutlined
-                                  onClick={() => {
-                                    remove(field.name)
-                                  }}
-                                />
-                              }
-                            >
-                              {/* Nest Form.List */}
-                              <Form.Item>
-                                <Form.List name={[field.name, 'list']}>
-                                  {(subFields, subOpt) => (
-                                    <div style={{ display: 'flex', flexDirection: 'column', rowGap: 16 }}>
-                                      {subFields.map((subField) => {
-                                        return (
-                                          <div key={subField.key} style={{ display: 'flex', gap: 16, width: '100%' }}>
-                                            {fieldName === 'Màu sắc' ? (
-                                              <>
-                                                <Form.Item noStyle name={[subField.name, 'img']}>
-                                                  <Upload listType='picture'>
-                                                    <Button size='large'>
-                                                      <UploadOutlined />
-                                                    </Button>
-                                                  </Upload>
-                                                </Form.Item>
-                                                <Form.Item noStyle name={[subField.name, 'name']}>
-                                                  <Input placeholder='name' />
-                                                </Form.Item>
-                                              </>
-                                            ) : (
-                                              <Form.Item noStyle name={subField.name}>
-                                                <Input placeholder='Value' />
-                                              </Form.Item>
-                                            )}
-
-                                            <CloseOutlined
-                                              onClick={() => {
-                                                subOpt.remove(subField.name)
-                                              }}
-                                            />
-                                          </div>
-                                        )
-                                      })}
-                                      <Button type='dashed' size='large' onClick={() => subOpt.add()} block>
-                                        <PlusOutlined />
-                                      </Button>
-                                    </div>
-                                  )}
-                                </Form.List>
-                              </Form.Item>
-                            </Card>
-                          )
-                        }}
-                      </Form.Item>
-                    ))}
-                  </div>
-                )}
-              </Form.List>
+              <Title level={5}>Thông Tin bán hàng</Title>
+              <Variant formatVariant={formatVariant} setFormatVariant={setFormatVariant} />
             </Col>
 
             <Col span={24}>
@@ -364,7 +370,7 @@ function AddProduct() {
             <Col span={24}>
               <Form.Item>
                 <Button
-                  loading={loadingCreateProduct || file.loading}
+                  loading={loadingCreateProduct || file.loading || loadingUploadGallery}
                   disabled={false}
                   type='primary'
                   htmlType='submit'
@@ -375,7 +381,7 @@ function AddProduct() {
             </Col>
           </Row>
         </Form>
-      </Modal>
+      </Drawer>
     </>
   )
 }

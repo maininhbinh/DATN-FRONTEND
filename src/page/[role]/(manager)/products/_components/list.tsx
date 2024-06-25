@@ -1,26 +1,22 @@
 
-import {   Popconfirm,  Table, Tag, Typography } from 'antd';
-import type {    TableProps } from 'antd';
+import { Input, Popconfirm, Table, Tag } from 'antd';
+import type { TableProps } from 'antd';
 import { Button, Flex } from 'antd';
 import { Link } from 'react-router-dom';
 import { IProduct } from '@/common/types/product.interface';
 import { useGetProductsQuery,useUpdateProductMutation } from '../ProductsEndpoints';
-import HandleLoading from '../../components/util/HandleLoading';
-
-import {  useState } from 'react';
-
-import useQuerySearch from '../../hooks/useQuerySearch';
-import { getColumnSearchProps } from '../../components/util/SortHandle';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
+import { useState } from 'react';
 import { popupSuccess } from '@/page/[role]/shared/Toast';
+import Title from 'antd/es/typography/Title';
+
 export default function ListProduct(){
 
+  const { data, isLoading, isError } = useGetProductsQuery({});
+  const [searchValue, setSearchValue] = useState('')
 
-  const {searchText,setSearchText,setSearchedColumn, searchedColumn, searchInput, handleSearch, handleReset } = useQuerySearch();
-  const {
-    data ,
-    isLoading,
-    isError
-  } = useGetProductsQuery({});
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
 
   const [id, setId] = useState<number | string>();
   const [hiddenProduct, {isLoading : isHiddenProduct}, ] = useUpdateProductMutation();
@@ -54,19 +50,6 @@ export default function ListProduct(){
           key: 'name',
           showSorterTooltip: { target: 'full-header' },
           render: (text) => <a>{text}</a>,
-          onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-          sorter: (a, b) => a.name.length - b.name.length,
-          sortDirections: ['descend'],
-          ...getColumnSearchProps(
-            'name',
-             handleSearch,
-             handleReset,
-             searchText,
-             setSearchText,
-             searchedColumn,
-             setSearchedColumn,
-             searchInput
-            ),
         },
         {
           title: 'Price',
@@ -82,7 +65,11 @@ export default function ListProduct(){
           title: 'Image',
           dataIndex: 'thumbnail',
           key: 'thumbnail',
-          render: (thumbnail) => <img src={thumbnail} alt="" width={110} />
+          render: (thumbnail) => (
+            <div className=' rounded-md w-[40px] h-[40px] overflow-hidden ' style={{boxShadow: 'rgba(1, 1, 1, 0.06) 1rem 1.25rem 1.6875rem 1rem'}}>
+              <img src={thumbnail} alt="" width={110} className=' object-cover object-center'/>
+            </div>
+          )
         },
         {
             title: 'Category',
@@ -96,9 +83,9 @@ export default function ListProduct(){
           dataIndex: 'in_active',
           render: (_, { in_active  }) => (
             <>
-                  <Tag color={in_active ? 'green' : 'red'} >
-                      {in_active ? 'Active' : 'InActive'}
-                  </Tag>
+              <Tag color={in_active ? 'green' : 'red'} >
+                  {in_active ? 'Active' : 'InActive'}
+              </Tag>
             </>
           )
         },
@@ -126,23 +113,60 @@ export default function ListProduct(){
         },
     ];
 
+    const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const searchValue = event.target.value
+      if (!searchValue.startsWith(' ')) {
+        setSearchValue(searchValue)
+      }
+    }
 
     return <>
    
-    <HandleLoading isLoading={isLoading} isError={isError}>
-          <Typography.Title editable level={2} style={{ margin: 0 }}>
-                List products
-            </Typography.Title>
-            <Table columns={columns} dataSource={dataItem} />
+      <div className='flex items-center justify-between my-2'>
+        <Title editable level={2} style={{ margin: 0 }}>
+          List Product
+        </Title>
+      </div>
 
-            <Flex wrap="wrap" gap="small">
-          <Link to="add">    <Button type="primary" danger className='my-[20px]'>
-            Add product
-          </Button> </Link>
-          
-
+      <div className=''>
+        <Flex wrap='wrap' gap='small' className='my-5' align='center' justify='space-between'>
+          <Input
+            className='header-search w-[250px]'
+            prefix={
+              <div className=' px-2'>
+                <SearchRoundedIcon />
+              </div>
+            }
+            value={searchValue}
+            spellCheck={false}
+            allowClear
+            onChange={handleChangeSearch}
+            size='small'
+            placeholder={'search'}
+            style={{
+              borderRadius: '2rem',
+            }}
+          />
+          <Link to='add'>
+            <Button type='primary'>Add Product</Button>
+          </Link>
         </Flex>
-    </HandleLoading>
-     
+
+        <Table 
+          style={{border: '2px', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem', height: '100%'}}
+          columns={columns} 
+          dataSource={dataItem} 
+          loading={isLoading}
+          pagination={{
+            current: current,
+            pageSize: pageSize,
+            total: columns.length,
+            onChange: (page, pageSize) => {
+              setCurrent(page);
+              setPageSize(pageSize);
+            },
+          }}
+        />
+      </div>
     </>
 }

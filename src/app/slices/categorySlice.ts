@@ -82,7 +82,6 @@ export const getAllCategory = () => async (dispatch: Dispatch) => {
       dispatch(getAllSuccess(data))
     }
   } catch (error) {
-    console.log(error)
     dispatch(getAllFailure())
   } finally {
     dispatch(fetchedDone())
@@ -119,12 +118,15 @@ export const getOneCategory = (id: string) => async (dispatch: Dispatch) => {
   }
 }
 
-export const createNewCategory = (payload: ICategory) => async (dispatch: Dispatch) => {
-  dispatch(isFetching())
+export const createNewCategory = (payload) => async (dispatch: Dispatch) => {
+  dispatch(isFetching())  
+  
   try {
     const response = await createCategory(payload)
     if (response.data) {
-      dispatch(createSuccess(response.data))
+      console.log(response);
+      
+      // dispatch(createSuccess(response.data))
       return { success: true }
     }
     return { success: false }
@@ -132,11 +134,11 @@ export const createNewCategory = (payload: ICategory) => async (dispatch: Dispat
     console.log(error)
     return { success: false, error }
   } finally {
-    dispatch(fetchedDone())
+    // dispatch(fetchedDone())
   }
 }
 
-export const editCategory = (payload: ICategory) => async (dispatch: Dispatch) => {
+export const leditCategory = (payload: ICategory) => async (dispatch: Dispatch) => {
   dispatch(isFetching())
   try {
     const response = await updateCategory(payload)

@@ -1,0 +1,37 @@
+.app__variant {
+    .ant-card-head-wrapper {
+        min-height: 30px !important;
+    }
+    .ant-upload.ant-upload-select {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+.upload-custom {
+    .ant-upload-list-item-container {
+        width: 70px !important; 
+        height: 70px !important;
+    }
+}
+.app__variant {
+    .ant-card-head-title {
+        overflow :visible !important;
+        position: relative !important;
+        top : -10px !important;
+        .ant-typography {
+            position: absolute !important;
+            margin-top: 2px;
+            left : 0px !important;
+        }
+    }
+}
+.ck-blurred {
+    height : 200px !important;
+}
+.custom-add-ant {
+    .ant-btn {
+        svg {
+            margin-right:  0px !important;
+        }
+    }
+}

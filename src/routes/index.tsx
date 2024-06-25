@@ -56,8 +56,7 @@ export default function Router() {
     <>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<Navigate to={'/home'} />} />
-          <Route path='home' element={<Base />}>
+          <Route path='' element={<Base />}>
             <Route index element={<PageHome />} />
             <Route path='' element={<ProductDetailPage />} />
           </Route>
