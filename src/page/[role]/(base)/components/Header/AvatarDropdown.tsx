@@ -10,6 +10,7 @@ import { login, logout, Logout, Signin } from "@/app/slices/authSlide";
 import { ISignin } from "@/common/types/Auth.interface";
 import { setLoading, setOpenModalLogin } from "@/app/webSlice";
 import { popupSuccess, popupError } from "@/page/[role]/shared/Toast";
+import Cookies from 'js-cookie';
 
 type FieldType = {
   email?: string;
@@ -27,52 +28,32 @@ export default function AvatarDropdown() {
 
   const onSignin = async (value :ISignin) => {
     dispatch(setLoading(true));
-    const result = await dispatch(Signin(value));
-    dispatch(setLoading(false));
-
-    if(result?.success == false){
-      form.setFields([
-        {
-          name: 'email',
-          errors: ['Email is required']
-        },
-        {
-          name: 'password',
-          value: '',
-          errors: ['Password is required']
-        }
-      ])
-      popupError(result?.result?.message);
-    }else{
-      form.setFields([
-        {
-          name: 'email',
-          value: '',
-          errors: ['Email is required']
-        },
-        {
-          name: 'password',
-          value: '',
-          errors: ['Password is required']
-        }
-      ])
+    try {
+      
+      const result = await dispatch(Signin(value));
       dispatch(login(result))
-      dispatch(setOpenModalLogin(false))
       popupSuccess(result?.result?.message);
+    } catch (error: any) {
+      console.log(error);
+      popupError(error?.message || "Lỗi hệ thống vui lòng thử lại!");
+    } finally {
+      dispatch(setLoading(false));
+      dispatch(setOpenModalLogin(false))
     }
   }  
 
   const onLogout = async () => {
-    const access_token = localStorage.getItem('access_token');
+    const access_token = Cookies.get("access_token")
+    // const access_token = localStorage.getItem('access_token');
     dispatch(logout());
 
     if(!access_token){
 
       popupError('unAuth');
-
+      
     }else{
-
       dispatch(setLoading(true));
+
       const result = await dispatch(Logout(access_token));
       dispatch(setLoading(false));
 
@@ -186,7 +167,7 @@ export default function AvatarDropdown() {
                             <p className="text-sm font-medium ">{"Login"}</p>
                           </div>
                         </button>
-
+{/* 
                         <button
                           className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                           onClick={() => close()}
@@ -218,7 +199,7 @@ export default function AvatarDropdown() {
                           <div className="ml-4">
                             <p className="text-sm font-medium ">{"Signin"}</p>
                           </div>
-                        </button>
+                        </button> */}
                       </>
                       :
 
@@ -556,7 +537,7 @@ export default function AvatarDropdown() {
 
                     <Form.Item<FieldType>
                       name="email"
-                      rules={[{ required: true, message: 'Email không được để trống', type:'email' }]}
+                      rules={[{ required: true, message: 'Email không được để trống',  }, {type: "email", message: "Email không đúng định dạng"}]}
                     >
                       <Input id="email"/>
                     </Form.Item>
@@ -613,3 +594,4 @@ export default function AvatarDropdown() {
     </div>
   );
 }
+

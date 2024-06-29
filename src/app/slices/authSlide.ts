@@ -2,6 +2,7 @@ import { createSlice, Dispatch } from "@reduxjs/toolkit";
 import { ISignin, ISignup } from "@/common/types/Auth.interface";
 import { LogoutService, SigninService } from "@/services/AuthService";
 import { AxiosError } from "axios";
+import Cookies from 'js-cookie';
 import { ErrorResponse } from "react-router-dom";
 
 interface IInitialState {
@@ -9,7 +10,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-    isAuthenticated: !!localStorage.getItem('access_token')
+    isAuthenticated: !!Cookies.get("access_token")
 }
 
 const authSlice = createSlice({
@@ -17,18 +18,25 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         login: (state, {payload}) => {
-            localStorage.setItem('user', JSON.stringify(payload?.result?.data));
-            localStorage.setItem('access_token', payload.result?.access_token)
-            localStorage.setItem('token_type', payload.result?.token_type)   
+           // Cookies.set('user',JSON.stringify(payload?.result?.data));
+            Cookies.set('access_token',payload?.result?.access_token);
+            Cookies.set('token_type',payload?.result?.token_type);
+         localStorage.setItem('user', JSON.stringify(payload?.result?.data));
+            // localStorage.setItem('access_token', payload.result?.access_token)
+            // localStorage.setItem('token_type', payload.result?.token_type)   
             state.isAuthenticated = true;
         },
-        logout: (state) => {            
-            localStorage.removeItem('user')
-            localStorage.removeItem('access_token')
-            localStorage.removeItem('token_type')
+        logout: (state) => {     
+           // Cookies.remove('user');
+            Cookies.remove('access_token');
+            Cookies.remove('token_type');
+             localStorage.removeItem('user')
+            // localStorage.removeItem('access_token')
+            // localStorage.removeItem('token_type')
             state.isAuthenticated = false;
         },
         loadAuthState: (state, {payload}) => {
+           // Cookies.set("user",payload?.result?.data )
             localStorage.setItem('user', JSON.stringify(payload?.result?.data));            
             state.isAuthenticated = true;
         },
