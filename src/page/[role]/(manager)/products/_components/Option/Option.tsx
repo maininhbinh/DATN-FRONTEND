@@ -54,7 +54,7 @@ export default function Option({setImageUrl, discount, setDetails}: option) {
             })));
             const {data: brands} = await axios.get('http://127.0.0.1:8000/api/brand');
             
-            setBrands(brands.brands.map((item)=>({
+            setBrands(brands.data.map((item)=>({
                 value: item.id,
                 label: item.name
             })))
