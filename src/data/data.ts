@@ -116,8 +116,8 @@ export const PRODUCTS: Product[] = [
     link: "/product-detail/",
     variants: DEMO_VARIANTS,
     variantType: "image",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    allOfSizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    sizes: ["128GB","256GB", "512GB"],
+    allOfSizes: ["8GB","64GB","128GB","256GB", "512GB", "1T"],
     status: "New in",
   },
   {

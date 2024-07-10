@@ -40,6 +40,7 @@ export interface ProductDetailPageProps {
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
   const { sizes, variants, status, allOfSizes } = PRODUCTS[0];
   const LIST_IMAGES_DEMO = [detail1JPG, detail2JPG, detail3JPG];
+  const COLOR = ["bg-gray-500", "bg-amber-500", "bg-slate-950","bg-green-800"];
 
   const [variantActive, setVariantActive] = React.useState(0);
   const [sizeSelected, setSizeSelected] = React.useState(sizes ? sizes[0] : "");
@@ -97,12 +98,12 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
                   : "border-transparent"
               }`}
             >
-              <div className="absolute inset-0.5 overflow-hidden z-0">
-                <img
+              <div className={`${COLOR[index]} absolute inset-0.5 overflow-hidden z-0`}>
+                {/* <img
                   src={variant.image}
                   alt=""
                   className="absolute w-full h-full object-cover"
-                />
+                /> */}
               </div>
             </div>
           ))}
@@ -120,7 +121,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
         <div className="flex justify-between font-medium text-sm">
           <label htmlFor="">
             <span className="">
-              Size:
+              Memory:
               <span className="ml-1 font-semibold">{sizeSelected}</span>
             </span>
           </label>
@@ -130,7 +131,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
             href="##"
             className="text-primary-6000 hover:text-primary-500"
           >
-            See sizing chart
+            See memory chart
           </a>
         </div>
         <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 mt-3">
@@ -207,7 +208,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
     return null;
   };
 
-  const renderSectionContent = () => {
+  const renderSectionContent = (detail) => {
     return (
       <div className="space-y-7 2xl:space-y-8">
         {/* ---------- 1 HEADING ----------  */}
@@ -274,7 +275,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
         {/*  */}
 
         {/* ---------- 5 ----------  */}
-        <AccordionInfo />
+        <AccordionInfo data={detail} />
 
         {/* ---------- 6 ----------  */}
         <div className="hidden xl:block">
@@ -359,7 +360,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
           <div className="w-full lg:w-[55%] ">
             {/* HEADING */}
             <div className="relative">
-              <div className="aspect-w-16 aspect-h-16">
+              <div className="aspect-w-1 aspect-h-1">
                 <img
                   src={dataItem?.data?.products[variantActive].image}
                   className="w-full rounded-2xl object-cover"
@@ -375,11 +376,11 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
                 return (
                   <div
                     key={index}
-                    className="aspect-w-11 xl:aspect-w-10 2xl:aspect-w-11 aspect-h-16"
+                    className="aspect-w-1 xl:aspect-w-1 2xl:aspect-w-1 aspect-h-1"
                   >
                     <img
                       src={item.image}
-                      className="w-full rounded-2xl object-cover"
+                      className="absolute w-full h-full object-cover"
                       alt="product detail 1"
                     />
                   </div>
@@ -390,7 +391,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
 
           {/* SIDEBAR */}
           <div className="w-full lg:w-[45%] pt-10 lg:pt-0 lg:pl-7 xl:pl-9 2xl:pl-10">
-            {renderSectionContent()}
+            {renderSectionContent(dataItem?.data?.details)}
           </div>
         </div>
 

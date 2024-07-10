@@ -76,8 +76,16 @@ const AccordionInfo: FC<Props> = ({
                 <Disclosure.Panel
                   className={panelClassName}
                   as="div"
-                  dangerouslySetInnerHTML={{ __html: item.content }}
-                ></Disclosure.Panel>
+                >
+                  <ul className="list-disc list-inside leading-7">
+                  {item.attributes?.map((atr,index1)=>{
+                    return (
+                      <li key={index1}>{atr.name + ": " + atr.values[0]?.name}</li>
+                    );
+                  })}
+                    
+                  </ul>
+                </Disclosure.Panel>
               </>
             )}
           </Disclosure>

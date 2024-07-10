@@ -10,25 +10,19 @@ export interface PricesProps {
 const Prices: FC<PricesProps> = ({
   className = "",
   productVariantDetail,
-  contentClass = "py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium w-full",
+  contentClass = "ml-[20px] md:py-1.5 md:px-2.5 font-medium w-full",
 }) => {
   return (
     <div className={` flex justify-between  w-full gap-[20px]`}>
       <div
-        className={`flex items-center border-2 border-green-500 rounded-lg ${contentClass}`}
+        className={`flex items-center rounded-lg ${contentClass}`}
       >
-        <span className="text-green-500 !leading-none">
+        <h1 className="text-red-500 text-[20px] !leading-none">
           {productVariantDetail && VND(productVariantDetail.price)}
-        </span>
-      </div>
-
-
-      <div
-        className={`flex items-center border-2 border-red-500 rounded-lg ${contentClass}`}
-      >
-        <span className="text-red-500 !leading-none line-through">
+        </h1>
+        <h1 className="ml-[7px] text-gray-500 !leading-none line-through">
         {productVariantDetail && VND(productVariantDetail.price_sale)}
-        </span>
+        </h1>
       </div>
 
     </div>

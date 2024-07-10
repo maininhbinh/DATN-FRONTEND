@@ -24,9 +24,9 @@ const ProductStatus = ({productVariantDetail} : any) => {
     <div className={`bg-[#6CD894] text-white py-2  px-2 nc-shadow-lg rounded-full flex items-center justify-center absolute top-[13px] right-[15px] `}>
       <SparklesIcon className="w-3.5 h-3.5" />
      
-      {productVariantDetail &&  <span className="ml-1 leading-none">{ 
+      {/* {productVariantDetail &&  <span className="ml-1 leading-none">{ 
         productVariantDetail && productVariantDetail.variants[0]?.name 
-      }  </span>}
+      }  </span>} */}
     </div>
     </>
   );

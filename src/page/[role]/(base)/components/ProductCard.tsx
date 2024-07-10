@@ -199,7 +199,7 @@ const ProductCard: FC<ProductCardProps> = ({ className = '', data }) => {
         </div>
 
         <div className='space-y-4 px-2.5 pt-5 pb-2.5'>
-          <RenderVariants variants={data?.products} setProductVariantDetail={setProductVariantDetail} />
+          {/* <RenderVariants variants={data?.products} setProductVariantDetail={setProductVariantDetail} /> */}
 
           <div>
             <h2 className={`nc-ProductCard__title text-base font-semibold transition-colors`}>{data?.name}</h2>
