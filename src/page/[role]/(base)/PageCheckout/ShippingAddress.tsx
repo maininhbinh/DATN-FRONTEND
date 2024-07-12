@@ -7,12 +7,13 @@ import Radio from '../shared/Radio/Radio'
 
 import { useGetProvincesQuery, useLazyGetDistrictsQuery, useLazyGetWardsQuery } from '@/utils/addressRTKQuery'
 
-import { Form, Select, SelectProps } from 'antd'
+import { Button, Descriptions, DescriptionsProps, Form, Modal, Result, Select, SelectProps } from 'antd'
 import axios from 'axios'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { ICart } from '@/common/types/cart.interface'
 import { popupSuccess } from '../../shared/Toast'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { VND } from '@/utils/formatVietNamCurrency'
 interface Props {
   isActive: boolean
   onCloseActive: () => void
@@ -21,7 +22,35 @@ interface Props {
 }
 
 const ShippingAddress: FC<Props> = ({  isActive, onCloseActive, onOpenActive, form }) => {
+  const items: DescriptionsProps['items'] = [
+    {
+      key: '1',
+      label: 'UserName',
+      children: <p>Zhou Maomao</p>,
+    },
+    {
+      key: '2',
+      label: 'Telephone',
+      children: <p>1810000000</p>,
+    },
+    {
+      key: '3',
+      label: 'Live',
+      children: <p>Hangzhou, Zhejiang</p>,
+    },
+    {
+      key: '4',
+      label: 'Remark',
+      children: <p>empty</p>,
+    },
+    {
+      key: '5',
+      label: 'Address',
+      children: <p>No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China</p>,
+    },
+  ];
   const renderShippingAddress = () => {
+    const [isShowPopup, setShowPopup] = useState<boolean>(false);
     const navigate = useNavigate();
     const [optionsWard, setOptionWard] = useState<SelectProps['options']>([])
     const [optionsDistrict, setOptionDistrict] = useState<SelectProps['options']>([])
@@ -67,7 +96,76 @@ const ShippingAddress: FC<Props> = ({  isActive, onCloseActive, onOpenActive, fo
     })
   })
   
-  
+  const renderProduct = (item: ICart, index: number) => {
+    const { image, price, name, price_sale, quantity, variant, id} = item;
+
+    return (
+      <div key={index} className="relative flex py-7 first:pt-0 last:pb-0">
+        <div className="relative h-36 w-24 sm:w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+          <img
+            src={image}
+            alt={name}
+            className="h-full w-full object-contain object-center"
+          />
+          <Link to="/product-detail" className="absolute inset-0"></Link>
+        </div>
+
+        <div className="ml-3 sm:ml-6 flex flex-1 flex-col">
+          <div>
+            <div className="flex justify-between ">
+              <div className="flex-[1.5] ">
+                <h3 className="text-base font-semibold">
+                  <Link to="/product-detail">{name}</Link>
+                </h3>
+                <div className="mt-1.5 sm:mt-2.5 flex text-sm text-slate-600 dark:text-slate-300">
+                  <div className="flex items-center space-x-1.5">
+                  
+
+                    <span>{variant}</span>
+                  </div>
+                  
+                </div>
+
+                
+              </div>
+
+              <div className="hidden flex-1 sm:flex justify-end">
+                
+              <div className="hidden flex-1 sm:flex justify-end">
+              <div className='mt-0.5'>
+                <div className={` flex flex-col justify-between  w-full gap-[10px]`}>
+                  <div className={`flex items-center border-2 border-green-500 rounded-lg px-2 py-2`}>
+                    <span className='text-green-500 !leading-none'>
+                       {VND(price_sale)}
+                    </span>
+                  </div>
+
+                  <div className={` flex items-center border-2 border-gray-300 rounded-lg`}>
+                    <span className='text-gray-300 !text-[14px] !leading-none line-through px-2 py-2'>
+                    {VND(price)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex mt-auto pt-4 items-end justify-between text-sm">
+            <div className="hidden sm:block text-center relative">
+               &times; {quantity}
+            </div>
+            <div className="hidden sm:block text-center relative">
+               {VND(quantity * price_sale)}
+            </div>
+
+           
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   const onChangeProvince = async (value: string) => {
     form.resetFields(['district', 'ward']);
@@ -95,27 +193,51 @@ const ShippingAddress: FC<Props> = ({  isActive, onCloseActive, onOpenActive, fo
 
   const onFinish = async (values : any) => {
     
-    
-    const response = await axios.post('http://localhost:3000/orders', {...values, order_date : new Date()});
    
-    const orderId = response.data.id;
-    carts.map(async (item) => {
-      const payload = {
-         orderId : orderId,
-         name : item.name,
-         price : item.price_sale,
-         quantity : item.quantity,
-         image : item.image,
-         variant : item.variant
-      }
-       await axios.post('http://localhost:3000/orderDetails', payload);
-    })
-    popupSuccess('order success');
-    setCart([]);
-    navigate('/')
+    setShowPopup(true)
+    // const response = await axios.post('http://localhost:3000/orders', {...values, order_date : new Date()});
+   
+    // const orderId = response.data.id;
+    // carts.map(async (item) => {
+    //   const payload = {
+    //      orderId : orderId,
+    //      name : item.name,
+    //      price : item.price_sale,
+    //      quantity : item.quantity,
+    //      image : item.image,
+    //      variant : item.variant
+    //   }
+    //    await axios.post('http://localhost:3000/orderDetails', payload);
+    // })
+    // popupSuccess('order success');
+    // setCart([]);
+    // navigate('/')
     // Handle form values here
   };
     return (
+      <>
+        <Modal title={false} open={isShowPopup} onOk={() => setShowPopup(false)} onCancel={()=> setShowPopup(false)} className='!w-[50%]'>
+           <div className="px-[40px]">
+            <div className="">
+            <Result
+
+    status="success"
+    title="Successfully Purchased Cloud Server ECS!"
+    subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+    extra={[
+      <Button type="primary" key="console">
+        Go Back Shop
+      </Button>,
+
+    ]}
+  />
+            </div>
+           <div className=" h-[60vh] overflow-auto no-scrollbar">
+             {carts.map(renderProduct)}
+          </div>
+          <div className="my-[30px]"><Descriptions title="User Info" items={items} /> </div>
+           </div>
+      </Modal>
       <div className='border border-slate-200 dark:border-slate-700 rounded-xl '>
         <div className='p-6 flex flex-col sm:flex-row items-start'>
           <span className='hidden sm:block'>
@@ -324,6 +446,7 @@ const ShippingAddress: FC<Props> = ({  isActive, onCloseActive, onOpenActive, fo
         </div>
       </Form>
       </div>
+      </>
     )
   }
   return renderShippingAddress()

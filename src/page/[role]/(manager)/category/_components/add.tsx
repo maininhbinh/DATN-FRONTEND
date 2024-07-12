@@ -105,7 +105,7 @@ export default function AddCategory() {
     // console.log(values);
     
     const name = form.getFieldValue('name');
-    const active = form.getFieldValue('active');
+    const active = form.getFieldValue('is_active');
     const parent_id = form.getFieldValue('parent_id');    
     const detail = details.map((item)=>{
       return {
@@ -117,7 +117,7 @@ export default function AddCategory() {
     const formData = new FormData();
     
     formData.append('name', name);
-    formData.append('active', active);
+    formData.append('is_active', active);
     formData.append('parent_id', parent_id);
     formData.append('detail', JSON.stringify(detail));
     if(imageUrl){      
@@ -173,7 +173,7 @@ export default function AddCategory() {
           onFinish={handleSubmit}
           initialValues={{
             parent_id: '',
-            active: true
+            is_active: true
           }}
         >
           <Form.Item>
@@ -243,7 +243,7 @@ export default function AddCategory() {
                       <Form.Item 
                         className='m-0' 
                         label=''
-                        name='active' 
+                        name='is_active' 
                         valuePropName="checked"
                       >
                         <Switch />

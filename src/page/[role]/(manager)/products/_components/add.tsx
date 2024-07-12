@@ -47,7 +47,7 @@ function AddProduct() {
   const fileInputRef = useRef<any>(null);
   const numberFile = useRef<number>(0);
   const [typeDiscount, setTypeDiscount] = useState<string>('');
-  const [details, setDetails] = useState({});
+  const [details, setDetails] = useState<any>();
   const [detailsAttr, setDetailsAttr] = useState<detailsAtrr[]>([]);
 
 
@@ -109,24 +109,24 @@ function AddProduct() {
     formdata.append('content', content);
     formdata.append('category_id', category_id);
     formdata.append('brand_id', brand_id);
-    formdata.append('is_active', is_active);
-    formdata.append('is_hot_deal', is_hot_deal);
-    formdata.append('is_good_deal', is_good_deal);
-    formdata.append('is_new', is_new);
-    formdata.append('is_show_home', is_show_home);
+    formdata.append('is_active', String(is_active) );
+    formdata.append('is_hot_deal', String(is_hot_deal));
+    formdata.append('is_good_deal', String(is_good_deal));
+    formdata.append('is_new', String(is_new));
+    formdata.append('is_show_home', String(is_show_home));
     formdata.append('type_discount', typeDiscount);
     formdata.append('discount', typeDiscount == 'percentage' ? percentage : typeDiscount == 'fixed' ? fixed : '');
     formdata.append('product_details', JSON.stringify(detailsAttr));
     formdata.append('product_items', JSON.stringify(newProductItem));
         
     //const data = await axios.post('http://127.0.0.1:8000/api/product', formdata);
-    // try {
-    //   await addProduct(formdata).unwrap();
-    //   popupSuccess('Add product success');
-    //   navigate('..');
-    // } catch (error) {
-    //   popupError('Add product error');
-    // }
+    try {
+      await addProduct(formdata).unwrap();
+      popupSuccess('Add product success');
+      navigate('..');
+    } catch (error) {
+      popupError('Add product error');
+    }
 
     
     
@@ -145,7 +145,7 @@ function AddProduct() {
     });
   
 
-  const selectGallery = async (e) => {
+  const selectGallery = async (e : any) => {
     if(gallery.length > 6) return;
     
     const types = [
@@ -359,12 +359,12 @@ function AddProduct() {
                    {/* Detail */}
                    <Flex vertical gap={20} className='sm:rounded-lg p-10' style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1rem 1rem 1rem'}}>
                     <h2 className={`font-bold text-[16px]`}>Thông tin chi tiết sản phẩm</h2>
-                    {details?.details && details?.details.map((item)=>(
+                    {details?.details && details?.details.map((item : any)=>(
                       <Flex vertical gap={20} className='p-3' key={item.id}>
                           <h2 className=' font-bold'>{item.name}</h2>
                           <hr />
                           <Flex align='center' wrap gap={20}>
-                              {item.attributes.map((attr)=>(
+                              {item.attributes.map((attr : any)=>(
                                 <Flex vertical gap={5} key={attr.id} className='w-[25%]'>
                                   <h2 className='font-bold'>{attr.name}</h2>
                                   <Form.Item 

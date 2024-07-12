@@ -66,7 +66,9 @@ export default function ListCategory() {
       key: 'image',
       align: 'center',
       width: 50,
-      render: (image) => <img src={image} alt="" className="w-[120px] object-cover" />
+      render: (image) =>  <div className=' rounded-md w-[40px] h-[40px] overflow-hidden ' style={{boxShadow: 'rgba(1, 1, 1, 0.06) 1rem 1.25rem 1.6875rem 1rem'}}>
+      <img src={image} alt="" width={110} className=' object-cover object-center'/>
+    </div>
     },
     {
       title: 'Parent',
@@ -78,8 +80,8 @@ export default function ListCategory() {
     },
     {
       title: 'Status',
-      dataIndex: 'active',
-      key: 'active',
+      dataIndex: 'is_active',
+      key: 'is_active',
       align: 'center',
       width: 100,
       render: (active) => {
@@ -101,7 +103,7 @@ export default function ListCategory() {
             </Link>
           <Popconfirm
             placement='topRight'
-            title={record.active == 1 ? 'Are you sure distable this category?' : 'Are you sure enable this category?'}
+            title={record.is_active == 1 ? 'Are you sure distable this category?' : 'Are you sure enable this category?'}
             onConfirm={() => handlerDistableCategory(record)}
             onCancel={() => {}}
             okText='Đồng ý'

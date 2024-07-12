@@ -170,15 +170,15 @@ export default function ListProduct(){
           columns={columns} 
           dataSource={dataItem} 
           loading={isLoading}
-          pagination={{
-            current: current,
-            pageSize: pageSize,
-            total: columns.length,
-            onChange: (page, pageSize) => {
-              setCurrent(page);
-              setPageSize(pageSize);
-            },
-          }}
+          // pagination={{
+          //   current: current,
+          //   pageSize: pageSize,
+          //   total: columns.length,
+          //   onChange: (page, pageSize) => {
+          //     setCurrent(page);
+          //     setPageSize(pageSize);
+          //   },
+          // }}
         />
       </div>
     </>

@@ -33,7 +33,7 @@ export default function AddBanner() {
       popupSuccess('Create banner success');
       handleCancel();
     } catch (error) {
-      popupError('Create banner success');
+      popupError('Create banner error');
     }
   }
   const handleUpload = async (options: any) => {

@@ -163,7 +163,7 @@ export default function EditCategory() {
    
     
     const name = form.getFieldValue('name');
-    const active = form.getFieldValue('active') ? 1 : 0;
+    const active = form.getFieldValue('is_active') ? 1 : 0;
     const parent_id = form.getFieldValue('parent_id');    
  
 
@@ -171,7 +171,7 @@ export default function EditCategory() {
     
    
     formData.append('name', name);
-    formData.append('active', active as any);
+    formData.append('is_active', active as any);
     formData.append('parent_id', parent_id);
    
     if(imageUrl){      
@@ -232,7 +232,7 @@ export default function EditCategory() {
           onFinish={handleSubmit}
           initialValues={{
             parent_id: dataItem?.data?.parent_id ? dataItem?.data?.parent_id : '',
-            active: dataItem?.data?.active == 1 ? true : false,
+            is_active: dataItem?.data?.is_active == 1 ? true : false,
             name : dataItem?.data?.name
           }}
         >
@@ -303,7 +303,7 @@ export default function EditCategory() {
                       <Form.Item 
                         className='m-0' 
                         label=''
-                        name='active' 
+                        name='is_active' 
                         valuePropName="checked"
                       >
                         <Switch />
