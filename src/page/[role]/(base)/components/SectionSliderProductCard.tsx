@@ -25,7 +25,6 @@ const SectionSliderProductCard: FC<SectionSliderProductCardProps> = ({
   data = PRODUCTS.filter((_, i) => i < 8 && i > 2),
 }) => {
   const {data : dataItem, isLoading } = useGetProductsQuery({});
- console.log(dataItem?.data)
 
   const sliderRef = useRef(null);
   const id = useId();

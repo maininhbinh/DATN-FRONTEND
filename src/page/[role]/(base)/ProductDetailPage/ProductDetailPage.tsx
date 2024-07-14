@@ -50,6 +50,35 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
   const { slug } = useParams();
   const {data : dataItem, isLoading } = useGetProductQuery(slug);
   const navigate = useNavigate();
+  const [memories, setMemories] = React.useState([]);
+  const [colors, setColors] = React.useState([]);
+
+  useEffect(()=>{
+    if(dataItem?.data?.products){
+      var dataMemories = [];
+      var dataColors = [];
+      dataItem?.data.products.forEach((product:any) => {
+        product?.variants.forEach((item:any) => {
+          if(item.variant?.code == "color"){
+            dataColors.push({
+              id: product.id,
+              value: item.value,
+              name: item.name
+            })
+          }
+          if(item.variant?.code == "memory"){
+            dataMemories.push({
+              id: product.id,
+              value: item.value,
+              name: item.name
+            })
+          }
+        })
+      })
+      setMemories(dataMemories);
+      setColors(dataColors);
+    }
+  },[dataItem]);
 
   useEffect(() => {
     if(!isLoading && dataItem && dataItem.data == null){
@@ -72,6 +101,31 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
     );
   };
 
+  const getBorderClass = (Bgclass = "") => {
+    if (Bgclass.includes("red")) {
+      return "border-red-500";
+    }
+    if (Bgclass.includes("violet")) {
+      return "border-violet-500";
+    }
+    if (Bgclass.includes("orange")) {
+      return "border-orange-500";
+    }
+    if (Bgclass.includes("green")) {
+      return "border-green-500";
+    }
+    if (Bgclass.includes("blue")) {
+      return "border-blue-500";
+    }
+    if (Bgclass.includes("sky")) {
+      return "border-sky-500";
+    }
+    if (Bgclass.includes("yellow")) {
+      return "border-yellow-500";
+    }
+    return "border-transparent";
+  };
+
   const renderVariants = () => {
     if (!variants || !variants.length) {
       return null;
@@ -83,29 +137,28 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
           <span className="text-sm font-medium">
             Color:
             <span className="ml-1 font-semibold">
-              {dataItem?.data?.products[variantActive].variants[0].name}
+              {colors.filter((item)=>item.id == dataItem?.data?.products[variantActive].id)[0]?.name}
             </span>
           </span>
         </label>
         <div className="flex mt-3">
-          {dataItem?.data?.products.map((variant, index) => (
+          {colors.map((color, index) => (
             <div
-              key={index}
-              onClick={() => setVariantActive(index)}
-              className={`relative flex-1 max-w-[75px] h-20 sm:h-21 border-2 cursor-pointer ${
-                variantActive === index
-                  ? "border-primary-6000 dark:border-primary-500"
-                  : "border-transparent"
-              }`}
-            >
-              <div className={`${COLOR[index]} absolute inset-0.5 overflow-hidden z-0`}>
-                {/* <img
-                  src={variant.image}
-                  alt=""
-                  className="absolute w-full h-full object-cover"
-                /> */}
-              </div>
-            </div>
+            key={index}
+            onClick={() => {
+              setVariantActive(index)
+            }}
+            className={`relative w-6 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${
+              variantActive === index
+                ? getBorderClass()
+                : 'border-transparent'
+            }`}
+            title={color.name}
+          >
+            <div
+                className={`absolute inset-0.5 rounded-full z-0 ${color.value}`}
+            ></div>
+          </div>
           ))}
         </div>
       </div>
@@ -113,7 +166,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
   };
 
   const renderSizeList = () => {
-    if (!allOfSizes || !sizes || !sizes.length) {
+    if (!allOfSizes || !memories || !memories.length) {
       return null;
     }
     return (
@@ -137,7 +190,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
         <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 mt-3">
           {allOfSizes.map((size, index) => {
             const isActive = size === sizeSelected;
-            const sizeOutStock = !sizes.includes(size);
+            const sizeOutStock = memories.filter((item)=>item.name == size).length == 0;
             return (
               <div
                 key={index}
@@ -371,12 +424,33 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
               {/* META FAVORITES */}
               <LikeButton className="absolute right-3 top-3 " />
             </div>
-            <div className="grid grid-cols-2 gap-3 mt-3 sm:gap-6 sm:mt-6 xl:gap-8 xl:mt-8">
+            <div className="flex mt-3">
+              {dataItem?.data?.products.map((variant, index) => (
+                <div
+                  key={index}
+                  onClick={() => setVariantActive(index)}
+                  className={`relative flex-1 max-w-[75px] h-20 sm:h-21 border-2 cursor-pointer ${
+                    variantActive === index
+                      ? "border-primary-6000 dark:border-primary-500"
+                      : "border-transparent"
+                  }`}
+                >
+                  <div className={`absolute inset-0.5 overflow-hidden z-0`}>
+                    <img
+                      src={variant.image}
+                      alt=""
+                      className="absolute w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* <div className="grid grid-cols-2 gap-3 mt-3 sm:gap-6 sm:mt-6 xl:gap-8 xl:mt-8">
               {dataItem?.data?.products.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className="aspect-w-1 xl:aspect-w-1 2xl:aspect-w-1 aspect-h-1"
+                    className="aspect-w-1 xl:aspect-w-1 1xl:aspect-w-1 aspect-h-1"
                   >
                     <img
                       src={item.image}
@@ -386,7 +460,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
           </div>
 
           {/* SIDEBAR */}

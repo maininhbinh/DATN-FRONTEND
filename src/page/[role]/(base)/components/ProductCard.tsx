@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NcImage from '../shared/NcImage/NcImage'
 import LikeButton from './LikeButton'
@@ -20,12 +20,43 @@ import { addToCartFc } from '@/utils/handleCart'
 import { VND } from '@/utils/formatVietNamCurrency'
 export interface ProductCardProps {
   className?: string
-  data?: IProduct
+  data?: IProduct,
+  isLiked?: boolean
 }
 
-const ProductCard: FC<ProductCardProps> = ({ className = '', data }) => {
+const ProductCard: FC<ProductCardProps> = ({ className = '', data, isLiked }) => {
   const [carts, setCart] = useLocalStorage('carts', [] as ICart[])
   const [productVariantDetail, setProductVariantDetail] = useState<any>(data?.products ? data?.products[0] : false)
+  const [showModalQuickView, setShowModalQuickView] = React.useState(false);
+  const [memories, setMemories] = React.useState([]);
+  const [colors, setColors] = React.useState([]);
+
+  useEffect(()=>{
+    if(data?.products){
+      var dataMemories = [];
+      var dataColors = [];
+      data?.products.forEach((product:any) => {
+        product?.variants.forEach((item:any) => {
+          if(item.variant?.code == "color"){
+            dataColors.push({
+              id: product.id,
+              value: item.value,
+              name: item.name
+            })
+          }
+          if(item.variant?.code == "memory"){
+            dataMemories.push({
+              id: product.id,
+              value: item.value,
+              name: item.name
+            })
+          }
+        })
+      })
+      setMemories(dataMemories);
+      setColors(dataColors);
+    }
+  },[data]);
 
   const handleAddToCart = (item: any, name: string | undefined) => {
     const itemCart = {
@@ -114,38 +145,62 @@ const ProductCard: FC<ProductCardProps> = ({ className = '', data }) => {
     )
   }
 
-  const RenderVariants = ({ variants, setProductVariantDetail }: any) => {
+  const getBorderClass = (Bgclass = "") => {
+    if (Bgclass.includes("red")) {
+      return "border-red-500";
+    }
+    if (Bgclass.includes("violet")) {
+      return "border-violet-500";
+    }
+    if (Bgclass.includes("orange")) {
+      return "border-orange-500";
+    }
+    if (Bgclass.includes("green")) {
+      return "border-green-500";
+    }
+    if (Bgclass.includes("blue")) {
+      return "border-blue-500";
+    }
+    if (Bgclass.includes("sky")) {
+      return "border-sky-500";
+    }
+    if (Bgclass.includes("yellow")) {
+      return "border-yellow-500";
+    }
+    return "border-transparent";
+  };
+
+  const getSelectProductVariant = (productVariants:any, id:number) => {
+    const detail = productVariants.filter((item:any)=>item.id == id)[0];
+    return detail;
+  }
+
+  const RenderVariants = ({ variants, productVariants, setProductVariantDetail }: any) => {
     return (
       <div className='flex relative'>
         {variants?.map((variant: any, index: number) => (
           <div
             key={index}
             onClick={() => {
-              setProductVariantDetail(variant)
+              setProductVariantDetail(getSelectProductVariant(productVariants, variant.id))
             }}
-            className={`relative w-11 h-[50px] rounded-[4px]  z-10 border cursor-pointer overflow-hidden ${
+            className={`relative w-6 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${
               productVariantDetail && productVariantDetail.id === variant.id
-                ? 'border-black dark:border-slate-300'
+                ? getBorderClass()
                 : 'border-transparent'
             }`}
-            title={variant.variants[0]?.name}
+            title={variant.name}
           >
-            {variant.variants[1] && (
-              <div className='h-[15px] flex items-center absolute z-[999999] bg-red-600 text-[8px] text-white rounded-[3px] px-[2px] !py-0 !my-0'>
-                <span> {variant.variants[1].name}</span>
-              </div>
-            )}
-
-            <div className='absolute inset-0.5 rounded-[4px] overflow-hidden z-0'>
-              <img src={variant.image} alt='variant' className='absolute w-full h-full object-cover' />
-            </div>
+            <div
+                className={`absolute inset-0.5 rounded-full z-0 ${variant.value}`}
+            ></div>
           </div>
         ))}
       </div>
     )
   }
 
-  const RenderVariantAddToCart = ({ variants, productVariantDetail, setProductVariantDetail }: any) => {
+  const RenderVariantAddToCart = ({ variants, productVariants, productVariantDetail, setProductVariantDetail }: any) => {
     return (
       <>
         {variants && (
@@ -154,18 +209,17 @@ const ProductCard: FC<ProductCardProps> = ({ className = '', data }) => {
               return (
                 <div
                   key={index}
-                  className={`py-3 px-3 nc-shadow-lg  rounded-xl ${
+                  className={`py-1 px-2 nc-shadow-lg  rounded-xl ${
                     productVariantDetail && item.id == productVariantDetail.id
                       ? 'bg-[#6CD894] text-white'
                       : 'bg-white text-slate-900'
                   }  hover:bg-slate-900 hover:text-white transition-colors cursor-pointer flex items-center flex-col justify-center uppercase font-semibold tracking-tight text-sm `}
                   onClick={() => {
-                    handleAddToCart(item, data?.name)
+                    handleAddToCart(getSelectProductVariant(productVariants, item.id), item?.name);
+                    setProductVariantDetail(getSelectProductVariant(productVariants, item.id));
                   }}
                 >
-                  <span> {item.variants[0]?.name} </span>
-
-                  <span className=' !text-[8px]'> {item.variants[1] && item.variants[1].name} </span>
+                  <span> {item.name} </span>
                 </div>
               )
             })}
@@ -174,6 +228,31 @@ const ProductCard: FC<ProductCardProps> = ({ className = '', data }) => {
       </>
     )
   }
+
+  const renderGroupButtons = (productVariant,name) => {
+    return (
+      <div className="absolute bottom-0 group-hover:bottom-4 inset-x-1 flex justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+        <ButtonPrimary
+          className="shadow-lg"
+          fontSize="text-xs"
+          sizeClass="py-2 px-4"
+          onClick={() => handleAddToCart(productVariant, name)}
+        >
+          <BagIcon className="w-3.5 h-3.5 mb-0.5" />
+          <span className="ml-1">Add to bag</span>
+        </ButtonPrimary>
+        <ButtonSecondary
+          className="ml-1.5 bg-white hover:!bg-gray-100 hover:text-slate-900 transition-colors shadow-lg"
+          fontSize="text-xs"
+          sizeClass="py-2 px-4"
+          onClick={() => setShowModalQuickView(true)}
+        >
+          <ArrowsPointingOutIcon className="w-3.5 h-3.5" />
+          <span className="ml-1">Quick view</span>
+        </ButtonSecondary>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -190,26 +269,50 @@ const ProductCard: FC<ProductCardProps> = ({ className = '', data }) => {
           </Link>
 
           <ProductStatus productVariantDetail={productVariantDetail} />
-
-          <RenderVariantAddToCart
-            variants={data?.products}
-            productVariantDetail={productVariantDetail}
-            setProductVariantDetail={setProductVariantDetail}
-          />
+          <LikeButton liked={isLiked} className="absolute top-3 right-3 z-10" />
+          {memories.length > 0 ? (
+            <RenderVariantAddToCart
+              productVariants={data?.products}
+              variants={memories}
+              productVariantDetail={productVariantDetail}
+              setProductVariantDetail={setProductVariantDetail}
+            />
+          ) : renderGroupButtons(data?.products[0], data?.products[0]?.name)}
+          
         </div>
 
         <div className='space-y-4 px-2.5 pt-5 pb-2.5'>
-          {/* <RenderVariants variants={data?.products} setProductVariantDetail={setProductVariantDetail} /> */}
+          <RenderVariants variants={colors} productVariants={data?.products} setProductVariantDetail={setProductVariantDetail} />
 
           <div>
             <h2 className={`nc-ProductCard__title text-base font-semibold transition-colors`}>{data?.name}</h2>
           </div>
 
-          <div className='flex justify-between items-end w-full '>
-            <Prices productVariantDetail={productVariantDetail} />
+          <div className="flex justify-between items-end ">
+          <div className="flex justify-between items-end w-full">
+              <div
+                className={`flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium`}
+              >
+                <span className="text-green-500 !leading-none">
+                  ${productVariantDetail?.price}
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center mb-0.5 w-[300px]">
+              <StarIcon className="w-5 h-5 pb-[1px] text-amber-400" />
+              <span className="text-sm ml-1 text-slate-500 dark:text-slate-400">
+                {(Math.random() * 1 + 4).toFixed(1)} (
+                {Math.floor(Math.random() * 70 + 20)} reviews)
+              </span>
+            </div>
           </div>
         </div>
       </div>
+
+      <ModalQuickView
+        show={showModalQuickView}
+        onCloseModalQuickView={() => setShowModalQuickView(false)}
+      />
     </>
   )
 }
