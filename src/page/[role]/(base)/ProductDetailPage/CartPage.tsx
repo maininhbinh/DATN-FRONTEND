@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { DeleteCart, GetAllCart, getAllSuccess, UpdateCart } from '@/app/slices/cartSlide'
 import { popupError, popupSuccess } from '../../shared/Toast'
+
 const CartPage = () => {
   const dispatch = useAppDispatch()
   const { isAuthenticated } = useAppSelector((state) => state.auth)
