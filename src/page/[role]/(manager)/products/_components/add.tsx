@@ -95,6 +95,7 @@ function AddProduct() {
         ...product_item[key]
       });
     }    
+    
 
     const formdata = new FormData();
 
