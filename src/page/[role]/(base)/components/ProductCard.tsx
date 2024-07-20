@@ -182,7 +182,7 @@ const ProductCard: FC<ProductCardProps> = ({
               
               setVariantActive(index)
             }}
-            className={`relative border-[1px] overflow-hidden z-10 cursor-pointer nc-shadow-lg text-center w-[22%] text-nowrap py-[0.7rem] px-1 rounded-xl bg-white hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center uppercase font-semibold tracking-tight text-sm  ${
+            className={`relative border-[1px] overflow-hidden z-10 cursor-pointer nc-shadow-lg text-center text-nowrap py-[0.7rem] px-2 rounded-xl bg-white hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center font-semibold tracking-tight text-sm  ${
                 variantActive === index
                   ? "text-red-400 dark:border-slate-300"
                   : "text-slate-900 border-gray"
@@ -239,7 +239,7 @@ const ProductCard: FC<ProductCardProps> = ({
           return (
             <div
               key={index}
-              className={`nc-shadow-lg rounded-xl bg-white hover:bg-slate-900 hover:text-white transition-colors cursor-pointer flex items-center justify-center uppercase font-semibold tracking-tight text-sm text-slate-900 text-center w-[20%] text-nowrap py-[0.7rem] px-1
+              className={`nc-shadow-lg rounded-xl bg-white hover:bg-slate-900 hover:text-white transition-colors cursor-pointer flex items-center justify-center uppercase font-semibold tracking-tight text-sm text-slate-900 text-center text-nowrap py-[0.7rem] px-2
                 ${inStockVariant(second) < 1 ? 'pointer-events-none text-gray-200' : ''}`}
               onClick={() => notifyAddTocart({ second })}
             >

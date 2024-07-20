@@ -95,10 +95,6 @@ function AddProduct() {
         ...product_item[key]
       });
     }    
-    console.log(variant);
-    
-    console.log(newProductItem);
-    
 
     const formdata = new FormData();
 
@@ -140,7 +136,6 @@ function AddProduct() {
       reader.onerror = (error) => reject(error);
     });
   
-
   const selectGallery = async (e) => {
     if(gallery.length > 6) return;
     
@@ -152,7 +147,6 @@ function AddProduct() {
     ]
 
     const fileSelected = e.target.files;  
-    
 
     for(const key in fileSelected){
       if(numberFile.current == 5) break;
