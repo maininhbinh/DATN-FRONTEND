@@ -197,7 +197,7 @@ const TableVariant: React.FC<TableVariantProps> = ({variant, setVariant}) => {
                             </Flex>
                             </th>
                         {
-                            variant.length <= 2
+                            variant.length < 2
                             ?
                             <>
                                 <td className="px-6 py-4">
