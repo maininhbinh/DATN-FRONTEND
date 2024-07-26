@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 export interface RadioProps {
   className?: string;
-  name: string;
+  name?: string;
   id: string;
   onChange?: (value: string) => void;
   defaultChecked?: boolean;
@@ -12,7 +12,7 @@ export interface RadioProps {
 
 const Radio: FC<RadioProps> = ({
   className = "",
-  name,
+  name='default',
   id,
   onChange,
   label,

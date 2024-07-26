@@ -6,20 +6,24 @@ export interface WebState {
   fixedNavbar: boolean,
   darkColor: string,
   mainColor: string,
+  inActiveColor: string,
   loading: boolean,
   notification: boolean,
-  backgroundColor: string
+  backgroundColor: string,
+  openModalLogin: boolean
 }
 
 const initialState: WebState = {
   bgIcon: "#e9ecef",
   darkColor: '#3a416f',
   mainColor: '#17c1e8',
+  inActiveColor: 'gray-400',
   backgroundColor: 'linear-gradient(310deg, #2152ff, #21d4fd)',
   miniSidenav: false,
   fixedNavbar: true,
   loading: false,
-  notification: false
+  notification: false,
+  openModalLogin: false
 }
 
 export const webSlice = createSlice({
@@ -45,6 +49,10 @@ export const webSlice = createSlice({
     },
     setLoading: (state, action) => {      
       state.loading = action.payload
+    },
+    setOpenModalLogin: (state, {payload}) => {
+      state.openModalLogin = payload
+      
     }
   }
 })
@@ -54,7 +62,8 @@ export const {
   setVisible, 
   setMiniSidenav, 
   setNotification, 
-  setLoading 
+  setLoading,
+  setOpenModalLogin
 } = webSlice.actions
 
 export default webSlice.reducer

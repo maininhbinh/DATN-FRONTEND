@@ -1,4 +1,4 @@
-import { Flex, Modal, Upload } from 'antd'
+import { Flex, Modal, Switch, Upload } from 'antd'
 import { Button, Form, Input} from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useLazyGetDistrictsQuery, useGetProvincesQuery } from '../../../../../utils/addressRTKQuery'
@@ -59,64 +59,41 @@ export default function EditUser() {
   const [form] = Form.useForm();
   const [optionsDistrict, setOptionDistrict] = useState<SelectProps['options']>([])
   
-  const onFinish = async (values: Iuser) => {
-
-   
-     if(values.upload){
-      delete values.upload
-      setFile((prev) => {
-        return {
-          ...prev,
-          loading: true
+  const onFinish = async (values: Iuser | any) => {
+    console.log(values);
+    
+    const formData = new FormData()
+    for (const key  in values ) {
+       if(String(key) == 'upload'){
+        if( values[key]){
+          formData.append('image',values[key][0].originFileObj);
         }
-      })
-      const formData = new FormData()
-  
-      formData.append('file', file.data as any)
-      formData.append('upload_preset', 'vuminhhung904')
-  
-      Promise.all([axios.post('https://api.cloudinary.com/v1_1/dqouzpjiz/upload', formData)]).then(
-        async ([response]: any) => {
-         
-          setFile({
-            data: {},
-            loading: false
-          })
-  
-          try {
-            await updateUser({...values, image : response.data.secure_url,  id : dataItem.id})
-  
-            popupSuccess(`Update account "${values.name}"  success`)
-            handleCancel()
-          } catch (err) {
-            popupError(`Update account "${values.name}"  error`)
-            handleCancel()
-          }
+       
+        continue;
+       }
+       if(String(key) == 'is_active'){
+        if(values[key]){
+           formData.append(key,'1')
+        }else {
+           formData.append(key,'0')
         }
-      )
-      .catch(() => {
-          popupError('Upload file Error ! lets try again ')
-      })
-     }else {
-          try {
-              await updateUser({...values, id : dataItem.id, image : dataItem.image});
-
-              popupSuccess(`Update account "${values.name}"  success`);
-              handleCancel();
-            } catch (err) {
-              popupError(`Update account "${values.name}"  error`);
-              handleCancel();
-            }
-     }
-
-     
-
-
-
-
-
-  
-
+        continue;
+       }
+       formData.append(key,values[key])
+       
+    }
+    formData.append('is_virtual','0');
+    try {
+      const payload = {
+        id : params.id,
+        data : formData
+      }
+      await updateUser(payload).unwrap();
+      popupSuccess('Update user success');
+      handleCancel();
+    } catch (error) {
+      popupError('Update user error');
+    }
     
   }
 
@@ -184,7 +161,7 @@ export default function EditUser() {
     
      <Modal okButtonProps={{ hidden: true }}  title='Edit user' open={true} onCancel={handleCancel}>
         <Form
-          initialValues={dataItem}
+          initialValues={dataItem.data}
           form={form}
           {...layout}
           name='nest-messages'
@@ -192,10 +169,10 @@ export default function EditUser() {
           style={{ maxWidth: 600 }}
           validateMessages={validateMessages}
         >
-          <Form.Item name="name" label='Name' rules={[{ required: true }]}>
+          <Form.Item name="username" label='Username' rules={[{ required: true }]}>
             <Input  
                 type="text" 
-                placeholder="Enter your name"
+                placeholder="Enter your username"
              />
           </Form.Item>
           <Form.Item name="email" label='Email' rules={[{ required: true , type: 'email' }]}>
@@ -245,7 +222,7 @@ export default function EditUser() {
              />
           </Form.Item>
 
-          <Form.Item name="country" label='Country' rules={[{required: true }]}>
+          <Form.Item name="county" label='County' rules={[{required: true }]}>
                
 
                   <Select
@@ -287,8 +264,8 @@ export default function EditUser() {
                 style={{ width: '100%' }}
               
                 options={[
-                  { value: '1', label: 'Admin' },
-                  { value: '2', label: 'Guest' },
+                  { value: 1, label: 'Admin' },
+                  { value: 2, label: 'Guest' },
                 ]}
               />
           </Form.Item>
@@ -297,12 +274,19 @@ export default function EditUser() {
           <Flex justify="flex-end">
               <Image
                 width={150}
-                src={dataItem.image}
+                src={dataItem.data.image}
               />
           </Flex>
+          <Form.Item 
+                    className='m-0' 
+                    label='Active'
+                    name='is_active' 
+                    valuePropName="checked"
+                >
+                    <Switch />
+                </Form.Item>
 
-
-          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+          <Form.Item className='mt-3' wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button loading={loadingUpdateUser || file.loading} disabled={loadingUpdateUser || file.loading} type="primary" htmlType='submit'>
               Update
             </Button>

@@ -1,0 +1,72 @@
+.app__variant {
+    .ant-card-head-wrapper {
+        min-height: 30px !important;
+    }
+    .ant-upload.ant-upload-select {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+.upload-custom {
+    .ant-upload-list-item-container {
+        width: 70px !important; 
+        height: 70px !important;
+    }
+}
+.app__variant {
+    .ant-card-head-title {
+        overflow :visible !important;
+        position: relative !important;
+        top : -10px !important;
+        .ant-typography {
+            position: absolute !important;
+            margin-top: 2px;
+            left : 0px !important;
+        }
+    }
+}
+.ck-blurred {
+    height : 200px !important;
+}
+.custom-add-ant {
+    .ant-btn {
+        svg {
+            margin-right:  0px !important;
+        }
+    }
+}
+.app__select--input {
+   
+    .ant-select-show-arrow {
+        width: 100% !important;
+        height: 45px;
+        
+    }
+    .ant-select-selector {
+        border-radius: 1rem !important;
+    }
+}
+
+.product-images-slider{
+    height: 100%;
+    .swiper-slide{
+        height: 100%;
+    }
+}
+
+.product-slide-thumbs{
+    .swiper-slide-thumb-active{
+        .nc-NcImage{
+            border-color: red;
+        }
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

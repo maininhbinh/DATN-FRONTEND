@@ -7,56 +7,29 @@ import { Product } from "../../../../data/data";
 import React, { FC } from "react";
 import IconDiscount from "./IconDiscount";
 
-interface Props {
-  status: Product["status"];
-  className?: string;
-}
 
-const ProductStatus: FC<Props> = ({
-  status,
-  className = "absolute top-3 left-3 px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300",
-}) => {
-  const renderStatus = () => {
-    if (!status) {
-      return null;
-    }
-    const CLASSES = `nc-shadow-lg rounded-full flex items-center justify-center ${className}`;
-    if (status === "New in") {
-      return (
-        <div className={CLASSES}>
-          <SparklesIcon className="w-3.5 h-3.5" />
-          <span className="ml-1 leading-none">{status}</span>
-        </div>
-      );
-    }
-    if (status === "50% Discount") {
-      return (
-        <div className={CLASSES}>
-          <IconDiscount className="w-3.5 h-3.5" />
-          <span className="ml-1 leading-none">{status}</span>
-        </div>
-      );
-    }
-    if (status === "Sold Out") {
-      return (
-        <div className={CLASSES}>
-          <NoSymbolIcon className="w-3.5 h-3.5" />
-          <span className="ml-1 leading-none">{status}</span>
-        </div>
-      );
-    }
-    if (status === "limited edition") {
-      return (
-        <div className={CLASSES}>
-          <ClockIcon className="w-3.5 h-3.5" />
-          <span className="ml-1 leading-none">{status}</span>
-        </div>
-      );
-    }
-    return null;
-  };
 
-  return renderStatus();
+const ProductStatus = ({productVariantDetail} : any) => {
+ 
+  return (
+    <>
+    <div className={`bg-white py-2  px-2 nc-shadow-lg rounded-full flex items-center justify-center absolute top-[13px] left-[15px] `}>
+      <IconDiscount className="w-3.5 h-3.5" />
+     
+      {productVariantDetail &&  <span className="ml-1 leading-none">{ 
+        Math.round(((productVariantDetail?.price - productVariantDetail?.price_sale) / productVariantDetail?.price ) * 100)
+      } % </span>}
+    </div>
+
+    <div className={`bg-[#6CD894] text-white py-2  px-2 nc-shadow-lg rounded-full flex items-center justify-center absolute top-[13px] right-[15px] `}>
+      <SparklesIcon className="w-3.5 h-3.5" />
+     
+      {productVariantDetail &&  <span className="ml-1 leading-none">{ 
+        productVariantDetail && productVariantDetail.variants[0]?.name 
+      }  </span>}
+    </div>
+    </>
+  );
 };
 
 export default ProductStatus;

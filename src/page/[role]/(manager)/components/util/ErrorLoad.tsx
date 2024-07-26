@@ -2,7 +2,7 @@ import { Alert, Space} from "antd";
 
 export default function ErrorLoad(){
     return <>
-    <Space direction="vertical" style={{ width: '100%' }}>
+    <Space direction="vertical" className="my-4" style={{ width: '100%' }}>
    
   <Alert
     message="Error :(("

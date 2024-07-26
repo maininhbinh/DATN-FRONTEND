@@ -12,11 +12,15 @@ export const addressApi = createApi({
       }),
       getDistricts: builder.query({
         query: (id : string | number) => `2/${id}.htm`,
+      }),
+      getWards: builder.query({
+        query: (id : string | number) => `3/${id}.htm`,
       })
   }),
 })
 
 export const { 
     useGetProvincesQuery,
-    useLazyGetDistrictsQuery
+    useLazyGetDistrictsQuery,
+    useLazyGetWardsQuery
  } = addressApi;

@@ -1,381 +1,455 @@
-import { Card, Col, Modal, Row, Switch, Upload } from 'antd'
-import { Button, Form, Input } from 'antd'
+import { Col, Flex, Row, Button, Form, Input, Drawer, Select, UploadProps, GetProp } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { Select } from 'antd'
-import type { SelectProps } from 'antd'
-import ClassicEditor from '@/utils/ckeditorConfig'
-import LoadingUser from '../../user/util/Loading'
-import ErrorLoad from '../../components/util/ErrorLoad'
-import React, { useEffect, useRef, useState } from 'react'
-import { IProduct } from '@/common/types/product.interface'
-import { popupSuccess, popupError } from '@/page/[role]/shared/Toast'
-import { UploadOutlined } from '@ant-design/icons'
-import axios from 'axios'
+import React, {  useEffect, useRef, useState } from 'react'
+import { CloudUploadOutlined, DeleteOutlined } from '@ant-design/icons';
+import Variant from './Variant/variant';
+import getRandomNumber from '@/utils/randomNumber';
+import TableVariant from './Variant/TableVariant'
+import Option from './Option/Option'
+import TextEditor from './TextEditor/TextEditor';
+import { useCreateProductMutation } from '../ProductsEndpoints';
+import { popupError, popupSuccess } from '@/page/[role]/shared/Toast';
 
-import { ICategory } from '@/common/types/category.interface'
-import instance from '@/api/axios'
-import { IBrand } from '@/common/types/brand.interface'
-import { useCreateProductMutation } from '../ProductsEndpoints'
-import { useGetAttributesQuery } from '../../attribute/_components/attribute/AttributeEndpoints'
-import { IAttribute } from '@/common/types/attribute.interface'
-import { IValueAttribute } from '@/common/types/valueAttribute.interface'
-import { Typography } from 'antd'
-import UploadFile from './uploadfile/upload'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons'
 
-const { Title } = Typography
-const validateMessages = {
-  required: '${label} is required!'
+
+interface gallery{
+  image: File | string
+  displayPic: string
 }
 
+interface attribute{
+  id: string,
+  value: string,
+  image: File|null,
+  url: string|null
+}
+interface variant{
+  id: string,
+  name: string,
+  attribute: attribute[]
+}
+
+interface detailsAtrr{
+  id: string,
+  idDetail: string
+  values: Array<string>
+}
+
+type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
+
+
 function AddProduct() {
-  const { data, isLoading } = useGetAttributesQuery({})
-  console.log(data)
-  const [createProduct, { isLoading: loadingCreateProduct }] = useCreateProductMutation()
-  const [status, setStatus] = useState({
-    isLoading: false,
-    isError: false
-  })
-  const [dataBrands, setDataBrands] = useState<IBrand[]>([])
-  const [dataCategories, setDataCategories] = useState<ICategory[]>([])
-  const box = useRef<any>()
-  const [form] = Form.useForm()
-  const [file, setFile] = useState({
-    data: {},
-    loading: false
-  })
-  useEffect(() => {
-    (async () => {
-      try {
-        setStatus((prev) => {
-          return {
-            ...prev,
-            isLoading: true
-          }
-        })
-        const reponse = await instance.get('categories')
-
-        const reponseBrand = await instance.get('brand')
-        setDataBrands(reponseBrand.data)
-        setDataCategories(reponse.data)
-      } catch (error) {
-        setStatus((prev) => {
-          return {
-            isLoading: false,
-            isError: true
-          }
-        })
-      } finally {
-        setStatus((prev) => {
-          return {
-            ...prev,
-            isLoading: false
-          }
-        })
-      }
-    })()
-    form.setFieldsValue({ in_active: true })
-    if (box.current) {
-      ClassicEditor.create(box.current as HTMLElement)
-        .then((editor) => {
-          editor.model.document.on('change:data', () => {
-            form.setFieldsValue({ description: editor.getData() })
-          })
-          const editorElement = document.querySelectorAll('.ck-editor')
-          editorElement.forEach((element, key) => {
-            if (key != 0) {
-              element.remove()
-            }
-          })
-        })
-        .catch((error) => {
-          console.error(error.stack)
-        })
-    }
-  }, [status.isLoading])
-
-  const handleUpload = async (options: any) => {
-    const { onSuccess, file } = options
-    setFile({
-      data: file,
-      loading: false
-    })
-    onSuccess('Upload successful', file)
-  }
-
-  const onFinish = async (values: IProduct) => {
-
-    values.avg_stars = 0
-    values.total_review = 0
-
-    delete values.upload
-    setFile((prev) => {
-      return {
-        ...prev,
-        loading: true
-      }
-    })
-    const formData = new FormData()
-
-    formData.append('file', file.data as any)
-    formData.append('upload_preset', 'vuminhhung904')
-
-    Promise.all([axios.post('https://api.cloudinary.com/v1_1/dqouzpjiz/upload', formData)])
-      .then(async ([response]: any) => {
-        setFile({
-          data: {},
-          loading: false
-        })
-        try {
-          await createProduct({
-            ...values,
-            thumbnail: response.data.secure_url
-          })
-          popupSuccess(`Add product "${values.name}"  success`)
-          handleCancel()
-        } catch (err) {
-          popupError(`Add product "${values.name}"  error`)
-          handleCancel()
-        }
-      })
-      .catch(() => {
-        popupError('Upload file Error ! lets try again ')
-      })
-  }
-
-  const optionCategories: SelectProps['options'] = []
-  dataCategories?.forEach((item) => {
-    optionCategories.push({
-      value: item.id,
-      label: item.name
-    })
-  })
-
-  const optionBrands: SelectProps['options'] = []
-  dataBrands?.forEach((item) => {
-    optionBrands.push({
-      value: item.id,
-      label: item.name
-    })
-  })
+  const [addProduct, {isLoading : isLoadingAddProduct}] = useCreateProductMutation();
+  const [imageUrl, setImageUrl] = useState<Blob>();
+  const [form] = Form.useForm();
+  const [gallery, setGallery] = useState<Array<gallery>>([]);
   const navigate = useNavigate()
+  const fileInputRef = useRef<any>(null);
+  const numberFile = useRef<number>(0);
+  const [typeDiscount, setTypeDiscount] = useState<string>('');
+  const [details, setDetails] = useState({});
+  const [detailsAttr, setDetailsAttr] = useState<detailsAtrr[]>([]);
+
+
+  const [variant, setVariant] = useState<Array<variant>>([{
+    id: `${Date.now()}${getRandomNumber()}`,
+    name: '',
+    attribute: [
+      {
+        id: `${Date.now()}${getRandomNumber()}`,
+        image: null,
+        url: null,
+        value: ''
+      },
+    ]
+  }]);  
+  
+
+  const onFinish = async () => {
+
+    const name = form.getFieldValue('name');
+    const content = form.getFieldValue('content');
+    const category_id = form.getFieldValue('category_id');
+    const brand_id = form.getFieldValue('brand_id');
+    const product_item = form.getFieldValue('variant');
+    const percentage = form.getFieldValue('percentage');
+    const fixed = form.getFieldValue('fixed');
+    const is_active = form.getFieldValue('is_active') ? 1 : 0;
+    const is_hot_deal = form.getFieldValue('is_hot_deal') ? 1 : 0;
+    const is_good_deal = form.getFieldValue('is_good_deal') ? 1 : 0;
+    const is_new = form.getFieldValue('is_new') ? 1 : 0;
+    const is_show_home = form.getFieldValue('is_show_home') ? 1 : 0;
+    
+    const newProductItem = [];
+
+    for(const key in product_item){      
+      const id = key.split('-');
+      const image = variant[0].attribute.find(item => item.id === id[0])?.image;
+      const newVariant = variant.map((item, key)=>({
+        variant: item.name,
+        attribute: item.attribute.find(item => item.id == id[key])?.value 
+      }));
+
+      newProductItem.push({
+        id: id[0],
+        image,
+        variants: newVariant,
+        ...product_item[key]
+      });
+    }    
+
+    console.log(newProductItem);
+    
+
+    const formdata = new FormData();
+
+    formdata.append('thumbnail', imageUrl ? imageUrl : '');
+    formdata.append('gallery', gallery ? JSON.stringify(gallery) : '');
+    formdata.append('name', name);
+    formdata.append('content', content);
+    formdata.append('category_id', category_id);
+    formdata.append('brand_id', brand_id);
+    formdata.append('is_active', is_active);
+    formdata.append('is_hot_deal', is_hot_deal);
+    formdata.append('is_good_deal', is_good_deal);
+    formdata.append('is_new', is_new);
+    formdata.append('is_show_home', is_show_home);
+    formdata.append('type_discount', typeDiscount);
+    formdata.append('discount', typeDiscount == 'percentage' ? percentage : typeDiscount == 'fixed' ? fixed : '');
+    formdata.append('product_details', JSON.stringify(detailsAttr));
+    formdata.append('product_items', JSON.stringify(newProductItem));
+        
+    try {
+      await addProduct(formdata).unwrap();
+      popupSuccess('Add product success');
+      navigate('..');
+    } catch (error) {
+      popupError('Add product error');
+    }
+
+    
+    
+  }
 
   const handleCancel = () => {
     navigate('..')
   }
-  const convertArrayValueAtrribute = (arr: IValueAttribute[] | undefined) => {
-    if (!arr) return []
-    return arr.map((item) => {
-      return {
-        value: item.id,
-        label: item.value
-      }
-    })
-  }
 
-  const initialValues = {
-    sales_information: [
-      {
-        name: 'Màu sắc',
-        list: []
-        // list: [{ img: '', name: 'Vàng' }]
-      },
-      {
-        name: 'Rom',
-        list: []
-        // list: ['512GB', '128GB']
-      }
+  const getBase64 = (file: FileType): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  
+
+  const selectGallery = async (e) => {
+    if(gallery.length > 6) return;
+    
+    const types = [
+      'jpeg',
+      'png',
+      'jpg',
+      'gif',
     ]
+
+    const fileSelected = e.target.files;  
+    
+
+    for(const key in fileSelected){
+      if(numberFile.current == 5) break;
+      if(typeof fileSelected[key] == 'number') break;
+      
+      const file = await fileSelected[key] ;
+      if (!(file instanceof File)) continue;
+
+      const size = file.size;
+      const type = types.includes(file.type.replace('image/', ''));
+
+      const newFile = await getBase64(fileSelected[key]) ;
+        
+      if (size <= 1048576 && type) {
+        numberFile.current++;
+        setGallery((pveImages)=>[
+          ...pveImages,
+          {
+            image: newFile,
+            displayPic:  URL.createObjectURL(file)
+          }
+        ]);        
+      }
+    }
+    e.target.value = null;
+      
+  }  
+
+  const handleDeleteGallery = (id: number) => {
+    numberFile.current--
+    setGallery([
+      ...gallery.filter((item, key) => key != id)
+    ])
   }
 
-  if (status.isLoading) return <LoadingUser />
-  if (status.isError) return <ErrorLoad />
+
+  const handleSetDetail = () => {
+    form.resetFields(['variant']);
+    setVariant([
+        ...variant,
+      {
+        id: Date.now() + '',
+        name: '',
+        attribute: [
+          {
+            id: Date.now() + '',
+            value: '',
+            image: null,
+            url: null
+          }
+        ]
+      }
+    ])
+  }  
+  
+  const handleRemoveDetail = (name: string) => {  
+    form.resetFields(['variant']);
+    const updatedVariant = variant.filter((item)=>item.id != name)  
+    if(variant.length > 1){
+      setVariant(updatedVariant)
+    }
+  }
+
   return (
     <>
-      <Modal width={1400} okButtonProps={{ hidden: true }} title='Add product' open={true} onCancel={handleCancel}>
+    <Drawer
+        open={true}
+        title={
+        <>
+          <h2 className=' font-bold text-[24px]'>Create new product</h2>
+        </>
+        }
+        width={'85%'}
+        styles={{
+          header: {
+            height: 60,
+          },
+          body: {
+            paddingBottom: 80,
+          },
+        }}
+        onClose={handleCancel}
+      >
+        
         <Form
           layout='vertical'
           form={form}
           name='nest-messages'
           onFinish={onFinish}
-          validateMessages={validateMessages}
-          initialValues={initialValues}
+          className='p-10 relative'
         >
-          <Row gutter={[24, 8]}>
-            <Col span={8}>
-              <Form.Item rules={[{ required: true }]} name='name' label='Name'>
-                <Input type='text' placeholder='Enter your name' />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item name='price' rules={[{ required: true }]} label='Price'>
-                <Input type='number' placeholder='Enter your price' />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item rules={[{ required: true }]} name='discount' label='Discount'>
-                <Input type='number' placeholder='Enter your discount' />
-              </Form.Item>
-            </Col>
-            <Col span={6}>
-              <Form.Item rules={[{ required: true }]} name='categoryId' label='Category'>
-                <Select style={{ width: '100%' }} placeholder='Enter category' options={optionCategories} />
-              </Form.Item>
-            </Col>
-            <Col span={6}>
-              <Form.Item rules={[{ required: true }]} name='brandId' label='Brand'>
-                <Select style={{ width: '100%' }} placeholder='Enter brand' options={optionBrands} />
-              </Form.Item>
-            </Col>
-            <Col span={6}>
-              <Form.Item name='total_review' label='Total review'>
-                <Input type='number' placeholder='0' readOnly={true} />
-              </Form.Item>
-            </Col>
-            <Col span={6}>
-              <Form.Item name='avg_stars' label='Average star'>
-                <Input type='number' placeholder='0' readOnly={true} />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item rules={[{ required: true }]} name='description' label='Content'>
-                <textarea ref={box} className='form-control' id='ckeditor' cols={30} rows={10}></textarea>
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item
-                name='upload'
-                label='Image'
-                valuePropName='fileList'
-                getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
-                rules={[{ required: true }]}
-              >
-                <Upload name='image' listType='picture' customRequest={handleUpload}>
-                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                </Upload>
-              </Form.Item>
-            </Col>
+          <Flex className='fixed z-[10000000] top-[15px] right-10' gap={20}>
+            <Button  loading={isLoadingAddProduct} disabled={isLoadingAddProduct} htmlType='submit' type='primary' className=' '>
+              Create
+            </Button>
+            <Button type='dashed'>
+              Reset
+            </Button>
+          </Flex>
+          <Flex vertical gap={30}>
+            <Row gutter={[24, 8]} align={'stretch'}>
+              <Col span={5} className='w-full'>
+                <Option setImageUrl={setImageUrl} discount={{typeDiscount, setTypeDiscount}} setDetails={setDetails}/>
+              </Col>
+              <Col span={19}>
+                <Flex vertical className='' gap={30}>
 
-            <Col span={24}>
-              <Form.Item label='Gallery'>
-                <UploadFile />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Title level={5}>Thông Tin Chi Tiết</Title>
-              <Row gutter={[24, 24]}>
-                {data?.map((item: IAttribute, key: number) => (
-                  <Col span={12} key={key}>
-                    <Form.Item rules={[{ required: true }]} label={item.description}>
-                      <Select
-                        loading={isLoading}
-                        mode='tags'
-                        style={{ width: '100%' }}
-                        placeholder='Enter value'
-                        options={convertArrayValueAtrribute(item.value_attributes)}
-                      />
-                    </Form.Item>
-                  </Col>
-                ))}
-              </Row>
-            </Col>
-
-            <Col span={24}>
-              <Title level={5}>Thông Tin Bán Hàng</Title>
-              <Form.List name='sales_information'>
-                {(fields, { remove }) => (
-                  <div style={{ display: 'flex', flexDirection: 'row', gap: 40 }}>
-                    {fields.map((field) => (
-                      <Form.Item key={field.key} noStyle shouldUpdate>
-                        {({ getFieldValue }) => {
-                          const fieldName = getFieldValue(['sales_information', field.name, 'name'])
-                          return (
-                            <Card
-                              style={{ width: '50%' }}
-                              size='small'
-                              title={fieldName || `Item ${field.name + 1}`}
-                              extra={
-                                <CloseOutlined
-                                  onClick={() => {
-                                    remove(field.name)
-                                  }}
-                                />
-                              }
-                            >
-                              {/* Nest Form.List */}
-                              <Form.Item>
-                                <Form.List name={[field.name, 'list']}>
-                                  {(subFields, subOpt) => (
-                                    <div style={{ display: 'flex', flexDirection: 'column', rowGap: 16 }}>
-                                      {subFields.map((subField) => {
-                                        return (
-                                          <div key={subField.key} style={{ display: 'flex', gap: 16, width: '100%' }}>
-                                            {fieldName === 'Màu sắc' ? (
-                                              <>
-                                                <Form.Item noStyle name={[subField.name, 'img']}>
-                                                  <Upload listType='picture'>
-                                                    <Button size='large'>
-                                                      <UploadOutlined />
-                                                    </Button>
-                                                  </Upload>
-                                                </Form.Item>
-                                                <Form.Item noStyle name={[subField.name, 'name']}>
-                                                  <Input placeholder='name' />
-                                                </Form.Item>
-                                              </>
-                                            ) : (
-                                              <Form.Item noStyle name={subField.name}>
-                                                <Input placeholder='Value' />
-                                              </Form.Item>
-                                            )}
-
-                                            <CloseOutlined
-                                              onClick={() => {
-                                                subOpt.remove(subField.name)
-                                              }}
-                                            />
-                                          </div>
-                                        )
-                                      })}
-                                      <Button type='dashed' size='large' onClick={() => subOpt.add()} block>
-                                        <PlusOutlined />
-                                      </Button>
+                  {/* Gallery */}
+                  <Form.Item
+                    name="gallery"
+                    className='p-[30px] sm:rounded-lg border-[#F1F1F4] m-0'
+                    style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 1rem'}}
+                  >
+                    <Flex vertical gap={20}>
+                    <h2 className='font-bold text-[16px]'>Gallery</h2>
+                    <div style={{ flex: 5, overflow: 'hidden',  boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem'}} className='border-none rounded-[12px] relative' >
+                        <Flex className='border-dashed border-2 p-5 relative hover:bg-gray-100 hover:border-solid  ' vertical gap={10} justify='center' align='center' style={{ width: '100%', height: "7.5vw", borderRadius: '12px' }}>
+                            {
+                              gallery.length < 1
+                              ?
+                              (
+                                <>
+                                  <Flex vertical gap={10} style={{ width: '100%' }}>
+                                    <Flex vertical align='center' justify='center'>
+                                        <CloudUploadOutlined style={{ fontSize: '50px', color: 'gray' }} className='' />
+                                    </Flex>
+                                  </Flex>
+                                  <Flex style={{ width: '100%', color: 'gray' }} vertical justify='center' align='center'>
+                                      <span style={{ fontSize: '11px' }}>
+                                          Kích thước tối đa: 50MB <span className={`${gallery.length != 5 ? 'text-red-400' : 'text-blue-400' }`}>{gallery.length}/5</span>
+                                      </span>
+                                      <span style={{ fontSize: '11px' }}>
+                                          JPG, PNG, GIF, SVG
+                                      </span>
+                                  </Flex>
+                                </>
+                              )
+                              :
+                              ''
+                            }
+                            <input 
+                              type="file" 
+                              accept="image/*" 
+                              name="image" 
+                              id="image" 
+                              multiple 
+                              className='opacity-0 absolute inset-0'
+                              onChange={selectGallery}
+                              ref={fileInputRef}
+                            />
+                            <Flex justify='center' align='center' gap={20} wrap className='w-full h-[100%]'>
+                              {gallery.map((item, index)=>(
+                                <div className='h-[100px] w-[15%] rounded-lg overflow-hidden' key={index}>
+                                  <div style={{ height: '100%', width: '100%' }} className='relative group' key={index}>
+                                    <img src={item.displayPic} alt="" className='object-cover h-full object-center' style={{width: '100%' }} />
+                                    <div className=" absolute inset-0 z-1 opacity-0 group-hover:opacity-100 duration-1000" style={{ backgroundColor: 'rgb(0, 0, 0, 0.5)' }}></div>
+                                    <div 
+                                      style={{ zIndex: 999, fontSize: "20px", color: 'white' }}
+                                      className=' cursor-pointer'
+                                      onClick={() => handleDeleteGallery(index)}
+                                    >
+                                      <DeleteOutlined className=" duration-1000 opacity-0 group-hover:opacity-100 absolute top-[50%] left-[50%]" style={{transform: 'translate(-50%, -50%)'}}/>
                                     </div>
-                                  )}
-                                </Form.List>
-                              </Form.Item>
-                            </Card>
-                          )
-                        }}
+                                  </div>
+                                </div>
+                              ))}
+                            </Flex>
+                        </Flex>
+                    </div>
+                    </Flex>
+                  </Form.Item>
+                  {/* Gallery */}
+                  
+                  {/* General */}
+                  <div className=' p-[2rem] sm:rounded-lg h-full' style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1rem 1rem 1rem'}}>
+                    <h2 className='mb-5 font-bold text-[16px]'>General</h2>
+                    <Flex vertical  gap={20}>
+                      <Form.Item
+                        name='name'
+                        label='Name'
+                        className='w-full'
+                        rules={[
+                          { required: true, message: 'Vui lòng nhập tên sản phẩm!' },
+                          { max: 120, message: 'Tên không vượt quá 120 ký tự' },
+                          { min: 10, message: 'Tên không nhập nhỏ hơn 10 ký tự' },
+                          {
+                            whitespace: true,
+                            message: 'Tên sản phẩm không được để trống!'
+                          }
+                        ]}
+                      >
+                        <Input size='large' placeholder='Nhập tên sản phẩm' />
                       </Form.Item>
-                    ))}
+                      <Flex vertical>
+                          <TextEditor/>
+                      </Flex>
+                    </Flex>
                   </div>
-                )}
-              </Form.List>
-            </Col>
+                  {/* General */}
 
-            <Col span={24}>
-              <Form.Item name='in_active' label='Active?'>
-                <Switch defaultChecked />
-              </Form.Item>
-            </Col>
+                   {/* Detail */}
+                   <Flex vertical gap={20} className='sm:rounded-lg p-10' style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1rem 1rem 1rem'}}>
+                    <h2 className={`font-bold text-[16px]`}>Thông tin chi tiết sản phẩm</h2>
+                    {details?.details && details?.details.map((item)=>(
+                      <Flex vertical gap={20} className='p-3' key={item.id}>
+                          <h2 className=' font-bold'>{item.name}</h2>
+                          <hr />
+                          <Flex align='center' wrap gap={20}>
+                              {item.attributes.map((attr)=>(
+                                <Flex vertical gap={5} key={attr.id} className='w-[25%]'>
+                                  <h2 className='font-bold'>{attr.name}</h2>
+                                  <Form.Item 
+                                    className='m-0' 
+                                    name={`attr-${attr.id}`} 
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: 'Trường này không được bỏ trống'
+                                      }
+                                    ]}
+                                  >
+                                    <Select
+                                      className='h-[40px]'
+                                      mode='tags'
+                                      onChange={(e)=>{
+                                        const existingAttrIndex = detailsAttr.findIndex(item => item.id === attr.id);
+                                        if(existingAttrIndex > -1){
+                                          const newDetailAttr = detailsAttr.map((item, index) => {
+                                            if (index === existingAttrIndex) {
+                                              return {
+                                                ...item,
+                                                values: e
+                                              };
+                                            }
+                                            return item;
+                                          });
+                                          setDetailsAttr(newDetailAttr)
+                                        }else {
+                                          // Nếu mục không tồn tại, thêm mới vào mảng
+                                          const newDetailAttr = [
+                                            ...detailsAttr,
+                                            {
+                                              id: attr.id,
+                                              idDetail: item.id,
+                                              values: e
+                                            }
+                                          ];
+                                          setDetailsAttr(newDetailAttr);
+                                        }
 
-            <Col span={24}>
-              <Form.Item>
-                <Button
-                  loading={loadingCreateProduct || file.loading}
-                  disabled={false}
-                  type='primary'
-                  htmlType='submit'
-                >
-                  Create
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row>
+                                      }}
+                                      style={{ width: '100%' }} 
+                                    />
+                                  </Form.Item> 
+                                </Flex>
+                              ))}
+                          </Flex>
+                      </Flex>
+                    ))}
+                  </Flex>
+                  {/* Detail */}
+
+                  {/* Variant */}
+                  <Flex vertical gap={20} className='sm:rounded-lg p-10' style={{boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1rem 1rem 1rem'}}>
+                    <h2 className='font-bold text-[16px]'>Thông tin bán hàng</h2>
+                    <Flex vertical gap={20}>
+                      {variant.map((name, i) => (
+                          <Variant key={name.id} show={i} keyValue={name.id} detail={variant} setDetail={setVariant} handleRemoveDetail={handleRemoveDetail} form={form}/>
+                      ))}
+                      {
+                        variant.length == 1
+                        ?
+                        <>
+                          <div>
+                            <Button className=' border-dashed' onClick={handleSetDetail}>Thêm biến thể 2</Button>
+                          </div>
+                        </>
+                        :
+                        ''
+                      }
+                    </Flex>
+
+                    <Flex vertical gap={20}>
+                      <TableVariant variant={variant} setVariant={setVariant} />
+                    </Flex>
+                  </Flex>
+                  {/* Variant */}
+
+                </Flex>
+              </Col>
+            </Row>
+          </Flex>
         </Form>
-      </Modal>
+      </Drawer>
     </>
   )
 }

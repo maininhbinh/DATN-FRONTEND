@@ -5,13 +5,9 @@ function Footer() {
 
   return (
     <AntFooter style={{ background: "#fafafa" }}>
-      <Row className="just">
-        <Col xs={24} md={12} lg={12}>
-          <div className="copyright">
-            convert by Mai Ninh Bình
-          </div>
-        </Col>
-      </Row>
+      <div className="copyright text-center">
+        convert by Mai Ninh Bình
+      </div>
     </AntFooter>
   );
 }

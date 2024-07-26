@@ -10,38 +10,40 @@ export const usersApi = apiWithTag.injectEndpoints({
   
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => 'users',
+      query: () => 'user/list',
       providesTags: (result) =>
       result
         ? [
-            ...result.map(({ id } : {id : number | string}) => ({ type: 'Users' as const, id })),
+            ...result?.data?.map(({ id } : {id : number | string}) => ({ type: 'Users' as const, id })),
             { type: 'Users', id: 'LIST' },
           ]
         : [{ type: 'Users', id: 'LIST' }],
     }),
     getUser: builder.query({
-      query: (id) => `users/${id}`,
+      query: (id) => `user/${id}`,
       providesTags: (id) => [{ type: 'Users', id }],
     }),
     createUser: builder.mutation({
       query: (newUser) => ({
-        url: 'users',
+        url: 'user',
         method: 'POST',
         body: newUser,
+        formData: true,
       }),
       invalidatesTags: [{ type: 'Users', id: 'LIST' }],
     }),
     updateUser: builder.mutation({
-      query: (updatedUser) => ({
-        url: `users/${updatedUser.id}`,
-        method: 'PUT',
-        body: updatedUser,
+      query: (payload) => ({
+        url: `user/${payload.id}`,
+        method: 'POST',
+        body: payload.data,
+        formData: true,
       }),
       invalidatesTags: (id) => [{ type: 'Users', id },  { type: 'Users', id: 'LIST' }],
     }),
     deleteUser: builder.mutation({
       query: (id) => ({
-        url: `users/${id}`,
+        url: `user/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: [{ type: 'Users', id: 'LIST' }],

@@ -1,43 +1,29 @@
 import type { TableProps } from 'antd'
-import { Button, Flex, Input, Popconfirm, Space, Table, Typography, message } from 'antd'
+import { Button, Flex, Input, Popconfirm, Space, Table, Tag, Typography, message } from 'antd'
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { getAllBanner, removeBanner, searchBanners } from '@/app/slices/bannerSlice'
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+
 import { IBanner } from '@/common/types/banner.interface'
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
-import useDebounce from '@/hooks/useDebounce'
+
+import { useGetBannersQuery, useDeleteBannerMutation } from '../BannerEndpoints'
+import { popupSuccess } from '@/page/[role]/shared/Toast'
 
 export default function ListBanner() {
-  const dispatch = useAppDispatch()
-  const [searchValue, setSearchValue] = useState('')
-  const debouncedValue = useDebounce(searchValue, 600)
-
-  const { banners, isLoading } = useAppSelector((state) => state.banner)
-
+  const {data : banners, isLoading} = useGetBannersQuery({});
+  const [deleteBanner, {isLoading : isLoadingDeleteBanner}] = useDeleteBannerMutation();
   const handlerRemoveBanner = async (value: IBanner) => {
-    const res = await dispatch(removeBanner(value.id as string))
-    if (res?.success) {
-      message.success('Xoá banner thành công!')
-    } else if (!res.success) {
-      message.error('Xoá banner thất bại!')
-    }
+     
+     try {
+        await deleteBanner(value.id).unwrap();
+        popupSuccess('Delete banner success');
+
+     } catch (error) {
+      popupSuccess('Delete banner error');
+     }
   }
 
-  const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = event.target.value
-    if (!searchValue.startsWith(' ')) {
-      setSearchValue(searchValue)
-    }
-  }
+  
 
-  useEffect(() => {
-    if (!debouncedValue.trim()) {
-      dispatch(getAllBanner())
-    } else {
-      dispatch(searchBanners(debouncedValue))
-    }
-  }, [debouncedValue, dispatch])
+  
 
   const columns: TableProps<IBanner>['columns'] = [
     {
@@ -49,35 +35,34 @@ export default function ListBanner() {
     },
     {
       title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
+      dataIndex: 'image_title',
+      key: 'image_title',
       align: 'center',
       width: 160,
       render: (text) => <a>{text}</a>
     },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      align: 'center',
-      width: 160,
-      render: (text) => <>{text}</>
-    },
+   
     {
       title: 'Img',
-      dataIndex: 'img',
-      key: 'img',
+      dataIndex: 'image_url',
+      key: 'image_url',
       align: 'center',
       width: 100,
       render: (img) => <img src={img || ''} className='mx-auto w-16' alt='' />
     },
     {
-      title: 'Url',
-      dataIndex: 'url',
-      key: 'url',
-      align: 'center',
-      width: 140,
-      render: (text) => <>{text.slice(0, 20).concat(' . . .')}</>
+      title: 'Active',
+      key: 'is_active',
+      dataIndex: 'is_active',
+      width: 100,
+      render: (_, { is_active }) => (
+        <>
+              <Tag color={is_active == 1 ? 'green' : 'red'} >
+                  {is_active == 1 ? 'Active' : 'InActive'}
+              </Tag>
+        </>
+      )
+    
     },
     {
       title: 'Action',
@@ -90,6 +75,7 @@ export default function ListBanner() {
             <Button type='primary'>Edit</Button>
           </Link>
           <Popconfirm
+          
             placement='topRight'
             title='Are you sure delete this banner?'
             onConfirm={() => handlerRemoveBanner(record)}
@@ -97,7 +83,7 @@ export default function ListBanner() {
             okText='Đồng ý'
             cancelText='Hủy bỏ'
           >
-            <Button type='primary' danger>
+            <Button loading={isLoadingDeleteBanner} type='primary' danger>
               Delete
             </Button>
           </Popconfirm>
@@ -117,26 +103,7 @@ export default function ListBanner() {
         <Typography.Title editable level={2} style={{ margin: 0 }}>
           List Banner
         </Typography.Title>
-        <Input
-          className='header-search w-[250px]'
-          prefix={
-            <div className=' px-2'>
-              <SearchRoundedIcon />
-            </div>
-          }
-          value={searchValue}
-          spellCheck={false}
-          allowClear
-          onChange={handleChangeSearch}
-          size='small'
-          placeholder={'search'}
-          style={{
-            borderRadius: '2rem',
-            border: 'none',
-            backgroundColor: '#ffff',
-            boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem'
-          }}
-        />
+      
       </div>
 
       <Table
@@ -149,7 +116,7 @@ export default function ListBanner() {
         loading={isLoading}
       />
 
-      <Flex wrap='wrap' gap='small'>
+      <Flex className='mt-3' wrap='wrap' gap='small'>
         <Link to='add'>
           <Button type='primary'>Add Banner</Button>
         </Link>

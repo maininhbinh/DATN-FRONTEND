@@ -1,4 +1,170 @@
 {
+  "orders": [
+    {
+      "first_name": "1111",
+      "last_name": "2222",
+      "phone_number": "3333",
+      "provinces": "An Giang-89",
+      "district": "Châu Đốc-884",
+      "ward": "Vĩnh Mỹ",
+      "address": "3333",
+      "note": "4444",
+      "order_date": "2024-06-29T13:05:25.820Z",
+      "id": 1
+    },
+    {
+      "first_name": "Dung ",
+      "last_name": "Nguyen",
+      "phone_number": "0359932904",
+      "provinces": "Bà Rịa - Vũng Tàu-77",
+      "district": "Châu Đức-750",
+      "ward": "Bình Ba",
+      "address": "Trung Hoa Cau Giay Ha Noi",
+      "note": "123213",
+      "order_date": "2024-06-29T14:13:47.989Z",
+      "id": 2
+    },
+    {
+      "first_name": "Hung",
+      "last_name": "Vu",
+      "phone_number": "0359932904",
+      "provinces": "Cà Mau-96",
+      "district": "Cái Nước-969",
+      "ward": "Phú Hưng",
+      "address": "123 ",
+      "note": "3423",
+      "order_date": "2024-06-29T14:21:10.127Z",
+      "id": 3
+    }
+  ],
+  "orderDetails": [
+    {
+      "orderId": 1,
+      "name": "iPhone 14 pro max",
+      "price": 23800000,
+      "quantity": 3,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719581281/developer/variant-Tr%E1%BA%AFng-626586.jpg",
+      "variant": "Trắng | 8Gb",
+      "id": 1
+    },
+    {
+      "orderId": 1,
+      "name": "iPhone 15 pro max",
+      "price": 19000000,
+      "quantity": 2,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719586635/developer/variant-white-316444.jpg",
+      "variant": "white ",
+      "id": 2
+    },
+    {
+      "orderId": 1,
+      "name": "iPhone 8 Plus",
+      "price": 5000000,
+      "quantity": 1,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719628720/developer/variant-v%C3%A0ng%20%C4%91%E1%BB%93ng-447507.jpg",
+      "variant": "vàng đồng ",
+      "id": 3
+    },
+    {
+      "orderId": 1,
+      "name": "iPhone 11 256Gb",
+      "price": 22000000,
+      "quantity": 1,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719629020/developer/variant-M%C3%A0u%20%C4%91en-632460.jpg",
+      "variant": "Màu đen ",
+      "id": 4
+    },
+    {
+      "orderId": 1,
+      "name": "iPhone 14 pro max",
+      "price": 19000000,
+      "quantity": 2,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719581573/developer/variant-%C4%90en-336265.jpg",
+      "variant": "Đen | 8Gb",
+      "id": 5
+    },
+    {
+      "orderId": 2,
+      "name": "iPhone 14 pro max",
+      "price": 19000000,
+      "quantity": 2,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719581286/developer/variant-%C4%90en-505990.jpg",
+      "variant": "Đen | 8Gb",
+      "id": 6
+    },
+    {
+      "orderId": 2,
+      "name": "iPhone 14 pro max",
+      "price": 16000000,
+      "quantity": 1,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719581570/developer/variant-%C4%90en-567942.jpg",
+      "variant": "Đen | 4Gb",
+      "id": 7
+    },
+    {
+      "orderId": 2,
+      "name": "iPhone Xs Max",
+      "price": 6900000,
+      "quantity": 1,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719668990/developer/variant-X%C3%A1m-765528.png",
+      "variant": "Xám ",
+      "id": 8
+    },
+    {
+      "orderId": 2,
+      "name": "iPhone Xs Max",
+      "price": 6000000,
+      "quantity": 1,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719668986/developer/variant-V%C3%A0ng%20%C4%91%E1%BB%93ng-411608.png",
+      "variant": "vàng đồng ",
+      "id": 9
+    },
+    {
+      "orderId": 2,
+      "name": "iPhone Xs Max",
+      "price": 58000000,
+      "quantity": 2,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719668988/developer/variant-B%E1%BA%A1c-540604.png",
+      "variant": "Bạc ",
+      "id": 10
+    },
+    {
+      "orderId": 3,
+      "name": "iPhone Xs Max",
+      "price": 6900000,
+      "quantity": 20,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719668990/developer/variant-X%C3%A1m-765528.png",
+      "variant": "Xám ",
+      "id": 11
+    },
+    {
+      "orderId": 3,
+      "name": "iPhone 15 pro max",
+      "price": 19000000,
+      "quantity": 3,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719586635/developer/variant-white-316444.jpg",
+      "variant": "white ",
+      "id": 12
+    },
+    {
+      "orderId": 3,
+      "name": "iPhone 11 256Gb",
+      "price": 22000000,
+      "quantity": 3,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719629020/developer/variant-M%C3%A0u%20%C4%91en-632460.jpg",
+      "variant": "Màu đen ",
+      "id": 13
+    },
+    {
+      "orderId": 3,
+      "name": "iPhone 8 Plus",
+      "price": 5000000,
+      "quantity": 3,
+      "image": "https://res.cloudinary.com/debwqiusa/image/upload/v1719628720/developer/variant-v%C3%A0ng%20%C4%91%E1%BB%93ng-447507.jpg",
+      "variant": "vàng đồng ",
+      "id": 14
+    }
+  ],
   "users": [
     {
       "name": "newest update 1232",
@@ -179,20 +345,6 @@
     }
   ],
   "slide": [
-    {
-      "id": "1",
-      "title": "Exclusive collection for everyone2",
-      "status": 3,
-      "img": "https://picsum.photos/200/300",
-      "url": "https://picsum.photos/200/300"
-    },
-    {
-      "title": "Exclusive",
-      "status": 234,
-      "img": "https://res.cloudinary.com/do7coevfh/image/upload/v1718029846/datn-img/nvygsckdqok4ntirbjzv.jpg",
-      "url": "https://picsum.photos/200/300",
-      "id": "2"
-    },
     {
       "id": "f907",
       "title": "asdasd",
@@ -542,8 +694,8 @@
       "brandId": "1",
       "total_review": 0,
       "avg_stars": 0,
-      "description": "<h3 style=\"text-align:justify;\">Trong khi sức hút đến từ bộ 4 phiên bản&nbsp;iPhone 12&nbsp;vẫn chưa nguội đi, thì hãng điện thoại&nbsp;Apple&nbsp;đã mang đến cho người dùng một siêu phẩm mới <a href=\"https://www.thegioididong.com/dtdd-apple-iphone-13-series\">iPhone 13 series</a> với&nbsp;nhiều cải tiến thú vị sẽ mang lại những trải nghiệm hấp dẫn nhất cho người dùng.</h3><h3 style=\"text-align:justify;\">Hiệu năng vượt trội nhờ chip Apple A15 Bionic</h3><p style=\"text-align:justify;\">Con chip <a href=\"https://www.thegioididong.com/hoi-dap/tim-hieu-chip-apple-a15-bionic-suc-manh-cuc-khung-duoc-he-1339072\">Apple A15 Bionic</a>&nbsp;siêu mạnh được sản xuất trên quy trình 5 nm giúp <a href=\"https://www.thegioididong.com/dtdd/iphone-13\">iPhone 13</a>&nbsp;đạt hiệu năng ấn tượng, với CPU nhanh hơn 50%,&nbsp;GPU nhanh hơn 30% so với các đối thủ trong cùng phân khúc.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-1.jpg\" alt=\"Chip Apple A15 Bionic mạnh mẽ - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Nhờ hiệu năng được cải tiến, người dùng có được những trải nghiệm tốt hơn trên <a href=\"https://www.thegioididong.com/dtdd\">điện thoại</a> khi dùng các ứng dụng chỉnh sửa ảnh hay chiến các tựa game đồ họa cao mượt mà.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-2.jpg\" alt=\"Đồ họa mượt mà - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">iPhone 13 trang bị&nbsp;bộ nhớ trong 128 GB&nbsp;dung lượng lý tưởng&nbsp;cho phép bạn thỏa thích lưu trữ mọi nội dung theo ý muốn mà không lo nhanh đầy bộ nhớ.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-19.jpg\" alt=\"Dung lượng bộ nhớ - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Tốc độ 5G tốt hơn&nbsp;</h3><p style=\"text-align:justify;\">Mạng 5G được cải thiện chất lượng với nhiều băng tần hơn, với 5G giúp điện thoại xem trực tuyến hay tải xuống các ứng dụng và tài liệu đều đạt tốc độ nhanh chóng. Không chỉ vậy, siêu phẩm mới này còn có chế độ dữ liệu thông minh, tự động phát hiện và giảm tải tốc độ mạng để tiết kiệm năng lượng khi không cần dùng tốc độ cao.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-4.jpg\" alt=\"Hỗ trợ kết nối 5G hiện đại - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Màn hình Super Retina XDR độ sáng cao, tiết kiệm pin</h3><p style=\"text-align:justify;\">iPhone 13 sử dụng tấm nền OLED với kích thước màn hình 6.1 inch&nbsp;cho chất lượng màu sắc và chi tiết hình ảnh sắc nét, sống động, độ phân giải đạt 1170 x 2532 Pixels.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-6.jpg\" alt=\"Màn hình OLED 6.1 inch - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Nhờ có công nghệ Super Retina XDR giúp cho máy đạt&nbsp;độ sáng 800 nits, tối đa lên đến 1200 nits cùng dải màu rộng P3, tỷ lệ tương phản lớn giúp ổn định tốt màu sắc và chất lượng hình ảnh hiển thị trong nhiều điều kiện sáng khác nhau, kể cả môi trường nắng gắt hay ánh sáng chói.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-5.jpg\" alt=\"Độ sáng đạt 1200 nits - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Phía ngoài màn hình còn được phủ lớp oleophobic hạn chế tình trạng bám bụi bẩn và mồ hôi do tay người dùng, giữ màn hình luôn sạch và tinh tế hơn. Và trang bị&nbsp;kính cường lực Ceramic Shield giúp màn hình của máy được an toàn hơn trước những vết xước, va đập trong quá trình sử dụng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-7.jpg\" alt=\"Trang bị kính cường lực Ceramic Shield - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Cụm camera kép nổi bật với nhiều cải tiến</h3><p style=\"text-align:justify;\">Cụm camera kép phía sau trên iPhone 13 đều sở hữu độ phân giải 12 MP, camera chính&nbsp;giúp thu được nhiều ánh sáng hơn, tăng khả năng thu sáng lên đến 47% nên chất lượng ảnh chụp cũng cải thiện hơn so với bản tiền nhiệm. <a href=\"https://www.thegioididong.com/dtdd-camera-goc-rong\">Điện thoại có&nbsp;camera góc siêu rộng</a>&nbsp;cho góc nhìn&nbsp;120 độ giúp thu được nhiều chi tiết hơn, dễ dàng ghi lại những khung cảnh núi non hùng vĩ, ảnh chụp nhóm đông người.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-8.jpg\" alt=\"Cụm camera sau sắc nét - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Cụm camera cũng được trang bị tính năng chống rung quang học Sensor Shift giúp lấy nét nhanh chóng, khả năng chụp đêm cũng trở nên rõ nét mà ít bị nhiễu hạt, hay quay video cũng rất ổn định và mượt mà hơn.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-9.jpg\" alt=\"Chụp đêm siêu rõ nét - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">“Chế độ điện ảnh” cho phép camera trên iPhone 13 tự động làm mờ hậu cảnh trong video để đối tượng luôn được lấy nét nổi bật. Đặc biệt người dùng có thể thay đổi tiêu điểm để chọn chủ thể mong muốn trong khung hình khi sử dụng quay video, nhờ đó tạo nên những video chuyên nghiệp, như ý hơn.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-10.jpg\" alt=\"Chế độ điện ảnh độc đáo - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Chế độ chụp Smart HDR 4 nhận diện tối đa 4 người trong một khung hình, tiến hành tối ưu hóa ánh sáng và tương phản, tone màu da cho từng người để hoàn thiện bức ảnh đẹp mà không cần qua chỉnh sửa.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-11.jpg\" alt=\"Chế độ Smart HDR 4 - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Camera trước vẫn nằm trong tai thỏ, độ phân giải cũng đạt 12 MP với các công nghệ chụp ảnh chuyên nghiệp như hiệu ứng bokeh, chế độ điện ảnh, Animoji và Memoji để bạn tự tin thể hiện mình trước ống kính, không lo lắng che giấu khuyết điểm.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-12.jpg\" alt=\"Camera trước 12 MP - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Sang trọng, đẳng cấp hơn về ngoại hình</h3><p style=\"text-align:justify;\">iPhone 13&nbsp;có thiết kế nguyên khối vuông vắn như tiền nhiệm, khung viền được làm từ nhôm cùng mặt lưng kính sang trọng, cao cấp.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-13.jpg\" alt=\"Thiết kế nguyên khối sang trọng, đẳng cấp - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Ngoại hình không quá khác biệt so với tiền nhiệm, nhưng tỷ lệ màn hình so với khung máy tốt hơn, phần tai thỏ nhỏ hơn 20% gia tăng diện tích trải nghiệm khi lướt web, xem phim, chơi game.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-14.jpg\" alt=\"Màn hình cải tiến - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Điểm khác biệt lớn nhất trong ngoại hình có lẽ chính là các cảm biến camera được đặt chéo thay vì xếp thẳng hàng như <a href=\"https://www.thegioididong.com/dtdd/iphone-12-128gb\">iPhone 12</a>, tạo điểm nhận diện đặc trưng, mới mẻ và đẹp mắt, sang chảnh hơn.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-15.jpg\" alt=\"Cụm camera sau với diện mạo mới - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Màu sắc trên mẫu <a href=\"https://www.thegioididong.com/dtdd-apple-iphone\">iPhone</a> mới này cũng đa dạng hơn gồm Trắng, Đen, Đỏ, Xanh dương và Hồng mới mẻ dễ tùy chọn cho mọi người dùng.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-16.jpg\" alt=\"Có nhiều màu sắc để lựa chọn - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">iPhone 13 hỗ trợ chuẩn kháng nước và bụi IP68, bạn sẽ yên tâm sử dụng hơn khi đem theo thiết bị để chụp ảnh khi bơi hay những lần vô tình làm đổ nước, có cơn mưa đột ngột.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-17.jpg\" alt=\"Khả năng kháng nước, bụi - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><h3 style=\"text-align:justify;\">Thời lượng pin cũng được cải thiện</h3><p style=\"text-align:justify;\">Theo công bố của hãng, iPhone 13 có thời lượng pin tăng thêm 2.5 tiếng so với thế hệ trước, cho thời gian sử dụng lâu hơn, phục vụ hiệu quả với người dùng có nhu cầu sử dụng tần suất cao.</p><figure class=\"image\" style=\"height:auto !important;\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-18.jpg\" alt=\"Chip A15 tối ưu hóa năng lượng - iPhone 13 128GB\" width=\"1020\" height=\"570\"></figure><p style=\"text-align:justify;\">Hỗ trợ&nbsp;sạc nhanh&nbsp;20 W giúp nạp đầy 50% pin chỉ trong khoảng 30 phút. Đi kèm theo các công nghệ sạc không dây&nbsp;tiên tiến như chuẩn Qi hay MagSafe.</p><p style=\"text-align:justify;\">Lưu ý: Củ sạc nhanh 20 W sẽ không đi kèm trong hộp khi mua.</p><p style=\"text-align:justify;\">Tóm lại, với những nâng cấp và cải tiến mạnh mẽ về hiệu năng, camera đa chức năng, mình nghĩ rằng iPhone 13 128GB sẽ là một chiếc điện thoại cao cấp rất đáng được đầu tư và sử dụng.</p>",
-      "in_active": true,
+      "description": "<h2><i>4444</i></h2>",
+      "in_active": false,
       "id": "1",
       "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1717851153/example-react/a80yd2icpcf3pntg3rwl.jpg"
     },
@@ -754,6 +906,143 @@
       "in_active": false,
       "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718432279/example-react/ttgro2tirsayeoyd3ngq.png",
       "id": 17
+    },
+    {
+      "name": "fsdfsdaf update",
+      "price": "14234",
+      "discount": "4324",
+      "categoryId": "3",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>32423424</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718529126/example-react/wukrc6t7fhndc5wn9kip.png",
+      "id": 18
+    },
+    {
+      "name": "123",
+      "price": "23",
+      "discount": "2",
+      "categoryId": "3",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>243242</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718529244/example-react/c5pu5uuwlrzg8fmrec4m.png",
+      "id": 19
+    },
+    {
+      "name": "fsdfsdaff dfsdaf",
+      "price": "123131",
+      "discount": "2",
+      "categoryId": "2",
+      "brandId": "7gQbxFZ",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>123123</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530268/example-react/d5qiz0xygyn0bygj1jz7.jpg",
+      "id": 20
+    },
+    {
+      "name": "453534",
+      "price": "2131",
+      "discount": "0.2",
+      "categoryId": "2",
+      "brandId": "70mPlxz",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>31231</p>",
+      "in_active": true,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530780/example-react/nh0wwbitg0uy6fhcsj3r.png",
+      "id": 21
+    },
+    {
+      "name": "iphone",
+      "price": "2342",
+      "discount": "234",
+      "categoryId": "2",
+      "brandId": "1",
+      "total_review": 0,
+      "avg_stars": 0,
+      "description": "<p>dsfsdfs</p>",
+      "in_active": true,
+      "sales_information": [
+        {
+          "list": [
+            {
+              "image": "https://res.cloudinary.com/do7coevfh/image/upload/v1718799147/datn-img/nlwwn6opbqoozoyw2xo3.jpg",
+              "name": "hhh"
+            },
+            {
+              "image": "https://res.cloudinary.com/do7coevfh/image/upload/v1718799154/datn-img/olfolsnqumoyfv20mk28.jpg",
+              "name": "sdfsdf"
+            },
+            {
+              "image": "https://res.cloudinary.com/do7coevfh/image/upload/v1718799180/datn-img/tjyoum4aiz7tbn4ufe0w.jpg",
+              "name": "cvbxcv"
+            }
+          ],
+          "name": "mau"
+        },
+        {
+          "list": [
+            {
+              "name": "ád"
+            },
+            {
+              "name": "akkkkk"
+            }
+          ],
+          "name": "hi"
+        }
+      ],
+      "id": 22,
+      "thumbnail": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797769/example-react/l4sxtkzchxicigpdhocp.jpg"
+    }
+  ],
+  "galleries": [
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530782/example-react/o3twzw9jqrndm8dhwpoh.png",
+      "id": 5
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530783/example-react/epnuxw5zh29po5bgau2i.png",
+      "id": 6
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530784/example-react/zhnw2wiy4gxxnzwt69c6.jpg",
+      "id": 7
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530785/example-react/odgfbvhdmlem89cmkzdv.png",
+      "id": 8
+    },
+    {
+      "productId": 21,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718530786/example-react/ybzfyxb7yz0augsrx044.png",
+      "id": 9
+    },
+    {
+      "productId": 22,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797771/example-react/bz61p8pn4ykf3ng1uuzr.jpg",
+      "id": 10
+    },
+    {
+      "productId": 22,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797771/example-react/qjbai5teynbdf9pcf3d3.jpg",
+      "id": 11
+    },
+    {
+      "productId": 22,
+      "image": "https://res.cloudinary.com/dqouzpjiz/image/upload/v1718797772/example-react/p6mcjhpxn3jomvuf80se.jpg",
+      "id": 12
     }
   ]
 }

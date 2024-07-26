@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Logo from "../../shared/Logo/Logo";
 import MenuBar from "../../shared/MenuBar/MenuBar";
 import LangDropdown from "./LangDropdown";
@@ -7,7 +7,8 @@ import DropdownCategories from "./DropdownCategories";
 import CartDropdown from "./CartDropdown";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
-import LoginDropdown from "./LoginDropdown";
+import { useAppDispatch } from "@/app/hooks";
+import { GetAllCart } from "@/app/slices/cartSlide";
 
 export interface MainNav2Props {
   className?: string;
@@ -15,6 +16,17 @@ export interface MainNav2Props {
 
 const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
   const [showSearchForm, setShowSearchForm] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const [carts, setCarts] = useState([]);
+
+  useEffect(()=>{
+    (async ()=>{
+      const access_token = localStorage.getItem('access_token') || '';
+      const carts =  await dispatch(GetAllCart(access_token))
+      setCarts(carts.data);
+    })()
+  },[dispatch]);
 
   const navigate = useNavigate();
 

@@ -9,7 +9,7 @@ export default function LoadingUser(){
             
             
             <Spin tip="Loading" size="large">
-                This can get a few minutes
+                
             </Spin>
             </Flex>
             

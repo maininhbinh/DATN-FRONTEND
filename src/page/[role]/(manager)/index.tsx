@@ -18,6 +18,7 @@ const Manager = () => {
         <Layout
         className={`layout-dashboard `}
         style={{ padding: '0 30px' }}
+        id="manager"
         >
         <Drawer
             title={false}
@@ -51,6 +52,7 @@ const Manager = () => {
             theme="light"
             className={`sider-primary ant-layout-sider-primary`}
             style={{ background: '#ffffff', boxShadow: '0rem 1.25rem 1.6875rem 0rem rgba(0, 0, 0, 0.05)'}}
+            id="sidenav"
         >
             <Sidenav />
         </Sider>

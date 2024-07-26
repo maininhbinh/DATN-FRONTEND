@@ -1,4 +1,4 @@
-import { Modal, Upload } from 'antd'
+import { Modal, Switch, Upload } from 'antd'
 import { Button, Form, Input } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useLazyGetDistrictsQuery, useGetProvincesQuery } from '../../../../../utils/addressRTKQuery'
@@ -15,6 +15,7 @@ import { popupSuccess, popupError } from '@/page/[role]/shared/Toast'
 //
 import { UploadOutlined } from '@ant-design/icons'
 import axios from 'axios'
+import { min } from 'lodash'
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 }
@@ -51,41 +52,35 @@ export default function AddUser() {
   const [form] = Form.useForm()
   const [optionsDistrict, setOptionDistrict] = useState<SelectProps['options']>([])
 
-  const onFinish = async (values: Iuser) => {
-    delete values.upload
-    setFile((prev) => {
-      return {
-        ...prev,
-        loading: true
-      }
-    })
+  const onFinish = async (values: Iuser | any) => {
+   
     const formData = new FormData()
-
-    formData.append('file', file.data as any)
-    formData.append('upload_preset', 'vuminhhung904')
-
-    Promise.all([axios.post('https://api.cloudinary.com/v1_1/dqouzpjiz/upload', formData)]).then(
-      async ([response]: any) => {
-       
-        setFile({
-          data: {},
-          loading: false
-        })
-
-        try {
-          await createUser({...values, image : response.data.secure_url})
-
-          popupSuccess(`Add account "${values.name}"  success`)
-          handleCancel()
-        } catch (err) {
-          popupError(`Add account "${values.name}"  error`)
-          handleCancel()
+    for (const key  in values ) {
+       if(String(key) == 'image'){
+        formData.append(key,values[key][0].originFileObj);
+        continue;
+       }
+       if(String(key) == 'is_active'){
+        if(values[key]){
+           formData.append(key,'1')
+        }else {
+           formData.append(key,'0')
         }
-      }
-    )
-    .catch(() => {
-        popupError('Upload file Error ! lets try again ')
-    })
+        continue;
+       }
+       formData.append(key,values[key])
+       
+    }
+    formData.append('is_virtual','0');
+    try {
+      await createUser(formData).unwrap();
+      popupSuccess('Add user success');
+      handleCancel();
+    } catch (error) {
+      popupError('Add user error');
+    }
+   
+
   }
 
   const [getDistrict, { data: dataDistricts, isLoading: districtLoading }] = useLazyGetDistrictsQuery()
@@ -135,6 +130,7 @@ export default function AddUser() {
     <>
       <Modal okButtonProps={{ hidden: true }}  title='Add user' open={true} onCancel={handleCancel}>
         <Form
+        
           form={form}
           {...layout}
           name='nest-messages'
@@ -142,20 +138,20 @@ export default function AddUser() {
           style={{ maxWidth: 600 }}
           validateMessages={validateMessages}
         >
-          <Form.Item name='name' label='Name' rules={[{ required: true }]}>
-            <Input type='text' placeholder='Enter your name' />
+          <Form.Item name='username' label='Username' rules={[{ required: true }]}>
+            <Input type='text' placeholder='Enter your username' />
           </Form.Item>
           <Form.Item name='email' label='Email' rules={[{ required: true, type: 'email' }]}>
             <Input type='email' placeholder='Enter your email' />
           </Form.Item>
 
-          <Form.Item name='password' label='Password' rules={[{ required: true }]}>
+          <Form.Item name='password' label='Password' rules={[{ required: true , min : 8, max: 30}, ]}>
             <Input type='password' placeholder='*******' />
           </Form.Item>
 
           <Form.Item
-            name='upload'
-            label='Upload'
+            name='image'
+            label='Image'
             valuePropName='fileList'
             getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
             rules={[{ required: true }]}
@@ -177,7 +173,7 @@ export default function AddUser() {
             <Input type='text' placeholder='Enter your address temporate' />
           </Form.Item>
 
-          <Form.Item name='country' label='Country' rules={[{ required: true }]}>
+          <Form.Item name='county' label='County' rules={[{ required: true }]}>
             <Select style={{ width: '100%' }} options={[{ value: 'Việt Nam', label: 'VietNam' }]} />
           </Form.Item>
 
@@ -208,8 +204,16 @@ export default function AddUser() {
               ]}
             />
           </Form.Item>
+          <Form.Item 
+                    className='m-0' 
+                    label='Active'
+                    name='is_active' 
+                    valuePropName="checked"
+                >
+                    <Switch />
+                </Form.Item>
 
-          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+          <Form.Item className='mt-3' wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button loading={loadingCreateUser || file.loading} disabled={loadingCreateUser} type='primary' htmlType='submit'>
               Create
             </Button>

@@ -3,3 +3,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.quill{
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid #d9d9d9;
+    height: 200px;
+}
+
+.ql-container{
+    border: none !important;
+}
+
+.ql-toolbar{
+    border: 0 !important;
+}

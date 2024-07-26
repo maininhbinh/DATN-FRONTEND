@@ -34,7 +34,7 @@ export default function ListUser(){
       isError
     } = useGetUsersQuery({});
 
-    const dataItem = data?.map((item : Iuser, key : number) => {
+    const dataItem = data?.data?.map((item : Iuser, key : number) => {
       return {
         ...item,
         key : key
@@ -43,16 +43,16 @@ export default function ListUser(){
     
     const columns: TableProps<Iuser>['columns'] = [
         {
-          title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
+          title: 'Username',
+          dataIndex: 'username',
+          key: 'username',
           showSorterTooltip: { target: 'full-header' },
           render: (text) => <a>{text}</a>,
-          onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-          sorter: (a, b) => a.name.length - b.name.length,
+          onFilter: (value : any, record : any) => record.username.indexOf(value as string) === 0,
+          sorter: (a : any, b : any) => a.username.length - b.username.length,
           sortDirections: ['descend'],
           ...getColumnSearchProps(
-            'name',
+            'username',
              handleSearch,
              handleReset,
              searchText,
@@ -108,6 +108,19 @@ export default function ListUser(){
           filterSearch: true,
         },
         {
+          title: 'Active',
+          key: 'is_active',
+          dataIndex: 'is_active',
+          render: (_, { is_active }) => (
+            <>
+                  <Tag color={is_active == 1 ? 'green' : 'red'} >
+                      {is_active == 1 ? 'Active' : 'InActive'}
+                  </Tag>
+            </>
+          )
+        
+        },
+        {
           title: 'Action',
           key: 'action',
           render: (data: Iuser) => (
@@ -121,7 +134,7 @@ export default function ListUser(){
                 <Popconfirm
                     disabled={isDeleting}
                     title="Delete the user"
-                    description={`Are you sure to delete "${data.name}" ?`}
+                    description={`Are you sure to delete "${data.username}" ?`}
                     onConfirm={() => confirm(String(data.id))}
                     okText="Yes"
                     cancelText="No"

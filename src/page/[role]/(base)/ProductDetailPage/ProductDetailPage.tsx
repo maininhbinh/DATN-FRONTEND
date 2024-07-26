@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ButtonPrimary from "../shared/Button/ButtonPrimary";
 import LikeButton from "../components/LikeButton";
 import AccordionInfo from "./AccordionInfo";
@@ -24,6 +24,8 @@ import ButtonSecondary from "../shared/Button/ButtonSecondary";
 import SectionPromo2 from "../components/SectionPromo2";
 import ModalViewAllReviews from "./ModalViewAllReviews";
 import NotifyAddTocart from "../components/NotifyAddTocart";
+import { useGetProductQuery } from "../../(manager)/products/ProductsEndpoints";
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -209,7 +211,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ className = "" }) => {
             {/* <div className="flex text-xl font-semibold">$112.00</div> */}
             <Prices
               contentClass="py-1 px-2 md:py-1.5 md:px-3 text-lg font-semibold"
-              price={112}
+              price={44444444444}
             />
 
             <div className="h-7 border-l border-slate-300 dark:border-slate-700"></div>

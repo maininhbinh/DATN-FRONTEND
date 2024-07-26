@@ -7,7 +7,7 @@ import Checkbox from "../shared/Checkbox/Checkbox";
 import Slider from "rc-slider";
 import Radio from "../shared/Radio/Radio";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import MySwitch from "../components/MySwitch";
+import MySwitch from "./MySwitch";
 
 // DEMO DATA
 const DATA_categories = [

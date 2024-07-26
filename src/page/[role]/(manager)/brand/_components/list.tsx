@@ -1,5 +1,5 @@
 
-import { Table, Typography } from 'antd';
+import { Image, Popconfirm, Table, Typography } from 'antd';
 import moment from 'moment';
 import type { TableProps } from 'antd';
 import { Button, Flex } from 'antd';
@@ -7,15 +7,24 @@ import { IBrand } from '../../../../../common/types/brand.interface';
 import useBrand from '../utils/brand.hooks';
 import ConfirmModal from '../../../(base)/brand/confirm.modal';
 import ModalCreateBrand from './add';
-
-
+import { Link } from 'react-router-dom';
+import { formatDate } from '@/utils/convertCreatedLaravel';
+import { useGetBrandsQuery, useDeleteBrandMutation } from '../BrandEndpoints';
+import { popupError, popupSuccess } from '@/page/[role]/shared/Toast';
 
 export default function ListBrand() {
-  const hooks = useBrand();
-  console.log(hooks.dataList);
-
-
-  const columns: TableProps<IBrand>['columns'] = [
+  
+const {data , isLoading} = useGetBrandsQuery({});
+const [deleteBrand, {isLoading : isLoadingDeleteBrand}] = useDeleteBrandMutation();
+const confirm = async (id : number | string) => {
+  try {
+     await deleteBrand(id).unwrap();
+     popupSuccess('Delete brand success');
+  } catch (error) {
+    popupError('Delete brand error');
+  }
+};
+const columns: TableProps<IBrand>['columns'] = [
     {
       title: 'STT',
       dataIndex: 'index',
@@ -35,20 +44,20 @@ export default function ListBrand() {
     },
     {
       title: 'Hình ảnh',
-      dataIndex: 'age',
-      key: 'age',
+      dataIndex: 'logo',
+      key: 'logo',
       render: (_: any, item: IBrand) => {
-        return item.logo;
+        return <Image src={item.logo} alt="" width={'90px'} />;
       },
     },
     {
       title: 'Ngày tạo',
-      dataIndex: 'age',
-      key: 'age',
+      dataIndex: 'created_at',
+      key: 'created_at',
       render: (_: any, item: IBrand) => {
         // print(item.create_at);
         return <>
-          <p>{moment(item.create_at).format("DD-MM-YYYY")}</p>
+          <p>{formatDate(item.created_at)}</p>
         </>
           ;
       },
@@ -60,60 +69,48 @@ export default function ListBrand() {
       key: 'action',
       render: (_, record) => (
         <Flex wrap="wrap" gap="small">
-          <Button type="primary" onClick={() => hooks.onEditBrand(record)}  >
+          <Link to={String(record.id)} ><Button type="primary" >
             Edit
-          </Button>
-          <Button type="primary" danger onClick={() => hooks.onShowDeletePopup(record)}>
-            Delete
-          </Button>
+          </Button></Link>
+          <Popconfirm
+                    disabled={isLoadingDeleteBrand}
+                    title="Delete the user"
+                    description={`Are you sure to delete "${record.name}" ?`}
+                    onConfirm={() => confirm(String(record.id))}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button danger loading={isLoadingDeleteBrand} >Delete</Button>
+                  </Popconfirm>
         </Flex>
       ),
     },
   ];
-
+  const dataItem = data?.data.map((item : IBrand, key : number) => {
+    return {
+      ...item,
+      key : key
+    }
+  })
 
   return <>
     <Typography.Title editable level={2} style={{ margin: 0 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         List Brand <Flex wrap="wrap" gap="small">
-          {/* <Link to="add"> */}
-          <Button type="primary" danger onClick={() => hooks.onShowModalDetail()}>
+         
+         <Link to="add">  <Button type="primary" danger >
             Add Brand
-          </Button>
-          {/* </Link> */}
+          </Button></Link>
+         
         </Flex>
       </div>
 
     </Typography.Title>
 
-    <Table columns={columns} dataSource={hooks.dataList} loading={hooks.loading} />
+    <Table columns={columns} dataSource={dataItem} loading={isLoading} />
 
 
 
-    <ConfirmModal
-      handleCancel={hooks.onHideConfirmPopup}
-      handleOk={hooks.handleOkPopup}
-      visible={hooks.modalParams.visible}
-      title={hooks.modalParams.title}
-      content={hooks.modalParams.content}
-    />
 
-
-    <ModalCreateBrand
-      form={hooks.form}
-      isEdit={hooks.Index}
-      onCancelModalCreate={hooks.onCancelModalDetail}
-      onSubmit={hooks.onSubmit}
-      visible={hooks.visibleModalBrandDetail}
-    />
-    {/* {
-      hooks.visibleModalBrandDetail &&
-      <ModalNewsDetail
-        visible={hooks.visibleModalBrandDetail}
-        onCancel={hooks.onCancelModalDetail}
-        dataEdit={hooks.BrandEdit}
-        onSubmit={hooks.onSubmitModalDetail}
-      />
-    } */}
   </>
 }

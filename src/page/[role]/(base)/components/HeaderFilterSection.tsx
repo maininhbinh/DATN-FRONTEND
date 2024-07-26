@@ -9,17 +9,20 @@ import { Transition } from "@headlessui/react";
 
 export interface HeaderFilterSectionProps {
   className?: string;
+  title?: string;
+  handleFilter: (value: any) => void
 }
 
 const HeaderFilterSection: FC<HeaderFilterSectionProps> = ({
   className = "mb-12",
+  title
 }) => {
   const [isOpen, setIsOpen] = React.useState(true);
-  const [tabActive, setTabActive] = React.useState("All items");
+  const [tabActive, setTabActive] = React.useState("is_hot_deal");
 
   return (
     <div className={`flex flex-col relative ${className}`}>
-      <Heading>What's trending now</Heading>
+      <Heading>{title}</Heading>
       <div className="flex flex-col lg:flex-row lg:items-center justify-between space-y-6 lg:space-y-0 lg:space-x-2 ">
         <Nav
           className="sm:space-x-2"

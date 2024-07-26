@@ -49,14 +49,21 @@ import AddPosts from "@/page/[role]/(manager)/posts/_components/add";
 import EditPosts from "@/page/[role]/(manager)/posts/_components/edit";
 import ProductManagement from "@/page/[role]/(manager)/products";
 import AddProduct from "@/page/[role]/(manager)/products/_components/add";
-import EditProduct from "@/page/[role]/(manager)/products/_components/edit";
 import ColorManagement from "@/page/[role]/(manager)/color";
+import OrderManagement from "@/page/[role]/(manager)/order";
+import AddBrand from "@/page/[role]/(manager)/brand/_components/add";
+import EditBrand from "@/page/[role]/(manager)/brand/_components/edit";
+import ProductDetailPage2 from "@/page/[role]/(base)/ProductDetailPage/ProductDetailPage2";
+import EditOrder from "@/page/[role]/(manager)/order/_components/edit";
 export default function Router() {
   return (
     <>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<Navigate to={'/home'} />} />
+          <Route path='' element={<Base />}>
+            <Route index element={<PageHome />} />
+            <Route path='' element={<ProductDetailPage />} />
+          </Route>
           <Route path='home' element={<Base />}>
             <Route index element={<PageHome />} />
             <Route path='' element={<ProductDetailPage />} />
@@ -83,7 +90,7 @@ export default function Router() {
             <Route path='search' element={<PageSearch />} />
             <Route path='category' element={<PageCategory />} />
             <Route path='category/:slug' element={<PageCategory />} />
-            <Route path=':slug' element={<ProductDetailPage />} />
+            <Route path='product-detail/:slug' element={<ProductDetailPage2 />} />
           </Route>
 
           <Route path='admin/login' element={<Login />} />
@@ -100,9 +107,14 @@ export default function Router() {
               <Route path=':id' element={<EditUser />} />
               
             </Route>
+
+            <Route path='order' element={<OrderManagement />}>
+              <Route path='add' element={<AddProduct />} />
+            </Route>
+            <Route path='order/:id' element={<EditOrder />} />
+
             <Route path='products' element={<ProductManagement />}>
               <Route path='add' element={<AddProduct />} />
-              <Route path=':id' element={<EditProduct />} />
               
             </Route>
 
@@ -115,7 +127,7 @@ export default function Router() {
 
             <Route path='voucher' element={<VoucherManagement />}></Route>
             <Route path='color' element={<ColorManagement />}></Route>
-            <Route path='brand' element={<BrandManagement />}></Route>
+          
 
 
                <Route path="banner" element={<BannerManagement />}>
@@ -128,9 +140,9 @@ export default function Router() {
 
 
              
-            <Route path='banner' element={<BannerManagement />}>
-              <Route path='add' element={<AddBanner />} />
-              <Route path=':id' element={<EditBanner />} />
+            <Route path='brand' element={<BrandManagement />}>
+              <Route path='add' element={<AddBrand />} />
+              <Route path=':id' element={<EditBrand />} />
             </Route>
 
             <Route path='categories' element={<CategoryManagement />}>

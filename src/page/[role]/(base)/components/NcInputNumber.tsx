@@ -1,44 +1,67 @@
 import React, { FC, useEffect, useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { useUpdateCartMutation } from "@/services/CartEndPoinst";
+import { popupError } from "../../shared/Toast";
 
 export interface NcInputNumberProps {
   className?: string;
   defaultValue?: number;
   min?: number;
   max?: number;
-  onChange?: (value: number) => void;
+  onChange?: any;
   label?: string;
   desc?: string;
+  id ?: number;
+  item : any;
 }
 
 const NcInputNumber: FC<NcInputNumberProps> = ({
   className = "w-full",
   defaultValue = 1,
   min = 1,
-  max = 99,
+  max = 30,
   onChange,
   label,
   desc,
+  id,
+  item
 }) => {
+  const [changeCart] = useUpdateCartMutation();
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
     setValue(defaultValue);
   }, [defaultValue]);
 
-  const handleClickDecrement = () => {
+  const handleClickDecrement = async () => {
     if (min >= value) return;
-    setValue((state) => {
-      return state - 1;
-    });
-    onChange && onChange(value - 1);
+    try {
+      await changeCart({id : item.product_item_id, quantity : value - 1 });
+      setValue((state) => {
+        return state - 1;
+      });
+      onChange && onChange(value - 1, id);
+    } catch (error) {
+     popupError('Update cart error');
+    }
+    
   };
-  const handleClickIncrement = () => {
+
+  const handleClickIncrement = async () => {
+   
+     
     if (max && max <= value) return;
-    setValue((state) => {
-      return state + 1;
-    });
-    onChange && onChange(value + 1);
+
+    try {
+      await changeCart({id : item.product_item_id, quantity : value + 1 });
+      setValue((state) => {
+        return state + 1;
+      });
+      onChange && onChange(value + 1, id);
+    } catch (error) {
+     popupError('Update cart error');
+    }
+  
   };
 
   const renderLabel = () => {

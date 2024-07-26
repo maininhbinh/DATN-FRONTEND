@@ -1,7 +1,7 @@
 export interface IBanner {
   id?: string | number;
-  title: string
-  status: number
-  img: string
-  url: string
+  image_title: string
+  is_active : number
+  img?: string
+  image_url: string
 }

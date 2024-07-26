@@ -1,84 +1,53 @@
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { createNewBanner } from '@/app/slices/bannerSlice'
-import { Button, Form, Input, Modal, Upload, message } from 'antd'
-import axios from 'axios'
+import { Button, Form, Input, Modal, Switch, Upload } from 'antd'
+
+import { popupError, popupSuccess } from '@/page/[role]/shared/Toast'
 import { useNavigate } from 'react-router-dom'
+import { useCreateBannerMutation } from '../BannerEndpoints'
 
 const { Dragger } = Upload
 
 export default function AddBanner() {
+  const [createBanner, { isLoading: isLoadingCreateBanner }] = useCreateBannerMutation()
   const navigate = useNavigate()
   const [form] = Form.useForm()
-  const dispatch = useAppDispatch()
-  const { isLoading } = useAppSelector((state) => state.banner)
 
   const handleCancel = () => {
     navigate('..')
   }
+
   const handleSubmit = async () => {
     await form.validateFields()
 
-    const title = form.getFieldValue('title')
-    const status = form.getFieldValue('status')
-    const img = form.getFieldValue('img')
-    const url = form.getFieldValue('url')
-    const newImg = img.file?.response?.secure_url
+    const image_title = form.getFieldValue('title')
+    const is_active = form.getFieldValue('status') ? 1 : 0
+    const image = form.getFieldValue('img').file.originFileObj
+    const image_url = form.getFieldValue('url')
 
-    const data = { title, status: +status, img: newImg, url }
-
-    const res = await dispatch(createNewBanner(data))
-    if (res.success) {
-      message.success('Tạo banner thành công!')
-      navigate('..')
-    } else if (!res.success) {
-      message.error('Tạo banner thất bại!')
-    }
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const customRequest = async ({ file, onSuccess, onError }: any) => {
+    const formData = new FormData()
+    formData.append('image_title', image_title)
+    formData.append('is_active', String(is_active))
+    formData.append('image', image)
+    formData.append('image_url', image_url)
     try {
-      // Gọi hàm tải lên ảnh của bạn và chờ kết quả
-      const response = await uploadFiles(file)
+      // console.log('>>>> ', formData)
+      await createBanner(formData).unwrap()
 
-      // Kiểm tra kết quả và xử lý tùy theo trạng thái tải lên
-      if (response?.status === 200) {
-        message.success(`${file.name} uploaded successfully`)
-        onSuccess(response.data, file)
-      } else {
-        message.error(`${file.name} upload failed.`)
-        onError(response)
-      }
+      popupSuccess('Create banner success')
+      handleCancel()
     } catch (error) {
-      // Xử lý lỗi nếu có
-      message.error('An error occurred while uploading the image.')
-      onError(error)
+      popupError('Create banner success')
     }
   }
+  const handleUpload = async (options: any) => {
+    const { onSuccess, file } = options
 
-  const uploadFiles = async (file: File) => {
-    if (file) {
-      const CLOUD_NAME = 'do7coevfh'
-      const PRESET_NAME = 'bcm4uxe3'
-      const FOLDER_NAME = 'datn-img'
-      const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
-
-      const formData = new FormData()
-      formData.append('upload_preset', PRESET_NAME)
-      formData.append('folder', FOLDER_NAME)
-      formData.append('file', file)
-
-      const response = await axios.post(api, formData)
-
-      return response
-    }
+    onSuccess('Upload successful', file)
   }
-
   return (
     <>
       <Modal
         title='Add Banner'
-        confirmLoading={isLoading}
+        confirmLoading={isLoadingCreateBanner}
         open={true}
         okText='Đồng ý'
         cancelText='Huỷ'
@@ -103,27 +72,12 @@ export default function AddBanner() {
           </Form.Item>
 
           <Form.Item
-            name='status'
-            label='Status Banner'
-            className='w-full'
-            rules={[
-              { required: true, message: 'Vui lòng nhập trạng thái banner!' },
-              {
-                pattern: /^[0-9]+$/,
-                message: 'Vui lòng nhập số!'
-              }
-            ]}
-          >
-            <Input size='large' placeholder='Nhập trạng thái banner' className='w-full' />
-          </Form.Item>
-
-          <Form.Item
             name='img'
             label='Img Banner'
             className='w-full'
             rules={[{ required: true, message: 'Vui lòng chọn Ảnh banner!' }]}
           >
-            <Dragger listType='picture' customRequest={customRequest}>
+            <Dragger listType='picture' customRequest={handleUpload}>
               <Button>Upload</Button>
             </Dragger>
           </Form.Item>
@@ -141,6 +95,10 @@ export default function AddBanner() {
             ]}
           >
             <Input size='large' placeholder='Nhập url banner' className='w-full' />
+          </Form.Item>
+
+          <Form.Item className='m-0' label='Active' name='status' valuePropName='checked'>
+            <Switch />
           </Form.Item>
         </Form>
       </Modal>
