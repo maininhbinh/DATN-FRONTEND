@@ -197,7 +197,7 @@ const TableVariant: React.FC<TableVariantProps> = ({variant, setVariant}) => {
                             </Flex>
                             </th>
                         {
-                            variant.length <= 2
+                            variant.length < 2
                             ?
                             <>
                                 <td className="px-6 py-4">
@@ -241,7 +241,7 @@ const TableVariant: React.FC<TableVariantProps> = ({variant, setVariant}) => {
                                                     
                                                     return Promise.resolve();
                                                   }
-                                                  return Promise.reject(new Error('the price sale must be smaller than the price'));
+                                                  return Promise.reject(new Error('Giá khuyến mãi phải nhỏ hơn giá bán'));
                                                 },
                                               }),
                                         ]}
@@ -343,6 +343,16 @@ const TableVariant: React.FC<TableVariantProps> = ({variant, setVariant}) => {
                                         className='m-0' 
                                         rules={[
                                         { required: true, message: 'Nhập giá sale' },
+                                        ({ getFieldValue }) => ({
+                                            validator(_, value) {
+                                                
+                                              if (!value || getFieldValue(['variant',parent.id + '-' + item.id, 'price']) > value) {
+                                                
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Giá khuyến mãi phải nhỏ hơn giá bán'));
+                                            },
+                                          }),
                                         ]}
                                     >
                                         <InputNumber 

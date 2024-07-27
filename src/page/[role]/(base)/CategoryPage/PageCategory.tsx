@@ -1,16 +1,38 @@
-import  { FC } from "react";
+import  { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import SectionSliderCollections from "../components/SectionSliderLargeProduct";
 import SectionPromo1 from "../components/SectionPromo1";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS } from "../../../../data/data";
 import SidebarFilters from "./SidebarFilters";
+import { IProduct } from "@/common/types/product.interface";
+import {  useSearchParams } from "react-router-dom";
+import { useSearchProductMutation } from "../../(manager)/products/ProductsEndpoints";
 
 export interface PageCategory {
   className?: string;
 }
 
 const PageCategory: FC<PageCategory> = ({ className = "" }) => {
+  const [searchParams] = useSearchParams()
+  console.log(searchParams.get('brand'))
+  const [products, setProducts] = useState<IProduct[]>([])
+  const [filterProduct, {isLoading : isLoadingFiltrProduct}] = useSearchProductMutation();
+  useEffect(()=> {
+    const fetchData = async () => {
+      const res:any = await filterProduct({
+        brand: searchParams.get('brand') || undefined,
+        category: searchParams.get('category') || undefined,
+        min_price: searchParams.get('min_price') || undefined,
+        max_price: searchParams.get('max_price') || undefined,
+      })
+      if (res?.data?.success) {
+        console.log(res?.data?.data)
+        setProducts(res?.data?.data)
+      }
+    }
+    fetchData()
+  },[searchParams])
   return (
     <div
       className={`nc-PageCollection2 ${className}`}
@@ -43,8 +65,8 @@ const PageCategory: FC<PageCategory> = ({ className = "" }) => {
               <div className="flex-shrink-0 mb-10 lg:mb-0 lg:mx-4 border-t lg:border-t-0"></div>
               <div className="flex-1 ">
                 <div className="flex-1 grid sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-10 ">
-                  {PRODUCTS.map((item, index) => (
-                    <ProductCard data={item} key={index} />
+                  {products?.map((item, index) => (
+                    <ProductCard data={{...item, products: []}} key={index} />
                   ))}
                 </div>
               </div>
