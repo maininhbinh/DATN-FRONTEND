@@ -12,6 +12,7 @@ import { useGetCategoriesQuery } from '../CategoryEndpoints'
 import { useDeleteCategoryMutation } from '../CategoryEndpoints'
 import axios from 'axios'
 import ErrorLoad from '../../components/util/ErrorLoad'
+import { ITEM_PER_PAGE } from '@/utils/paginate'
 
 export default function ListCategory() {
   const [searchValue, setSearchValue] = useState('')
@@ -159,7 +160,9 @@ export default function ListCategory() {
           sticky={{ offsetHeader: 0 }}
           dataSource={newData}
           loading={isLoading}
-
+          pagination={{
+            pageSize: ITEM_PER_PAGE,
+          }}
         />
       </div>
     </>

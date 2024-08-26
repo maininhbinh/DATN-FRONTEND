@@ -10,15 +10,16 @@ import { IVoucher } from '@/common/types/voucher.interface copy';
 import ConfirmModal from '@/page/[role]/(base)/brand/confirm.modal';
 import { useGetVouchersQuery } from '../VoucherEndpoint';
 import { VND } from '@/utils/formatVietNamCurrency';
+import { ITEM_PER_PAGE } from '@/utils/paginate';
 
 
 
 export default function ListVoucher() {
-  const {data: dataItem, isLoading } = useGetVouchersQuery({});
-  const listVoucers = dataItem?.data.map((item : any, key : number) => {
+  const { data: dataItem, isLoading } = useGetVouchersQuery({});
+  const listVoucers = dataItem?.data.map((item: any, key: number) => {
     return {
       ...item,
-      key : key
+      key: key
     }
   })
   const hooks = useVoucher();
@@ -48,7 +49,7 @@ export default function ListVoucher() {
     },
     {
       title: 'Số tiền chiết khấu ',
-    
+
       render: (_: any, item: any) => {
         return item.type == 'percent' ? `${item.value}%` : VND(item.value);
       },
@@ -112,7 +113,9 @@ export default function ListVoucher() {
 
     </Typography.Title>
 
-    <Table columns={columns} dataSource={listVoucers} loading={isLoading} />
+    <Table columns={columns} dataSource={listVoucers} loading={isLoading} pagination={{
+      pageSize: ITEM_PER_PAGE,
+    }} />
 
 
 
