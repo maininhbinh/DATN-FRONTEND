@@ -189,7 +189,7 @@ const AccountPage: FC<AccountPageProps> = ({ className = "" }) => {
           <div className="flex flex-col md:flex-row">
             <div className="flex-shrink-0 flex items-start">
               {/* AVATAR */}
-              <div className="relative rounded-full overflow-hidden flex">
+              <div className="relative rounded-full overflow-hidden flex ml-[60px]">
                 <img
                   src={!image ? dataItem?.data.image : image}
                   alt=""
@@ -225,7 +225,7 @@ const AccountPage: FC<AccountPageProps> = ({ className = "" }) => {
                 
               </div>
             </div>
-            <div className="flex-grow mt-10 md:mt-0 md:pl-16 max-w-3xl space-y-6">
+            <div className="flex-grow mt-10 md:mt-0 md:pl-[100px] max-w-3xl space-y-6">
               <div>
                 <Label>User name</Label>
                 <Form.Item name="username" rules={[{required: true }]}>
@@ -239,11 +239,12 @@ const AccountPage: FC<AccountPageProps> = ({ className = "" }) => {
               <div>
                 <Label>Email</Label>
                 <div className="mt-1.5 flex">
-                  <span className="h-[40px] inline-flex items-center px-2.5 rounded-l-2xl border border-r-0 border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-sm">
+                  <span className="h-[40px] inline-flex items-center px-2.5 border border-r-0 border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-sm">
                     <i className="text-2xl las la-envelope"></i>
                   </span>
                   <Form.Item name="email">
                     <Input
+                      disabled
                       name="email"
                       className="!rounded-l-none w-[400px]"
                       placeholder="example@email.com"
@@ -270,7 +271,7 @@ const AccountPage: FC<AccountPageProps> = ({ className = "" }) => {
               <div>
                 <Label>Addess</Label>
                 <div className="mt-1.5 flex">
-                  <span className="h-[40px] inline-flex items-center px-2.5 rounded-l-2xl border border-r-0 border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-sm">
+                  <span className="h-[40px] inline-flex items-center px-2.5 border border-r-0 border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-sm">
                     <i className="text-2xl las la-map-signs"></i>
                   </span>
                   <Form.Item name="address">
@@ -338,7 +339,7 @@ const AccountPage: FC<AccountPageProps> = ({ className = "" }) => {
               <div>
                 <Label>Phone number</Label>
                 <div className="mt-1.5 flex">
-                  <span className="h-[40px] inline-flex items-center px-2.5 rounded-l-2xl border border-r-0 border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-sm">
+                  <span className="h-[40px] inline-flex items-center px-2.5 border border-r-0 border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-sm">
                     <i className="text-xl las la-phone-volume"></i>
                   </span>
                   <Form.Item name="phone" rules={[{required: true }]}>
